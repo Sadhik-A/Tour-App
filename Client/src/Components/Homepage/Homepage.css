@@ -1,0 +1,97 @@
+.top-center {
+    text-align: center;
+  
+}
+.container-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    color: white;
+   
+}
+.add-book-button:hover {
+    background-color: #0056b3;
+}
+.avatar-container {
+    display: flex;
+    align-items: center;
+}
+.avatar-container i {
+    margin-left: auto;
+    
+    margin-right: 20px;
+  
+    font-size: 40px;
+     
+    position: relative;
+    cursor: pointer;
+}
+dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    min-width: 120px;
+    z-index: 1;
+}
+.dropdown p {
+    margin: 0;
+    padding: 5px 0;
+    font-weight: bold;
+}
+.dropdown button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+}
+.tour-alert{
+    position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+}
+.add-tour-button {
+    background-color: #2922a7;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.add-tour-button:hover {
+    background-color:#2922a7;
+}
+@media screen and (max-width: 900px) {
+    .container-nav {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .container-nav h1{
+        font-size: 30px;
+    }
+    .top-center {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .add-tour-button{
+    font-size: 12px;
+    }
+    .avatar-container {
+        margin-top: 10px;
+    }
+    .avatar-container i {
+        font-size: 30px; 
+
+    }
+}
