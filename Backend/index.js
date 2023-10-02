@@ -14,9 +14,9 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://tour-app-zcms.onrender.com",
+    origin: "http://localhost:3001", 
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
+    credentials: true, 
   })
 );
 app.use(express.json());

@@ -13,6 +13,8 @@ module.exports.register = async (req, res) => {
     // res.redirect('/');
   }
   catch (error) {
+    console.log(error);
+   
     if (error.code === 11000 && error.keyPattern.email) {
       
       res.status(400).json({ error: "Email address already exists." });
