@@ -11,18 +11,18 @@ dotenv.config();
 const app = express();
 app.use(cookieParser());
 
-// Middleware
+
 app.use(
   cors({
-    origin: "http://localhost:3001", // Replace with your client's URL
+    origin: "http://localhost:3001", 
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true, // Allow cookies and headers with credentials
+    credentials: true, 
   })
 );
 app.use(express.json());
 
 
-// Routes
+
 app.use(LoginRoutes);
 app.use(registerRoutes);
 app.use(AddTourRoutes);
@@ -30,7 +30,7 @@ app.use(AddTourRoutes);
 app.get("/", (req, res) => {
   res.send("server running successfully");
 });
-// Start the server
+
 app.listen(3000, () => {
   console.log("Listening on port 3000");
 });
