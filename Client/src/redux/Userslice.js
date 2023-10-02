@@ -10,6 +10,7 @@ const initialState = {
   alertmessage: null,
   user: null,
   token: localStorage.getItem("authToken") || null,
+  registerationSuccess: false,
 };
 
 const userSlice = createSlice({
@@ -55,6 +56,9 @@ const userSlice = createSlice({
     clearUserData: (state) => {
       state.user = null;
     },
+    setRegisterationSuccess: (state,action) => {
+      state.registerationSuccess = action.payload;
+    }
   },
 });
  
@@ -74,6 +78,7 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
     });
     if (response.ok) {
       dispatch(setAlertMessage("registeration successful"));
+      dispatch(setRegisterationSuccess(true));
     } else {
       dispatch(setAlertMessage("registaeration failed"));
     }
@@ -130,6 +135,6 @@ export const {
   clearConfirmPassword,
   setLoading,
   setAlertMessage,
-  setAuthToken,clearAuthToken,setUserData,clearUserData
+  setAuthToken, clearAuthToken, setUserData, clearUserData, setRegisterationSuccess
 } = userSlice.actions;
 export default userSlice.reducer;

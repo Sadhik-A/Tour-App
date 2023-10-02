@@ -21,8 +21,6 @@ app.use(
 );
 app.use(express.json());
 
-
-
 app.use(LoginRoutes);
 app.use(registerRoutes);
 app.use(AddTourRoutes);

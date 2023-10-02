@@ -3,24 +3,43 @@ import './AddTour.css';
 import '../Homepage/Homepage.css';
 import '../RegisterationPage/RegisterationForm.css';
 import { useSelector, useDispatch } from "react-redux";
-import { setTourName, setTourImage, setTourDescription, submitTour,setAlertMessage} from "../../redux/Tourslice";
+import {
+  setTourName,
+  setTourImage,
+  setTourDescription,
+  submitTour,
+  setAlertMessage,
+  setRegisterationSuccess,
+} from "../../redux/Tourslice";
 import { useEffect ,useState} from "react";
 import { CloudinaryContext } from "cloudinary-react";
-import { motion} from "framer-motion";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 function AddBook() {
   const [localAlertMessage, setLocalAlertMessage] = useState("");
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const Tourname = useSelector((state) => state.Tour.Tourname);
   const TourDescription = useSelector((state) => state.Tour.TourDescription);
   const TourImage = useSelector((state) => state.Tour.Tourimage);
-   const AlertMessage = useSelector((state) => state.Tour.alertmessage);
+  const AlertMessage = useSelector((state) => state.Tour.alertmessage);
+  const registrationSuccess = useSelector(
+    (state) => state.Tour.registerationSuccess
+  );
   const dispatch = useDispatch();
+    const navigate = useNavigate(); 
   // console.log(AlertMessage);
    useEffect(() => {
      setLocalAlertMessage(AlertMessage);
    }, [AlertMessage]);
 
-
+useEffect(() => {
+  if (registrationSuccess) {
+    setTimeout(() => {
+      navigate("/home");
+      dispatch(setRegisterationSuccess(false));
+    }, 2000);
+  }
+}, [registrationSuccess, navigate, dispatch]);
   useEffect(() => {
     return () => {
       dispatch(setTourName(""));

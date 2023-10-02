@@ -9,7 +9,8 @@ module.exports.register = async (req, res) => {
     const user = new User({ email, password: hashedPassword });
     await user.save();
 
-    res.status(201).json('User registered successfully');
+    res.status(201).json("User registered successfully");
+    // res.redirect('/');
   }
   catch (error) {
     if (error.code === 11000 && error.keyPattern.email) {

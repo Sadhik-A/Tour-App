@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+
 import {
   setEmail,
   setPassword,
@@ -8,20 +11,23 @@ import {
   setPasswordError,
   setConfirmPassword,
   setLoading,
-  setAlertMessage
+  setAlertMessage,
+  setRegisterationSuccess
 } from "../../redux/Userslice";
 import "./RegisterationForm.css";
 import { Link } from "react-router-dom";
 
 function RegistrationForm() {
-  const email = useSelector((state) => state.user.email);
+  const email = useSelector((state)  => state.user.email);
   const password = useSelector((state) => state.user.password);
   const emailError = useSelector((state) => state.user.emailError);
   const passwordError = useSelector((state) => state.user.passwordError);
   const confirmPassword = useSelector((state) => state.user.confirmpassword);
   const loading = useSelector((state) => state.user.loading);
   const alertMessage = useSelector((state) => state.user.alertmessage);
+  const registrationSuccess = useSelector((state) => state.user.registerationSuccess);
   const dispatch = useDispatch();
+  const navigate = useNavigate(); 
   const [localAlertMessage, setLocalAlertMessage] = useState("");
   const [localLoading, setLocalLoading] = useState(false);
   const [showpassword, setShowpassword] = useState(false);
@@ -38,6 +44,14 @@ function RegistrationForm() {
       dispatch(setAlertMessage(""));
     };
   }, [dispatch]);
+ useEffect(() => {
+   if (registrationSuccess) {
+     setTimeout(() => {
+       navigate("/");
+       dispatch(setRegisterationSuccess(false));
+     }, 2000); 
+   }
+ }, [registrationSuccess, navigate, dispatch]);
 
   useEffect(() => {
     setLocalAlertMessage(alertMessage);

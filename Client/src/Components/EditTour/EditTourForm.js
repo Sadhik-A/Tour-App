@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import '../../Components/AddTour/AddTour.css';
+import { useNavigate } from "react-router-dom";
 // import "../../Components/HomePage/HomePage.css";
 import {
   setTourName,
@@ -10,12 +11,14 @@ import {
   setTourDescription,
   setAlertMessage,
   editTour,
+  setRegisterationSuccess
 } from "../../redux/Tourslice";
 import { CloudinaryContext } from "cloudinary-react";
 
 function EditTourForm() {
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const location = useLocation();
+   const navigate = useNavigate(); 
   const TourId = location.pathname.split("/").pop();
   const dispatch = useDispatch();
   const Tourname = useSelector((state) => state.Tour.Tourname);
@@ -23,6 +26,9 @@ function EditTourForm() {
   const TourImage = useSelector((state) => state.Tour.Tourimage);
   const AlertMessage = useSelector((state) => state.Tour.alertmessage);
   const tours = useSelector((state) => state.Tour.tours);
+  const registrationSuccess = useSelector(
+    (state) => state.Tour.registerationSuccess
+  )
   const selectedTour = tours.find((tour) => tour.id === Number(TourId));
 
   // console.log(tours);
@@ -43,7 +49,14 @@ function EditTourForm() {
       setAlertMessage("");
     };
   }, [dispatch]);
-
+useEffect(() => {
+  if (registrationSuccess) {
+    setTimeout(() => {
+      navigate("/home");
+      dispatch(setRegisterationSuccess(false));
+    }, 2000);
+  }
+}, [registrationSuccess, navigate, dispatch]);
   useEffect(() => {
     if (AlertMessage) {
       setIsAlertVisible(true);

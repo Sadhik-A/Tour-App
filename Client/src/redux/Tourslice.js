@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-  tours:[],
+  tours: [],
   Tourname: "",
   TourDescription: "",
   Tourimage: "",
   alertmessage: "",
-}
+  registerationSuccess: false,
+};
 const tourSlice = createSlice({
   name: "tour",
   initialState,
@@ -21,10 +22,13 @@ const tourSlice = createSlice({
       state.Tourimage = action.payload;
     },
     storeTourData: (state, action) => {
-      state.tours = action.payload
+      state.tours = action.payload;
     },
     setAlertMessage: (state, action) => {
-      state.alertmessage = action.payload
+      state.alertmessage = action.payload;
+    },
+    setRegisterationSuccess: (state, action) => {
+      state.registerationSuccess = action.payload;
     },
   },
 });
@@ -41,7 +45,8 @@ export const submitTour = (TourData) => async (dispatch) => {
       body: JSON.stringify(TourData),
     });
     if (response.ok) {
-       dispatch(setAlertMessage("Tour Added successfuly"));
+      dispatch(setAlertMessage("Tour Added successfuly"));
+          dispatch(setRegisterationSuccess(true));
       // console.log('Tour Added successfuly');
     } else {
       // dispatch(setAlertMessage("add tour failed"));
@@ -65,6 +70,7 @@ export const editTour = (TourData) => async (dispatch) => {
     });
     if (response.ok) {
       dispatch(setAlertMessage("Tour Updated successfuly"));
+          dispatch(setRegisterationSuccess(true));
       // console.log('Tour Added successfuly');
     } else {
       dispatch(setAlertMessage("You are not authorized to edit tour"));
@@ -132,5 +138,5 @@ export const deleteTour = (id) => async (dispatch, getState) => {
   }
 };
 
-export const { setTourName, setTourDescription, setTourImage, setAlertMessage ,storeTourData,} = tourSlice.actions;
+export const { setTourName, setTourDescription, setTourImage, setAlertMessage ,storeTourData,setRegisterationSuccess} = tourSlice.actions;
 export default tourSlice.reducer
