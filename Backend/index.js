@@ -27,7 +27,9 @@ app.use(LoginRoutes);
 app.use(registerRoutes);
 app.use(AddTourRoutes);
 
-
+app.get("/", (req, res) => {
+  res.send("server running successfully");
+});
 // Start the server
 app.listen(3000, () => {
   console.log("Listening on port 3000");
