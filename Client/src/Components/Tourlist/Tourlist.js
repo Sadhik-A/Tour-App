@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getTour, deleteTour } from "../../redux/Tourslice";
@@ -7,8 +7,7 @@ import { setAlertMessage } from "../../redux/Tourslice";
 import { motion } from "framer-motion";
 
 function Tourlist({ searchTerm }) {
-  const [isAlertVisible, setIsAlertVisible] = useState(false);
-  const AlertMessage = useSelector((state) => state.Tour.alertmessage);
+ 
   const dispatch = useDispatch();
   const tours = useSelector((state) => state.Tour.tours);
 
@@ -20,20 +19,9 @@ function Tourlist({ searchTerm }) {
 
   useEffect(() => {
     dispatch(getTour());
-    setIsAlertVisible(true);
   }, [dispatch]);
 
-  useEffect(() => {
-    if (AlertMessage) {
-      setIsAlertVisible(true);
-      setTimeout(() => {
-        setIsAlertVisible(false);
-      }, 3000);
-    }
-  }, [AlertMessage]);
-
   const handleDelete = (tourId) => {
-    setIsAlertVisible(true);
     dispatch(deleteTour(tourId));
   };
 

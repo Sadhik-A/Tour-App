@@ -35,7 +35,7 @@ function HomePage() {
         dispatch(setAlertMessage(""));
       }, 3000);
     }
-  }, [AlertMessage]);
+  }, [AlertMessage,dispatch]);
 
   const toggleProfile = () => {
     setIsDropdownVisible(!isDropdownVisible);
@@ -48,7 +48,7 @@ function HomePage() {
   return (
     <>
       <div className="container-nav">
-        <h1>Welcome to tour page</h1>
+        <h1>Tour page</h1>
         <div className="top-center">
           <Link
             to="/addTour"
@@ -73,7 +73,7 @@ function HomePage() {
                   <p>{user.email}</p>
                   <Link
                     to="/"
-                    className="add-tour-button"
+                    className="logout-button"
                     onClick={handleLogout}
                   >
                     Logout
@@ -91,7 +91,7 @@ function HomePage() {
           <div className="tour-alert">
             <motion.p
               className={`alert ${
-                AlertMessage === "Tour deleted successfully"
+                AlertMessage === "Tour deleted successfuly"
                   ? "success"
                   : "error"
               }`}

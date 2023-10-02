@@ -11,8 +11,8 @@
     color: white;
    
 }
-.add-book-button:hover {
-    background-color: #0056b3;
+.add-tour-button:hover {
+    background-color: #28619e;
 }
 .avatar-container {
     display: flex;
@@ -66,7 +66,14 @@ dropdown {
     cursor: pointer;
     text-decoration: none;
 }
-
+.logout-button{
+    background-color: #2922a7;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+}
 .add-tour-button:hover {
     background-color:#2922a7;
 }

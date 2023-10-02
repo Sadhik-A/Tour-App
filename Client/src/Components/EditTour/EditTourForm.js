@@ -52,7 +52,7 @@ function EditTourForm() {
         dispatch(setAlertMessage(""));
       }, 1000);
     }
-  }, [AlertMessage]);
+  }, [AlertMessage,dispatch]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
