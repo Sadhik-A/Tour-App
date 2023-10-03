@@ -11,10 +11,9 @@ dotenv.config();
 const app = express();
 app.use(cookieParser());
 
-
 app.use(
   cors({
-    origin: "https://tour-app-zcms.onrender.com/",
+    origin: "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
