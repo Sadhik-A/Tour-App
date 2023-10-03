@@ -50,6 +50,9 @@ module.exports.deleteTour = async (req, res) => {
 
 module.exports.editTour = async (req, res) => {
   try {
+    if (!req.is_admin) {
+      return res.status(401).json("You are not authorized to edit tour");
+    }
     const id = req.body.TourId;
     const { Tourname, TourImage, TourDescription } = req.body;
     // console.log(id)

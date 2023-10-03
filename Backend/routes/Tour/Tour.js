@@ -18,12 +18,5 @@ router.post(
     Tourcontrol.add(req, res);
   }
 );
-router.put("/api/editTour",middleware.verifyToken, (req, res) => {
-   console.log(req.is_admin);
-  if (req.is_admin) {
-    Tourcontrol.editTour(req, res);
-  } else {
-    res.status(401).json("You are not authorized to edit tour");
-  }
-});
+router.put("/api/editTour",middleware.verifyToken, Tourcontrol.editTour);
 module.exports = router;
