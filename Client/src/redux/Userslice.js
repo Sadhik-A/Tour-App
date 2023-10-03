@@ -79,6 +79,7 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
         body: JSON.stringify(registrationData),
       }
     );
+    console.log(response);
     if (response.ok) {
       dispatch(setAlertMessage("registeration successful"));
       dispatch(setRegisterationSuccess(true));
@@ -105,6 +106,7 @@ export const submitLogin = (LoginData) => async (dispatch) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": "true",
         },
         credentials: "include",
         body: JSON.stringify(LoginData),
