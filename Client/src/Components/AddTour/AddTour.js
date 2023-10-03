@@ -97,7 +97,7 @@ useEffect(() => {
         console.error("Failed to upload image to Cloudinary.");
       }
     } catch (error) {
-      console.error("Error uploading image:", error);
+      // console.error("Error uploading image:", error);
     }
   };
 

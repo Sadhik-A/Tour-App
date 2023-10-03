@@ -48,6 +48,7 @@ function Tourlist({ searchTerm }) {
               <Link to={`/editTour/${tour.id}`}>
                 <i className="fa fa-edit edit-icon"> Edit</i>
               </Link>
+              <i className="fa fa-edit like-icon">Like</i>
               <i
                 className="fa fa-trash delete-icon"
                 onClick={() => handleDelete(tour.id)}

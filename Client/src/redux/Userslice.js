@@ -79,7 +79,7 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
         body: JSON.stringify(registrationData),
       }
     );
-    console.log(response);
+    // console.log(response);
     if (response.ok) {
       dispatch(setAlertMessage("registeration successful"));
       dispatch(setRegisterationSuccess(true));
@@ -87,7 +87,7 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
       dispatch(setAlertMessage("registaeration failed"));
     }
   } catch (error) {
-    console.error("Error:", error);
+    // console.error("Error:", error);
     dispatch(setAlertMessage("email already exists"));
   } finally {
     dispatch(setLoading(false));
@@ -117,7 +117,7 @@ export const submitLogin = (LoginData) => async (dispatch) => {
       const Userdata = await response.json();
       const authToken = Userdata.token;
       const decodedToken = jwt_decode(authToken);
-      console.log(`authToken: ${authToken}`);
+      // console.log(`authToken: ${authToken}`);
        localStorage.setItem("decodedToken", JSON.stringify(decodedToken));
    dispatch(setAuthToken(authToken));
    dispatch(setUserData(Userdata));
@@ -128,7 +128,7 @@ export const submitLogin = (LoginData) => async (dispatch) => {
       dispatch(setAlertMessage("Login failed"));
     }
   } catch (error) {
-    console.error("Error:", error);
+    // console.error("Error:", error);
     dispatch(setAlertMessage("An error occurred"));
   }
   finally {

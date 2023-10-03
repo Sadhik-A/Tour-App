@@ -56,7 +56,7 @@ export const submitTour = (TourData) => async (dispatch) => {
       // console.log('add tour failed');
     }
   } catch (error) {
-    console.error("Error:", error);
+    // console.error("Error:", error);
   } 
 };
 
@@ -81,10 +81,10 @@ export const editTour = (TourData) => async (dispatch) => {
       // console.log('Tour Added successfuly');
     } else {
       dispatch(setAlertMessage("You are not authorized to edit tour"));
-      console.log("update tour failed");
+      // console.log("update tour failed");
     }
   } catch (error) {
-    console.error("Error:", error);
+    // console.error("Error:", error);
   }
 };
 
@@ -109,7 +109,7 @@ export const getTour = () => async (dispatch) => {
       // console.log("Fetching tour data failed");
     }
   } catch (error) {
-    console.error("Error:", error);
+    // console.error("Error:", error);
   }
 };
 
@@ -135,7 +135,7 @@ export const deleteTour = (id) => async (dispatch, getState) => {
        dispatch(storeTourData(updatedTours));
       // const tourData = await response.json();
       //  console.log(tourData)
-      console.log("Tour deleted successfully:");
+      // console.log("Tour deleted successfully:");
       // dispatch(storeTourData(tourData)); 
     }
     else if (response.status === 401) {
@@ -144,10 +144,10 @@ export const deleteTour = (id) => async (dispatch, getState) => {
     else {
        const errorData = await response.json(); 
        dispatch(setAlertMessage(errorData.error));
-      console.log("deleting tour failed");
+      // console.log("deleting tour failed");
     }
   } catch (error) {
-    console.error("Error:", error);
+    // console.error("Error:", error);
   }
 };
 

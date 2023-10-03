@@ -96,10 +96,10 @@ useEffect(() => {
         const data = await response.json();
         dispatch(setTourImage(data.secure_url));
       } else {
-        console.error("Failed to upload image to Cloudinary.");
+        // console.error("Failed to upload image to Cloudinary.");
       }
     } catch (error) {
-      console.error("Error uploading image:", error);
+      // console.error("Error uploading image:", error);
     }
   };
 
