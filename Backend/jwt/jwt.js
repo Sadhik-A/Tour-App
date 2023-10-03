@@ -12,7 +12,7 @@ module.exports.verifyToken = (req, res, next) => {
     if (err) {
       return res.status(403).json({ error: "Token not valid" });
     }
-      console.log(payload);
+      // console.log(payload);
     req.userId = payload.userId;
     req.is_admin = payload.is_admin;
     next();

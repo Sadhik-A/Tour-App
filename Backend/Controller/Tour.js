@@ -14,7 +14,7 @@ module.exports.add = async (req, res) => {
     await tour.save();
     res.status(201).json("Tour added successfully");
   } catch (error) {
-    console.log(error);
+    // console.log(error);
       res.status(500).json({ error: "Internal server error." })
   }
 
@@ -56,7 +56,7 @@ module.exports.editTour = async (req, res) => {
     const id = req.body.TourId;
     const { Tourname, TourImage, TourDescription } = req.body;
     // console.log(id)
-    console.log(req.body);
+    // console.log(req.body);
     const tour = await Tour.where({ id }).fetch();
     // console.log(tour)
      const updatedFields = {
