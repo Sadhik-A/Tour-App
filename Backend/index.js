@@ -26,7 +26,7 @@ app.use(registerRoutes);
 app.use(AddTourRoutes);
 
 app.get("/", (req, res) => {
-  res.send("server running successfully");
+  res.send("server running successfuly");
 });
 
 app.listen(3000, () => {
