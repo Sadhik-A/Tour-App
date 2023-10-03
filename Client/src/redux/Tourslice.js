@@ -37,13 +37,16 @@ const tourSlice = createSlice({
 export const submitTour = (TourData) => async (dispatch) => {
   try {
     // console.log(TourData);
-    const response = await fetch("http://localhost:3000/api/addTour", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(TourData),
-    });
+    const response = await fetch(
+      "https://tour-app-zcms.onrender.com/api/addTour",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(TourData),
+      }
+    );
     if (response.ok) {
       dispatch(setAlertMessage("Tour Added successfuly"));
           dispatch(setRegisterationSuccess(true));
@@ -61,13 +64,17 @@ export const submitTour = (TourData) => async (dispatch) => {
 export const editTour = (TourData) => async (dispatch) => {
   try {
     // console.log(TourData);
-    const response = await fetch("http://localhost:3000/api/editTour", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },credentials: "include",
-      body: JSON.stringify(TourData),
-    });
+    const response = await fetch(
+      "https://tour-app-zcms.onrender.com/api/editTour",
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(TourData),
+      }
+    );
     if (response.ok) {
       dispatch(setAlertMessage("Tour Updated successfuly"));
           dispatch(setRegisterationSuccess(true));
@@ -84,12 +91,15 @@ export const editTour = (TourData) => async (dispatch) => {
 // getting all tours
 export const getTour = () => async (dispatch) => {
   try {
-    const response = await fetch("http://localhost:3000/api/getTours", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "https://tour-app-zcms.onrender.com/api/getTours",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     if (response.ok) {
       const tourData = await response.json();
       //  console.log(tourData)
@@ -107,13 +117,16 @@ export const getTour = () => async (dispatch) => {
 export const deleteTour = (id) => async (dispatch, getState) => {
   try {
     // console.log(user);
-    const response = await fetch(`http://localhost:3000/api/deleteTour/${id}`, {
-      method: "DELETE",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `https://tour-app-zcms.onrender.com/api/deleteTour/${id}`,
+      {
+        method: "DELETE",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     if (response.ok) {
        dispatch(setAlertMessage("Tour deleted successfuly"));
        const updatedTours = getState().Tour.tours.filter(
