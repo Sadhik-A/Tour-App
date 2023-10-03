@@ -5,7 +5,6 @@ const knex = require("knex")({
     user: "ueaktxxfncvvobyd",
     password: "TezxJ2EhzyyaUbtlrpZm",
     database: "btdvag1sybzpsemaknpv",
-
     port: 3306,
   },
 });

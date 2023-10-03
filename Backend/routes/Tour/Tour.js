@@ -6,14 +6,7 @@ const middleware = require("../../jwt/jwt");
 router.get("/api/getTours", (req, res) => {
   Tourcontrol.getTourlist(req, res);
 });
-router.delete("/api/deleteTour/:id", middleware.verifyToken, (req, res) => {
-  if (req.is_admin) {
-    Tourcontrol.deleteTour(req, res);
-  }
-  else{
-    res.status(401).json("You are not authorized to delete tour");
-  }
-});
+router.delete("/api/deleteTour/:id", middleware.verifyToken,Tourcontrol.deleteTour);
 router.post(
   "/api/addTour",
   async (req, res) => {
