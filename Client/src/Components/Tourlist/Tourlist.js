@@ -21,6 +21,7 @@ function Tourlist({ searchTerm }) {
   };
 
   const handleLike = (tourId) => {
+    console.log('like is clicked ' )
     // Dispatch the likeTour action when the like icon is clicked
     dispatch(likeTour(tourId));
    

@@ -50,7 +50,9 @@ export const likeTour = (tourId) => async (dispatch) => {
     );
 
     if (response.ok) {
+      
       const { likes } = await response.json();
+      console.log(likes);
       dispatch(updateLikes({ tourId, likes }));
     } else { 
      dispatch(setAlertMessage("Like tour failed"));
