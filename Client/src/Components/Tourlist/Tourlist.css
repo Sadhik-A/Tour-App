@@ -50,3 +50,7 @@
     color: green;
     cursor: pointer;
 }
+.dislike-icon{
+    color: red;
+    cursor: pointer;
+}

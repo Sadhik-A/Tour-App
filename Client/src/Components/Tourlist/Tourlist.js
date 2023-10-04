@@ -63,7 +63,7 @@ function Tourlist({ searchTerm }) {
               >
                 {tour.likes}
               </i>
-              <i className="fa fa-thumbs-down like-icon"
+              <i className="fa fa-thumbs-down dislike-icon"
                 onclick={() => handledisLike(tour.id)}>{""}</i>
               <i
                 className="fa fa-trash delete-icon"
