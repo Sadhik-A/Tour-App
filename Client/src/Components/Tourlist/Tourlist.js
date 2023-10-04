@@ -54,17 +54,23 @@ function Tourlist({ searchTerm }) {
             <img src={tour.Tourimage} alt={tour.Tourname} />
             <p>{tour.TourDescription}</p>
             <div className="tour-icons">
-              <Link to={`/editTour/${tour.id}`}>
-                <i className="fa fa-edit edit-icon"> Edit</i>
-              </Link>
-              <i
-                className="fa fa-thumbs-up like-icon" // Like icon
-                onClick={() => handleLike(tour.id)} // Call handleLike when the like icon is clicked
-              >
-                {tour.likes}
-              </i>
-              <i className="fa fa-thumbs-down dislike-icon"
-                onclick={() => handledisLike(tour.id)}>{""}</i>
+              <div className="edit-like">
+                <Link to={`/editTour/${tour.id}`}>
+                  <i className="fa fa-edit edit-icon"> Edit</i>
+                </Link>
+                <i
+                  className="fa fa-thumbs-up like-icon" // Like icon
+                  onClick={() => handleLike(tour.id)} // Call handleLike when the like icon is clicked
+                >
+                  {tour.likes}
+                </i>
+                <i
+                  className="fa fa-thumbs-down dislike-icon"
+                  onClick={() => handledisLike(tour.id)}
+                >
+                  {""}
+                </i>
+              </div>
               <i
                 className="fa fa-trash delete-icon"
                 onClick={() => handleDelete(tour.id)}
