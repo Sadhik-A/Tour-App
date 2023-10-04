@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getTour, deleteTour, likeTour } from "../../redux/Tourslice";
 import "./Tourlist.css";
-import { setAlertMessage } from "../../redux/Tourslice";
+
 import { motion } from "framer-motion";
 
 function Tourlist({ searchTerm }) {
