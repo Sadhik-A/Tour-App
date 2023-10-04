@@ -49,6 +49,7 @@
 .like-icon{
     color: green;
     cursor: pointer;
+    padding-left: 10px;
 }
 .dislike-icon{
     color: red;
@@ -58,4 +59,5 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 5px;
 }

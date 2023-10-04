@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getTour, deleteTour, likeTour,dislikeTour } from "../../redux/Tourslice";
 import "./Tourlist.css";
-
+import ImageViewer from "../ImageViewer";
 import { motion } from "framer-motion";
 
 function Tourlist({ searchTerm }) {
   const dispatch = useDispatch();
   const tours = useSelector((state) => state.Tour.tours);
   const likes = useSelector((state) => state.Tour.likes);
+  const [selectedImage, setSelectedImage] = useState(null);
   // console.log(tours)
   // Fetch tours when the component mounts
   useEffect(() => {
@@ -19,7 +20,9 @@ function Tourlist({ searchTerm }) {
   const handleDelete = (tourId) => {
     dispatch(deleteTour(tourId));
   };
-
+ const handleImageClick = (imageUrl) => {
+   setSelectedImage(imageUrl);
+ };
   const handleLike = (tourId) => {
     console.log('like is clicked' )
     // Dispatch the likeTour action when the like icon is clicked
@@ -47,11 +50,21 @@ function Tourlist({ searchTerm }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
+      {selectedImage && (
+        <ImageViewer
+          imageUrl={selectedImage}
+          onClose={() => setSelectedImage(null)} // Add a function to close the viewer
+        />
+      )}
       {filteredTours.map((tour) => (
         <div key={tour.id} className="tour-item-container">
           <motion.div className="tour-item" whileHover={{ scale: 1.1 }}>
             <h2>{tour.Tourname}</h2>
-            <img src={tour.Tourimage} alt={tour.Tourname} />
+            <img
+              src={tour.Tourimage}
+              alt={tour.Tourname}
+              onClick={() => handleImageClick(tour.Tourimage)}
+            />
             <p>{tour.TourDescription}</p>
             <div className="tour-icons">
               <div className="edit-like">
