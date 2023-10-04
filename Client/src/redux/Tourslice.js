@@ -40,7 +40,7 @@ const tourSlice = createSlice({
 export const likeTour = (tourId) => async (dispatch) => {
   try {
     const response = await fetch(
-      `http://tour-app-zcms.onrender.com/api/likeTour/${tourId}`,
+      `https://tour-app-zcms.onrender.com/api/likeTour/${tourId}`,
       {
         method: "POST",
         headers: {
