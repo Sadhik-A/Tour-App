@@ -61,9 +61,10 @@ function Tourlist({ searchTerm }) {
                 className="fa fa-thumbs-up like-icon" // Like icon
                 onClick={() => handleLike(tour.id)} // Call handleLike when the like icon is clicked
               >
-                {tour.likes} {/* Display the updated like count */}
+                {tour.likes}
               </i>
-              <i className="fa fa-thumbs-down like-icon"onclick={()=>handledisLike(tour.id)}></i>
+              <i className="fa fa-thumbs-down like-icon"
+                onclick={() => handledisLike(tour.id)}>{""}</i>
               <i
                 className="fa fa-trash delete-icon"
                 onClick={() => handleDelete(tour.id)}
