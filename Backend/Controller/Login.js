@@ -20,6 +20,7 @@ module.exports.jwtlogin = async (req, res) => {
     const token = jwt.sign({ userId: user.id,email: user.get('email'),is_admin: user.get('is_admin') },  process.env.JWT_SECRET, { expiresIn: '1h' });
      res
        .cookie("accessToken", token, {
+        
          domain: "tour-app-zcms.onrender.com",
          path: "/",
          httpOnly: true,

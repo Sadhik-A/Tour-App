@@ -36,11 +36,17 @@
 .tour-icons{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
 }
 .edit-icon{
  color: blue;
 }
 .delete-icon{
     color: red;
+    cursor: pointer;
+}
+.like-icon{
+    color: green;
     cursor: pointer;
 }

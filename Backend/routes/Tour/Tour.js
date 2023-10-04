@@ -18,5 +18,6 @@ router.post(
     Tourcontrol.add(req, res);
   }
 );
-router.put("/api/editTour",middleware.verifyToken, Tourcontrol.editTour);
+router.put("/api/editTour", middleware.verifyToken, Tourcontrol.editTour);
+router.post("/api/likeTour/:id", Tourcontrol.likeTour);
 module.exports = router;

@@ -1,30 +1,32 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getTour, deleteTour } from "../../redux/Tourslice";
+import { getTour, deleteTour, likeTour } from "../../redux/Tourslice";
 import "./Tourlist.css";
 import { setAlertMessage } from "../../redux/Tourslice";
 import { motion } from "framer-motion";
 
 function Tourlist({ searchTerm }) {
- 
   const dispatch = useDispatch();
   const tours = useSelector((state) => state.Tour.tours);
-
-  useEffect(() => {
-    return () => {
-      dispatch(setAlertMessage(""));
-    };
-  }, [dispatch]);
-
+  const likes = useSelector((state) => state.Tour.likes);
+  // console.log(tours)
+  // Fetch tours when the component mounts
   useEffect(() => {
     dispatch(getTour());
-  }, [dispatch]);
-
+  }, [dispatch, searchTerm,likes]);
+  
   const handleDelete = (tourId) => {
     dispatch(deleteTour(tourId));
   };
 
+  const handleLike = (tourId) => {
+    // Dispatch the likeTour action when the like icon is clicked
+    dispatch(likeTour(tourId));
+   
+  };
+
+  // Filter tours based on the search term
   const filteredTours = searchTerm
     ? tours.filter((tour) =>
         tour.Tourname.toLowerCase().includes(searchTerm.toLowerCase())
@@ -48,7 +50,12 @@ function Tourlist({ searchTerm }) {
               <Link to={`/editTour/${tour.id}`}>
                 <i className="fa fa-edit edit-icon"> Edit</i>
               </Link>
-              
+              <i
+                className="fa fa-thumbs-up like-icon" // Like icon
+                onClick={() => handleLike(tour.id)} // Call handleLike when the like icon is clicked
+              >
+                {tour.likes} {/* Display the updated like count */}
+              </i>
               <i
                 className="fa fa-trash delete-icon"
                 onClick={() => handleDelete(tour.id)}

@@ -1,4 +1,4 @@
-// CloudinaryConfig.js
+
  import { Cloudinary } from "cloudinary-core";
 
 const cloudinaryCore = new Cloudinary({

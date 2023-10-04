@@ -6,6 +6,7 @@ const initialState = {
   Tourimage: "",
   alertmessage: "",
   registerationSuccess: false,
+  likes: {},
 };
 const tourSlice = createSlice({
   name: "tour",
@@ -30,14 +31,42 @@ const tourSlice = createSlice({
     setRegisterationSuccess: (state, action) => {
       state.registerationSuccess = action.payload;
     },
+    updateLikes: (state, action) => {
+      const { tourId, likes } = action.payload;
+      state.likes = { ...state.likes, [tourId]: likes };
+    },
   },
 });
+export const likeTour = (tourId) => async (dispatch) => {
+  try {
+    const response = await fetch(
+      `http://tour-app-zcms.onrender.com/api/likeTour/${tourId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.ok) {
+      const { likes } = await response.json();
+      dispatch(updateLikes({ tourId, likes }));
+    } else { 
+     dispatch(setAlertMessage("Like tour failed"));
+    }
+  } catch (error) {
+    // Handle errors
+    console.error("Error:", error);
+  }
+};
 
 //adding a tour 
 export const submitTour = (TourData) => async (dispatch) => {
   try {
     // console.log(TourData);
     const response = await fetch(
+      // "http://localhost:3000/api/addTour",
       "https://tour-app-zcms.onrender.com/api/addTour",
       {
         method: "POST",
@@ -65,6 +94,7 @@ export const editTour = (TourData) => async (dispatch) => {
   try {
     // console.log(TourData);
     const response = await fetch(
+      // "http://localhost:3000/api/editTour",
       "https://tour-app-zcms.onrender.com/api/editTour",
       {
         method: "PUT",
@@ -92,6 +122,7 @@ export const editTour = (TourData) => async (dispatch) => {
 export const getTour = () => async (dispatch) => {
   try {
     const response = await fetch(
+      // "http://localhost:3000/api/getTours",
       "https://tour-app-zcms.onrender.com/api/getTours",
       {
         method: "GET",
@@ -118,6 +149,7 @@ export const deleteTour = (id) => async (dispatch, getState) => {
   try {
     // console.log(user);
     const response = await fetch(
+    //  `http://localhost:3000/api/deleteTour/${id}`,
       `https://tour-app-zcms.onrender.com/api/deleteTour/${id}`,
       {
         method: "DELETE",
@@ -151,5 +183,6 @@ export const deleteTour = (id) => async (dispatch, getState) => {
   }
 };
 
-export const { setTourName, setTourDescription, setTourImage, setAlertMessage ,storeTourData,setRegisterationSuccess} = tourSlice.actions;
+
+export const { setTourName, setTourDescription, setTourImage, setAlertMessage ,storeTourData,setRegisterationSuccess,updateLikes} = tourSlice.actions;
 export default tourSlice.reducer
