@@ -20,4 +20,5 @@ router.post(
 );
 router.put("/api/editTour", middleware.verifyToken, Tourcontrol.editTour);
 router.post("/api/likeTour/:id", Tourcontrol.likeTour);
+router.post("/api/dislikeTour/:id", Tourcontrol.dislikeTour);
 module.exports = router;

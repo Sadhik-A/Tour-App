@@ -86,3 +86,18 @@ module.exports.likeTour = async (req, res) => {
     return res.status(500).json(err.message);
   }
 }
+module.exports.dislikeTour = async (req, res) => {
+  try {
+    const id = req.params.id;
+    // console.log(id)
+    const tour = await Tour.where({ id }).fetch();
+    // console.log(tour)
+    const updatedFields = {
+      likes: tour.get("likes") - 1,
+    };
+    await tour.save(updatedFields, { patch: true });
+    return res.status(200).json({ likes: updatedFields.likes });
+  } catch (err) {
+    return res.status(500).json(err.message);
+  }
+};

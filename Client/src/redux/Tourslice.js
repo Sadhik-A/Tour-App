@@ -62,7 +62,30 @@ export const likeTour = (tourId) => async (dispatch) => {
     console.error("Error:", error);
   }
 };
+export const dislikeTour = (tourId) => async (dispatch) => {
+  try {
+    const response = await fetch(
+      `https://tour-app-zcms.onrender.com/api/dislikeTour/${tourId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
+    if (response.ok) {
+      const { likes } = await response.json();
+      console.log(likes);
+      dispatch(updateLikes({ tourId, likes }));
+    } else {
+      dispatch(setAlertMessage("Like tour failed"));
+    }
+  } catch (error) {
+    // Handle errors
+    console.error("Error:", error);
+  }
+};
 //adding a tour 
 export const submitTour = (TourData) => async (dispatch) => {
   try {

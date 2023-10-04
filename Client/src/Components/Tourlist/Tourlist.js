@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getTour, deleteTour, likeTour } from "../../redux/Tourslice";
+import { getTour, deleteTour, likeTour,dislikeTour } from "../../redux/Tourslice";
 import "./Tourlist.css";
 
 import { motion } from "framer-motion";
@@ -21,10 +21,16 @@ function Tourlist({ searchTerm }) {
   };
 
   const handleLike = (tourId) => {
-    console.log('like is clicked ' )
+    console.log('like is clicked' )
     // Dispatch the likeTour action when the like icon is clicked
     dispatch(likeTour(tourId));
    
+  };
+
+  const handledisLike = (tourId) => {
+    console.log("dislike is clicked");
+    // Dispatch the likeTour action when the like icon is clicked
+    dispatch(dislikeTour(tourId));
   };
 
   // Filter tours based on the search term
@@ -57,6 +63,7 @@ function Tourlist({ searchTerm }) {
               >
                 {tour.likes} {/* Display the updated like count */}
               </i>
+              <i className="fa fa-thumbs-down like-icon"onclick={()=>handledisLike(tour.id)}></i>
               <i
                 className="fa fa-trash delete-icon"
                 onClick={() => handleDelete(tour.id)}
