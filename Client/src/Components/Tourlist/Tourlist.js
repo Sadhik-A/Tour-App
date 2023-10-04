@@ -43,29 +43,28 @@ function Tourlist({ searchTerm }) {
     >
       {filteredTours.map((tour) => (
         <div key={tour.id} className="tour-item-container">
-          <motion.div
-            className="tour-icons"
-            initial={{ scale: 1 }} 
-            whileHover={{ scale: 1.1 }} 
-          >
-            <Link to={`/editTour/${tour.id}`}>
-              <i className="fa fa-edit edit-icon"> Edit</i>
-            </Link>
-            <motion.div
-              className="like-icon-container"
-              onClick={() => handleLike(tour.id)}
-            >
-              <i className="fa fa-thumbs-up like-icon">
-                {tour.likes} 
+          <motion.div className="tour-item" whileHover={{ scale: 1.1 }}>
+            <h2>{tour.Tourname}</h2>
+            <img src={tour.Tourimage} alt={tour.Tourname} />
+            <p>{tour.TourDescription}</p>
+            <div className="tour-icons">
+              <Link to={`/editTour/${tour.id}`}>
+                <i className="fa fa-edit edit-icon"> Edit</i>
+              </Link>
+              <i
+                className="fa fa-thumbs-up like-icon" // Like icon
+                onClick={() => handleLike(tour.id)} // Call handleLike when the like icon is clicked
+              >
+                {tour.likes} {/* Display the updated like count */}
               </i>
-            </motion.div>
-            <i
-              className="fa fa-trash delete-icon"
-              onClick={() => handleDelete(tour.id)}
-            >
-              {" "}
-              Delete
-            </i>
+              <i
+                className="fa fa-trash delete-icon"
+                onClick={() => handleDelete(tour.id)}
+              >
+                {" "}
+                Delete
+              </i>
+            </div>
           </motion.div>
         </div>
       ))}
