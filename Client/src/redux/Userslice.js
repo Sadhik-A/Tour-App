@@ -127,7 +127,8 @@ export const submitLogin = (LoginData) => async (dispatch) => {
    dispatch(setAlertMessage("Login successful"));
      
     } else {
-      dispatch(setAlertMessage("Login failed"));
+      const errorData = await response.json();
+      dispatch(setAlertMessage(errorData));
     }
   } catch (error) {
     // console.error("Error:", error);

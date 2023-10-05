@@ -8,12 +8,12 @@ module.exports.jwtlogin = async (req, res) => {
     const user = await User.where({ email }).fetch();
     // console.log(user)
     if (!user) {
-      return res.status(401).json('Invalid credentials');
+      return res.status(401).json('user not found');
     }
     const isPasswordValid = await bcrypt.compare(password, user.get('password'));
 
     if (!isPasswordValid) {
-      return res.status(401).json('Invalid credentials');
+      return res.status(401).json('Invalid password');
     }
     // jwt token
     // console.log(process.env.JWT_SECRET)

@@ -9,7 +9,7 @@ function ImageViewer({ imageUrl, onClose }) {
       <div className="image-viewer">
         <div className="viewer-header">
           <button className="close-button" onClick={onClose}>
-            <i className="fa fa-times"></i> {/* Close icon */}
+            <i className="fa fa-times"></i>
           </button>
         </div>
         <img
@@ -17,8 +17,8 @@ function ImageViewer({ imageUrl, onClose }) {
           alt="tour"
           style={{
             transform: `scale(${zoomLevel})`,
-            margin: "20px", // Add margin for spacing
-            padding: "10px", // Add padding for spacing
+            margin: "20px", 
+            padding: "10px", 
           }}
         />
         <div className="zoom-controls">
@@ -26,13 +26,13 @@ function ImageViewer({ imageUrl, onClose }) {
             className="zoom-button"
             onClick={() => setZoomLevel(zoomLevel * 1.2)}
           >
-            <i className="fa fa-plus"></i> {/* Plus icon */}
+            <i className="fa fa-plus"></i> 
           </button>
           <button
             className="zoom-button"
             onClick={() => setZoomLevel(zoomLevel / 1.2)}
           >
-            <i className="fa fa-minus"></i> {/* Minus icon */}
+            <i className="fa fa-minus"></i> 
           </button>
         </div>
       </div>
