@@ -4,15 +4,15 @@ import LoginForm from "./Login/Login";
 const PrivateRoute = ({ element }) => {
   const decodedTokenJSON = localStorage.getItem("decodedToken");
   const isAuthenticated = !!decodedTokenJSON;
-
     if (!isAuthenticated) {
         return <Navigate to="/" />;
     }
-    else if(element===LoginForm) {
-        return null;
+    else if((isAuthenticated)&&(element===LoginForm)) {
+        return <Navigate to="/home" />;
     }
-    else {
-        return element
+    else if (isAuthenticated) {
+        return element; 
     }
+//   return element;
 };
 export default PrivateRoute;
