@@ -12,10 +12,10 @@ const bookshelf = require("bookshelf")(knex);
 knex
   .raw("SELECT 1")
   .then(() => {
-    // console.log("Connected to the database");
+    console.log("Connected to the database");
   })
   .catch((err) => {
-    // console.error("Error connecting to the database:", err);
+    console.error("Error connecting to the database:", err);
     process.exit(1);
   });
 module.exports = bookshelf;

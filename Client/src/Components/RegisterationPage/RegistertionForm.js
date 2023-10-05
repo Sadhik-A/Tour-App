@@ -68,6 +68,7 @@ function RegistrationForm() {
      }, 1000);
    }
  }, [alertMessage]);
+ 
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(email);
@@ -190,7 +191,7 @@ function RegistrationForm() {
           {isAlertVisible&& (
             <p
               className={`alert ${
-                localAlertMessage === "registeration successful" ? "success": "error" }`}>
+                localAlertMessage === "registration successful" ? "success": "error" }`}>
               {localAlertMessage}
             </p>
           )}

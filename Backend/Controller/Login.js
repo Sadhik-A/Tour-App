@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 module.exports.jwtlogin = async (req, res) => {
      try {
     const { email, password } = req.body;
-    const user = await User.where({ email }).fetch();
+    const user = await User.where({ email }).fetch({ require: false });
     // console.log(user)
     if (!user) {
       return res.status(401).json('user not found');
@@ -25,7 +25,7 @@ module.exports.jwtlogin = async (req, res) => {
          path: "/",
          httpOnly: true,
          sameSite: "none",
-         secure:true,
+         secure: true,
          expiresIn: "10d",
        })
        .status(200)

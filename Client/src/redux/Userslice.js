@@ -44,7 +44,7 @@ const userSlice = createSlice({
     },
     setAuthToken: (state, action) => {
       state.token = action.payload;
-      localStorage.setItem("authToken", action.payload); 
+      localStorage.setItem("authToken", action.payload);
     },
     clearAuthToken: (state) => {
       state.token = null;
@@ -56,18 +56,17 @@ const userSlice = createSlice({
     clearUserData: (state) => {
       state.user = null;
     },
-    setRegisterationSuccess: (state,action) => {
+    setRegisterationSuccess: (state, action) => {
       state.registerationSuccess = action.payload;
-    }
+    },
   },
 });
- 
 
 //registration of user
+//registration of user
 export const submitRegistration = (registrationData) => async (dispatch) => {
- 
   try {
-    dispatch(setLoading(true)); 
+    dispatch(setLoading(true));
     dispatch(setAlertMessage(""));
     const response = await fetch(
       //  "http://localhost:3000/api/register",
@@ -80,28 +79,34 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
         body: JSON.stringify(registrationData),
       }
     );
-    // console.log(response);
+
     if (response.ok) {
-      dispatch(setAlertMessage("registeration successful"));
-      dispatch(setRegisterationSuccess(true));
+      const responseData = await response.json();
+      if (responseData === "User registered successfully") {
+        dispatch(setAlertMessage("registration successful"));
+        dispatch(setRegisterationSuccess(true));
+      } else if (responseData === "User with this email already exists") {
+        dispatch(setAlertMessage("User with this email already exists"));
+      }
     } else {
-      const errorData = await response.json(); 
+      const errorData = await response.json();
       dispatch(setAlertMessage(errorData));
     }
   } catch (error) {
-    // console.error("Error:", error);
-    dispatch(setAlertMessage("an error occured please try again"));
+    console.error("Error:", error);
+    dispatch(setAlertMessage("An error occurred, please try again"));
   } finally {
     dispatch(setLoading(false));
   }
 };
 
+
 // login a user
 export const submitLogin = (LoginData) => async (dispatch) => {
   try {
-    dispatch(setLoading(true)); 
+    dispatch(setLoading(true));
     dispatch(setAlertMessage(""));
-    
+
     const response = await fetch(
       // "http://localhost:3000/api/login",
       "https://tour-app-zcms.onrender.com/api/login",
@@ -121,12 +126,11 @@ export const submitLogin = (LoginData) => async (dispatch) => {
       const authToken = Userdata.token;
       const decodedToken = jwt_decode(authToken);
       // console.log(`authToken: ${authToken}`);
-       localStorage.setItem("decodedToken", JSON.stringify(decodedToken));
-   dispatch(setAuthToken(authToken));
-   dispatch(setUserData(Userdata));
+      localStorage.setItem("decodedToken", JSON.stringify(decodedToken));
+      dispatch(setAuthToken(authToken));
+      dispatch(setUserData(Userdata));
 
-   dispatch(setAlertMessage("Login successful"));
-     
+      dispatch(setAlertMessage("Login successful"));
     } else {
       const errorData = await response.json();
       dispatch(setAlertMessage(errorData));
@@ -134,8 +138,7 @@ export const submitLogin = (LoginData) => async (dispatch) => {
   } catch (error) {
     // console.error("Error:", error);
     dispatch(setAlertMessage("An error occurred"));
-  }
-  finally {
+  } finally {
     dispatch(setLoading(false));
   }
 };
@@ -148,6 +151,10 @@ export const {
   clearConfirmPassword,
   setLoading,
   setAlertMessage,
-  setAuthToken, clearAuthToken, setUserData, clearUserData, setRegisterationSuccess
+  setAuthToken,
+  clearAuthToken,
+  setUserData,
+  clearUserData,
+  setRegisterationSuccess,
 } = userSlice.actions;
 export default userSlice.reducer;
