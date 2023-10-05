@@ -25,7 +25,7 @@ module.exports.jwtlogin = async (req, res) => {
          path: "/",
          httpOnly: true,
          sameSite: "none",
-         secure: true,
+         secure: false,
          expiresIn: "10d",
        })
        .status(200)

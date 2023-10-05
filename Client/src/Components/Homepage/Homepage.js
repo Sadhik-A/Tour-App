@@ -6,7 +6,8 @@ import Tourlist from "../Tourlist/Tourlist";
 import { useDispatch, useSelector } from "react-redux";
 import { getTour, setAlertMessage } from "../../redux/Tourslice";
 import SearchBar from "../../Components/SearchBar/SearchBar";
-
+import { clearUserData } from "../../redux/Userslice";
+import { useNavigate } from "react-router-dom";
 function HomePage() {
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -15,16 +16,21 @@ function HomePage() {
   const AlertMessage = useSelector((state) => state.Tour.alertmessage);
   const decodedTokenJSON = localStorage.getItem("decodedToken");
   const user = JSON.parse(decodedTokenJSON);
-
+  const navigate= useNavigate();
+// if (!user) {
+//   window.location.href = "/"; 
+// }
   useEffect(() => {
     dispatch(getTour());
-  }, [dispatch, user]);
+  }, [dispatch]);
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
+    localStorage.removeItem("decodedToken");
     document.cookie =
       "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    window.location.href = "/";
+   navigate("/");
+    dispatch(clearUserData());
   };
 
   useEffect(() => {
@@ -108,5 +114,4 @@ function HomePage() {
     </>
   );
 }
-
 export default HomePage;
