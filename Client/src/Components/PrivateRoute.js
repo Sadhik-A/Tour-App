@@ -8,7 +8,7 @@ const PrivateRoute = ({ element }) => {
     if (!isAuthenticated) {
         return <Navigate to="/" />;
     }
-    else if(element==LoginForm) {
+    else if(element===LoginForm) {
         return null;
     }
     else {
