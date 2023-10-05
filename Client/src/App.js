@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/register" element={<RegistrationForm />} />
-        <Route path="/" element={<LoginForm />} />
+        <Route path="/" element={<PrivateRoute element={<LoginForm />} />} />
         <Route path="/home" element={<PrivateRoute element={<Homepage />} />} />
         <Route path="/addTour"element={<PrivateRoute element={<Addbook />} />}/>
         <Route path="/editTour/:tourid"element={<PrivateRoute element={<EditTourForm />} />}/>
