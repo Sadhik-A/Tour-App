@@ -86,7 +86,7 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
       dispatch(setRegisterationSuccess(true));
     } else {
       const errorData = await response.json(); 
-      dispatch(setAlertMessage(errorData.error));
+      dispatch(setAlertMessage(errorData));
     }
   } catch (error) {
     // console.error("Error:", error);

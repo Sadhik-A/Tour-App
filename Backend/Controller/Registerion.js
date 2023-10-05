@@ -6,7 +6,7 @@ module.exports.register = async (req, res) => {
     const { email, password } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ error: "Email address already exists." });
+      return res.status(400).json( "Email address already exists." );
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ email, password: hashedPassword });
@@ -14,6 +14,6 @@ module.exports.register = async (req, res) => {
     res.status(201).json("User registered successfully");
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Internal server error." });
+    res.status(500).json("Internal server error." );
   }
 };
