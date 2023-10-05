@@ -85,11 +85,12 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
       dispatch(setAlertMessage("registeration successful"));
       dispatch(setRegisterationSuccess(true));
     } else {
-      dispatch(setAlertMessage("registaeration failed"));
+      const errorData = await response.json(); 
+      dispatch(setAlertMessage(errorData.error));
     }
   } catch (error) {
     // console.error("Error:", error);
-    dispatch(setAlertMessage("email already exists"));
+    dispatch(setAlertMessage("an error occured please try again"));
   } finally {
     dispatch(setLoading(false));
   }
