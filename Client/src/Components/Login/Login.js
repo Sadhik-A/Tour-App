@@ -5,6 +5,8 @@ import { setEmail, setPassword,submitLogin,setEmailError,setPasswordError, setLo
 import { Link, } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'; 
 import './Loginform.css';
+  const decodedTokenJSON = localStorage.getItem("decodedToken");
+  const isAuthenticated = !!decodedTokenJSON;
 function LoginForm() {
   const email = useSelector((state) => state.user.email);
   const password = useSelector((state) => state.user.password);
@@ -16,7 +18,11 @@ function LoginForm() {
   const navigate=useNavigate();
   const [localAlertMessage, setLocalAlertMessage] = useState("");
   const [localLoading, setLocalLoading] = useState(false);
-    const [showpassword, setShowpassword] = useState(false);
+  const [showpassword, setShowpassword] = useState(false);
+  useEffect(() => {
+    if (isAuthenticated)
+      navigate('/home');
+  }, [isAuthenticated]);
    useEffect(() => {
     return () => {
       dispatch(setEmailError(''));
