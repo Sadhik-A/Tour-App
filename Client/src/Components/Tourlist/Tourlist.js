@@ -1,7 +1,12 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getTour, deleteTour, likeTour,dislikeTour } from "../../redux/Tourslice";
+import {
+  getTour,
+  deleteTour,
+  likeTour,
+  dislikeTour,
+} from "../../redux/Tourslice";
 import "./Tourlist.css";
 import ImageViewer from "../ImageViewer/ImageViewer";
 import { motion } from "framer-motion";
@@ -9,25 +14,31 @@ import { motion } from "framer-motion";
 function Tourlist({ searchTerm }) {
   const dispatch = useDispatch();
   const tours = useSelector((state) => state.Tour.tours);
+  // console.log(tours);
   const likes = useSelector((state) => state.Tour.likes);
+  const decodedTokenJSON = localStorage.getItem("decodedToken");
+  const user = JSON.parse(decodedTokenJSON);
+  // console.log(user)
+  const uid = user.userId;
   const [selectedImage, setSelectedImage] = useState(null);
   // console.log(tours)
   // Fetch tours when the component mounts
+  console.log(uid);
+  // console.log(tours.Userid)
   useEffect(() => {
     dispatch(getTour());
-  }, [dispatch, searchTerm,likes]);
-  
+  }, [dispatch, searchTerm, likes]);
+
   const handleDelete = (tourId) => {
     dispatch(deleteTour(tourId));
   };
- const handleImageClick = (imageUrl) => {
-   setSelectedImage(imageUrl);
- };
+  const handleImageClick = (imageUrl) => {
+    setSelectedImage(imageUrl);
+  };
   const handleLike = (tourId) => {
-    console.log('like is clicked' )
+    console.log("like is clicked");
     // Dispatch the likeTour action when the like icon is clicked
     dispatch(likeTour(tourId));
-   
   };
 
   const handledisLike = (tourId) => {
@@ -42,7 +53,6 @@ function Tourlist({ searchTerm }) {
         tour.Tourname.toLowerCase().includes(searchTerm.toLowerCase())
       )
     : tours;
-
   return (
     <motion.div
       className="tour-list"
@@ -53,7 +63,7 @@ function Tourlist({ searchTerm }) {
       {selectedImage && (
         <ImageViewer
           imageUrl={selectedImage}
-          onClose={() => setSelectedImage(null)} // Add a function to close the viewer
+          onClose={() => setSelectedImage(null)}
         />
       )}
       {filteredTours.map((tour) => (
@@ -68,12 +78,15 @@ function Tourlist({ searchTerm }) {
             <p>{tour.TourDescription}</p>
             <div className="tour-icons">
               <div className="edit-like">
-                <Link to={`/editTour/${tour.id}`}>
-                  <i className="fa fa-edit edit-icon"> Edit</i>
-                </Link>
+                {tour.Userid === uid || user.is_admin === 1 ? (
+                  <Link to={`/editTour/${tour.id}`}>
+                    <i className="fa fa-edit edit-icon"> Edit</i>
+                  </Link>
+                ) : null}
+
                 <i
-                  className="fa fa-thumbs-up like-icon" // Like icon
-                  onClick={() => handleLike(tour.id)} // Call handleLike when the like icon is clicked
+                  className="fa fa-thumbs-up like-icon"
+                  onClick={() => handleLike(tour.id)}
                 >
                   {tour.likes}
                 </i>
@@ -84,13 +97,15 @@ function Tourlist({ searchTerm }) {
                   {""}
                 </i>
               </div>
-              <i
-                className="fa fa-trash delete-icon"
-                onClick={() => handleDelete(tour.id)}
-              >
-                {" "}
-                Delete
-              </i>
+              {tour.Userid === uid || user.is_admin === 1 ? (
+                <i
+                  className="fa fa-trash delete-icon"
+                  onClick={() => handleDelete(tour.id)}
+                >
+                  {" "}
+                  Delete
+                </i>
+              ): null}
             </div>
           </motion.div>
         </div>

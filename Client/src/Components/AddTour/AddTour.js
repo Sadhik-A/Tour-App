@@ -22,9 +22,15 @@ function AddBook() {
   const TourDescription = useSelector((state) => state.Tour.TourDescription);
   const TourImage = useSelector((state) => state.Tour.Tourimage);
   const AlertMessage = useSelector((state) => state.Tour.alertmessage);
+ 
   const registrationSuccess = useSelector(
     (state) => state.Tour.registerationSuccess
   );
+  const decodedTokenJSON = localStorage.getItem("decodedToken");
+  const user = JSON.parse(decodedTokenJSON);
+  const Userid = user.userId
+  // console.log(uid)
+  // console.log(user)
   const dispatch = useDispatch();
     const navigate = useNavigate(); 
   // console.log(AlertMessage);
@@ -65,7 +71,7 @@ useEffect(() => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(submitTour({ Tourname, TourDescription, TourImage }));
+    dispatch(submitTour({ Tourname, TourDescription, TourImage, Userid }));
     dispatch(setTourName(""));
     dispatch(setTourImage(""));
     dispatch(setTourDescription(""));

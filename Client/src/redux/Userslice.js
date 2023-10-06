@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import jwt_decode from "jwt-decode";
-// import { Navigate } from "react-router-dom";
 const initialState = {
   email: "",
   password: "",
@@ -132,7 +131,6 @@ export const submitLogin = (LoginData) => async (dispatch) => {
       dispatch(setUserData(Userdata));
 
       dispatch(setAlertMessage("Login successful"));
-      // Navigate("/home");
     } else {
       const errorData = await response.json();
       dispatch(setAlertMessage(errorData));
