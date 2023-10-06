@@ -1,17 +1,18 @@
-import LoginForm from "./Login/Login";
 import React from "react";
 import { Navigate } from "react-router-dom";
+import LoginForm from "./Login/Login";
 
 const PrivateRoute = ({ element }) => {
   const decodedTokenJSON = localStorage.getItem("decodedToken");
   const isAuthenticated = !!decodedTokenJSON;
-  console.log(element.type)
+
+  // If user is authenticated and trying to access the login page,
+  // redirect them to the home page
   if (isAuthenticated && element.type === LoginForm) {
     return <Navigate to="/home" />;
   }
-  if (!isAuthenticated) {
-    return <Navigate to="/" />;
-  }
+
+  // Otherwise, allow access to the requested route
   return element;
 };
 
