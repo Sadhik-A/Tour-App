@@ -10,11 +10,8 @@ const PrivateRoute = ({ element }) => {
 
   if (!isAuthenticated) {
     return <Navigate to="/" />;
-  } else if (isAuthenticated && element === LoginForm) {
-    return <Navigate to="/home" />;
-  } else if (isAuthenticated && element !== LoginForm) {
-    return element;
   }
+    return element;
 };
 
 export default PrivateRoute;
