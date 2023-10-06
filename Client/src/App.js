@@ -7,7 +7,7 @@ import Addbook from "./Components/AddTour/AddTour";
 import EditTourForm from "./Components/EditTour/EditTourForm";
 import PrivateRoute from "../src/Components/PrivateRoute"; 
  const decodedTokenJSON = localStorage.getItem("decodedToken");
- const isAuthenticated = !!decodedTokenJSON;
+//  const isAuthenticated = !!decodedTokenJSON;
 function App() {
   return (
     <BrowserRouter>
