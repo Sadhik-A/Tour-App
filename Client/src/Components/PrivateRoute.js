@@ -1,16 +1,14 @@
-import LoginForm from "./Login/Login";
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-const PrivateRoute = ({ element }) => {
+const PrivateRoute = ({ element, path }) => {
   const decodedTokenJSON = localStorage.getItem("decodedToken");
   const isAuthenticated = !!decodedTokenJSON;
-  console.log(element.type)
-  if (isAuthenticated && element.type === LoginForm) {
-    return <Navigate to="/home" />;
-  }
-  if (!isAuthenticated) {
+  if (!isAuthenticated && path !== "/") {
     return <Navigate to="/" />;
+  }
+  if (isAuthenticated && path === "/") {
+    return <Navigate to="/home" />;
   }
   return element;
 };
