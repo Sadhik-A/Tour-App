@@ -6,7 +6,7 @@ import Homepage from "./Components/Homepage/Homepage";
 import Addbook from "./Components/AddTour/AddTour";
 import EditTourForm from "./Components/EditTour/EditTourForm";
 import PrivateRoute from "../src/Components/PrivateRoute"; 
- const decodedTokenJSON = localStorage.getItem("decodedToken");
+//  const decodedTokenJSON = localStorage.getItem("decodedToken");
 //  const isAuthenticated = !!decodedTokenJSON;
 function App() {
   return (
