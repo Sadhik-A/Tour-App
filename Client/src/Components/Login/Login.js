@@ -26,10 +26,14 @@ function LoginForm() {
   const navigate = useNavigate();
   const [localAlertMessage, setLocalAlertMessage] = useState("");
   const [localLoading, setLocalLoading] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
   const [showpassword, setShowpassword] = useState(false);
   useEffect(() => {
-    if (isAuthenticated) navigate("/home");
-  }, [navigate]);
+    if (isAuthenticated) {
+      setAuthenticated(true);
+    }
+    authenticated && navigate("/home");
+  }, [authenticated, navigate]);
   useEffect(() => {
     return () => {
       dispatch(setEmailError(""));
