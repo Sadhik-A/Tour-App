@@ -13,8 +13,8 @@ import {
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./Loginform.css";
-const decodedTokenJSON = localStorage.getItem("decodedToken");
-const isAuthenticated = !!decodedTokenJSON;
+// const decodedTokenJSON = localStorage.getItem("decodedToken");
+// const isAuthenticated = !!decodedTokenJSON;
 function LoginForm() {
   const email = useSelector((state) => state.user.email);
   const password = useSelector((state) => state.user.password);
