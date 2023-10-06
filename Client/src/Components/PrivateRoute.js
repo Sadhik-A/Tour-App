@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Navigate } from "react-router-dom";
-import LoginForm from "./Login/Login";
+// import LoginForm from "./Login/Login";
 
 const PrivateRoute = ({ element }) => {
     console.log(element);
