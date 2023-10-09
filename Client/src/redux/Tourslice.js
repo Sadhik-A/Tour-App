@@ -172,11 +172,11 @@ export const getTour = () => async (dispatch) => {
 };
 
 // deleting a tour
-export const deleteTour = (id) => async (dispatch, getState) => {
+export const deleteTour = (id,uid) => async (dispatch, getState) => {
   try {
     // console.log(user);
     const response = await fetch(
-    //  `http://localhost:3000/api/deleteTour/${id}`,
+      //  `http://localhost:3000/api/deleteTour/${id}`,
       `https://tour-app-zcms.onrender.com/api/deleteTour/${id}`,
       {
         method: "DELETE",
@@ -184,6 +184,8 @@ export const deleteTour = (id) => async (dispatch, getState) => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
+        body: JSON.stringify(uid),
       }
     );
     if (response.ok) {
