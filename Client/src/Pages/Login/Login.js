@@ -13,8 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./Loginform.css";
-// const decodedTokenJSON = localStorage.getItem("decodedToken");
-// const isAuthenticated = !!decodedTokenJSON;
+import FormGroup from "../../Components/FormGroup/FormGroup";
 function LoginForm() {
   const email = useSelector((state) => state.user.email);
   const password = useSelector((state) => state.user.password);
@@ -26,14 +25,6 @@ function LoginForm() {
   const navigate = useNavigate();
   const [localAlertMessage, setLocalAlertMessage] = useState("");
   const [localLoading, setLocalLoading] = useState(false);
-  // const [authenticated, setAuthenticated] = useState(false);
-  const [showpassword, setShowpassword] = useState(false);
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     setAuthenticated(true);
-  //   }
-  //   authenticated && navigate("/home");
-  // }, [authenticated, navigate]);
   useEffect(() => {
     return () => {
       dispatch(setEmailError(""));
@@ -58,22 +49,12 @@ function LoginForm() {
     setLocalLoading(loading);
   }, [loading]);
 
-  //  useEffect(() => {
-  //    const storedToken = localStorage.getItem("authToken");
-  //    if (storedToken) {
-  //      dispatch(submitLogin({ token: storedToken }));
-  //    }
-  //  }, [dispatch]);
-
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(email);
   };
   const validatePassword = (password) => {
     return password.length >= 5;
-  };
-  const togglePasswordVisibility = () => {
-    setShowpassword(!showpassword);
   };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -122,44 +103,32 @@ function LoginForm() {
       <div className="form-container">
         <h2 className="form-title">Login Form</h2>
         <form onSubmit={handleSubmit} className="form">
-          <div className="form-group">
-            <label>
-              <i className="fas fa-envelope"></i>Email:
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleInputChange}
-              placeholder="@"
-            />
-            <div className="error-container">
-              {emailError && <span className="error">{emailError}</span>}
-            </div>
-          </div>
-          <div className="form-group">
-            <label>
-              {" "}
-              <i className="fas fa-lock"></i>Password:
-            </label>
-            <div className="password-input-container">
-              <input
-                type={showpassword ? "text" : "password"}
-                name="password"
-                value={password}
-                onChange={(e) => dispatch(setPassword(e.target.value))}
-              />
-              <i
-                className={`password-toggle-icon fas ${
-                  showpassword ? "fa-eye-slash" : "fa-eye"
-                }`}
-                onClick={togglePasswordVisibility}
-              ></i>
-            </div>
-            <div className="error-container">
-              {passwordError && <span className="error">{passwordError}</span>}
-            </div>
-          </div>
+          <FormGroup
+            label={
+              <span>
+                <i className="fas fa-envelope"></i>Email:
+              </span>
+            }
+            type={"email"}
+            name="email"
+            value={email}
+            onChange={handleInputChange}
+            placeholder="@"
+            error={emailError}
+          />
+          <FormGroup 
+            label={
+              <span>
+                <i className="fas fa-lock"></i>Password:
+              </span>
+            }
+            type={"password"}
+            name="password"
+            value={password}
+            onChange={(e) => dispatch(setPassword(e.target.value))}
+            placeholder="Password"
+            error={passwordError}
+          />
           <button
             type="submit"
             className="submit-button"

@@ -1,8 +1,9 @@
 import React from "react";
 import './AddTour.css';
-import '../Homepage/Homepage.css';
-import '../RegisterationPage/RegisterationForm.css';
+import '../../Pages/Homepage/Homepage.css';
+import '../../Pages/RegisterationPage/RegisterationForm.css';
 import { useSelector, useDispatch } from "react-redux";
+import FormGroup from "../../Components/FormGroup/FormGroup";
 import {
   setTourName,
   setTourImage,
@@ -109,64 +110,58 @@ useEffect(() => {
 
 
   return (
-    <div className="container">
-      <h1>Add Tour</h1>
-      <CloudinaryContext cloudname="dzs0grxic">
-        <form
-          onSubmit={handleSubmit}
-          className="add-book-form"
-          encType="multipart/form-data"
-        >
-          <div className="form-group">
-            <label>Enter Name of the Place:</label>
-            <input
-              type="text"
+    <>
+      <div className="container">
+        <h1>Add Tour</h1>
+        <CloudinaryContext cloudname="dzs0grxic">
+          <form
+            onSubmit={handleSubmit}
+            className="add-book-form"
+            encType="multipart/form-data"
+          >
+            <FormGroup
+              label="Enter Name of the Place:"
               name="placeName"
               value={Tourname}
               onChange={(e) => dispatch(setTourName(e.target.value))}
-              required
+              required={true}
             />
-          </div>
-          <div className="form-group1">
-            <label>Upload Image:</label>
-            <input
-              type="file"
+            <FormGroup
+              label="Upload Image:"
               name="Tourimage"
+              type="file"
               onChange={handleImageUpload}
               accept="image/*"
-              required
+              required={true}
             />
-          </div>
-          <div className="form-group">
-            <label>Add Description:</label>
-            <textarea
+            <FormGroup
+              label="Add Description:"
               name="description"
               value={TourDescription}
               onChange={(e) => dispatch(setTourDescription(e.target.value))}
-              required
-            ></textarea>
-          </div>
-          <button type="submit" className="add-book-button">
-            Add Tour
-          </button>
-          {isAlertVisible && localAlertMessage && (
-            <motion.p
-              className={`alert ${
-                localAlertMessage === "Tour Added successfuly"
-                  ? "success"
-                  : "error"
-              }`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {localAlertMessage}
-            </motion.p>
-          )}
-        </form>
-      </CloudinaryContext>
-    </div>
+              required={true}
+            />
+            <button type="submit" className="add-book-button">
+              Add Tour
+            </button>
+            {isAlertVisible && localAlertMessage && (
+              <motion.p
+                className={`alert ${
+                  localAlertMessage === "Tour Added successfuly"
+                    ? "success"
+                    : "error"
+                }`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                {localAlertMessage}
+              </motion.p>
+            )}
+          </form>
+        </CloudinaryContext>
+      </div>
+    </>
   );
 }
-
 export default AddBook;

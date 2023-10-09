@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import FormGroup from "../../Components/FormGroup/FormGroup";
 
 import {
   setEmail,
@@ -30,7 +30,6 @@ function RegistrationForm() {
   const navigate = useNavigate(); 
   const [localAlertMessage, setLocalAlertMessage] = useState("");
   const [localLoading, setLocalLoading] = useState(false);
-  const [showpassword, setShowpassword] = useState(false);
   const [isAlertVisible, setIsAlertVisible] = useState(false);
 
   useEffect(() => {
@@ -77,9 +76,16 @@ function RegistrationForm() {
   const validatePassword = (password) => {
     return password.length >= 5;
   };
-  const togglePasswordVisibility = () => {
-    setShowpassword(!showpassword);
-  };
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      if (name === "email") {
+        dispatch(setEmail(value));
+      } else if (name === "password") {
+        dispatch(setPassword(value));
+      } else if (name === "confirmPassword") {
+        dispatch(setConfirmPassword(value));
+      }
+    };
   const handleSubmit = (event) => {
     event.preventDefault();
     let formErrors = {
@@ -128,70 +134,60 @@ function RegistrationForm() {
       <div className="form-container">
         <h2 className="form-title">Registration Form</h2>
         <form onSubmit={handleSubmit} className="form">
-          <div className="form-group">
-            <label>
-              <i className="fas fa-envelope"></i>Email:
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={(e) => dispatch(setEmail(e.target.value))}
-              placeholder="@"
-            />
-            <div className="error-container">
-              {emailError && <span className="error">{emailError}</span>}
-            </div>
-          </div>
-          <div className="form-group">
-            <label>
-              <i className="fas fa-lock"></i> Password:
-            </label>
-            <div className="password-input-container">
-              <input
-                type={showpassword ? "text" : "password"}
-                name="password"
-                value={password}
-                onChange={(e) => dispatch(setPassword(e.target.value))}
-              />
-              <i
-                className={`password-toggle-icon fas ${
-                  showpassword ? "fa-eye-slash" : "fa-eye"
-                }`}
-                onClick={togglePasswordVisibility}
-              ></i>
-            </div>
-          </div>
-          <div className="form-group">
-            <label>
-              <i className="fas fa-lock"></i> Confirm Password:
-            </label>
-            <div className="password-input-container">
-              <input
-                type={showpassword ? "text" : "password"}
-                name="password"
-                value={confirmPassword}
-                onChange={(e) => dispatch(setConfirmPassword(e.target.value))}/>
-              <i
-                className={`password-toggle-icon fas ${
-                  showpassword ? "fa-eye-slash" : "fa-eye" }`}
-                onClick={togglePasswordVisibility}>
-              </i>
-            </div>
-            <div className="error-container">
-              {passwordError && <span className="error">{passwordError}</span>}
-            </div>
-          </div>
+          <FormGroup
+            label={
+              <span>
+                <i className="fas fa-envelope"></i>Email:
+              </span>
+            }
+            type={"email"}
+            name="email"
+            value={email}
+            onChange={handleInputChange}
+            placeholder="@"
+            error={emailError}
+          />
+          <FormGroup
+            label={
+              <span>
+                <i className="fas fa-lock"></i> Password:
+              </span>
+            }
+            type={"password"}
+            name="password"
+            value={password}
+            onChange={handleInputChange}
+            error={passwordError}
+            placeholder="Password"
+          />
+          <FormGroup
+            label={
+              <span>
+                <i className="fas fa-lock"></i> Confirm Password:
+              </span>
+            }
+            name="confirmPassword"
+            value={confirmPassword}
+            onChange={handleInputChange}
+            error={passwordError}
+            type={"password"}
+            placeholder="Password"
+          />
           <button
             type="submit"
             className="submit-button"
-            disabled={localLoading}>
+            disabled={localLoading}
+          >
             {localLoading ? "Registering..." : "Register"}
           </button>
-          {isAlertVisible&& (
+          {isAlertVisible && (
             <p
               className={`alert ${
-                localAlertMessage === "registration successful" ? "success": "error" }`}>
+                localAlertMessage === "registration successful"
+                  ? "success"
+                  : "error"
+              }`}
+            >
               {localAlertMessage}
             </p>
           )}
