@@ -32,13 +32,12 @@ module.exports.getTourlist = async (req, res) => {
   }
 };
 module.exports.deleteTour = async (req, res) => {
-  const id = req.params.id;
-  const uid = req.params.uid;
-console.log(uid)
-  if (req.userId !== uid) {
+  // console.log(req.params.id)
+  if (!req.is_admin) {
     return res.status(401).json("You are not authorized to delete tour");
   }
-  // console.log(id)
+  const id  = req.params.id;
+  console.log(id)
   try {
     let tour = await Tour.where({ id }).destroy();
     return res.status(200).json({ message: "tour deleted successfully" });
