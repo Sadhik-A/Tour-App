@@ -69,8 +69,8 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
     dispatch(setLoading(true));
     dispatch(setAlertMessage(""));
     const response = await fetch(
-       "http://localhost:3000/api/register",
-      // "https://tour-app-zcms.onrender.com/api/register",
+      //  "http://localhost:3000/api/register",
+      "https://tour-app-zcms.onrender.com/api/register",
       {
         method: "POST",
         headers: {
@@ -108,8 +108,8 @@ export const submitLogin = (LoginData) => async (dispatch) => {
     dispatch(setAlertMessage(""));
 
     const response = await fetch(
-      "http://localhost:3000/api/login",
-      // "https://tour-app-zcms.onrender.com/api/login",
+      // "http://localhost:3000/api/login",
+      "https://tour-app-zcms.onrender.com/api/login",
       {
         method: "POST",
         headers: {
