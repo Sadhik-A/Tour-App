@@ -30,7 +30,7 @@ function Tourlist({ searchTerm }) {
   }, [dispatch, searchTerm, likes]);
 
   const handleDelete = (tourId) => {
-    dispatch(deleteTour(tourId, uid));
+    dispatch(deleteTour(tourId));
   };
   const handleImageClick = (imageUrl) => {
     setSelectedImage(imageUrl);

@@ -48,12 +48,11 @@ return res.status(401).json("You are not authorized to delete tour");
 };
 
 module.exports.editTour = async (req, res) => {
-  try {
-    if (!req.is_admin) {
-      return res.status(401).json("You are not authorized to edit tour");
-    }
-    const id = req.body.TourId;
-    const { Tourname, TourImage, TourDescription } = req.body;
+  const id = req.body.TourId;
+  const tour = await Tour.where({ id }).fetch();
+  if (req.is_admin || req.userId == tour.get("Userid")) {
+      try{
+       const { Tourname, TourImage, TourDescription } = req.body;
     // console.log(id)
     // console.log(req.body);
     const tour = await Tour.where({ id }).fetch();
@@ -68,6 +67,9 @@ module.exports.editTour = async (req, res) => {
   } catch (err) {
     return res.status(500).json(err.message);
   }
+    }
+    return res.status(401).json("You are not authorized to edit tour");
+   
 };
 
 module.exports.likeTour = async (req, res) => {

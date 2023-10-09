@@ -172,7 +172,7 @@ export const getTour = () => async (dispatch) => {
 };
 
 // deleting a tour
-export const deleteTour = (id,uid) => async (dispatch, getState) => {
+export const deleteTour = (id,) => async (dispatch, getState) => {
   try {
 //  console.log(uid)  
     const response = await fetch(
@@ -184,7 +184,7 @@ export const deleteTour = (id,uid) => async (dispatch, getState) => {
         headers: {
           "Content-Type": "application/json",
         }
-        
+
       }
     );
     if (response.ok) {
