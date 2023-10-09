@@ -33,19 +33,18 @@ module.exports.getTourlist = async (req, res) => {
 };
 module.exports.deleteTour = async (req, res) => {
   // console.log(req.params.id)
-  if (!req.is_admin) {
-    return res.status(401).json("You are not authorized to delete tour");
+    const id  = req.params.id;
+  let tour = await Tour.where({ id }).fetch();
+  if (req.is_admin||req.userId==tour.get("Userid")) {
+    try {
+      let tour = await Tour.where({ id }).destroy();
+      return res.status(200).json({ message: "tour deleted successfully" });
+    } catch (error) {
+      res.status(500).json({ error: "An error occurred while deleting Tours" });
+    }
   }
-  const id  = req.params.id;
-  console.log(id)
-  try {
-    let tour = await Tour.where({ id }).destroy();
-    return res.status(200).json({ message: "tour deleted successfully" });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ error: "An error occurred while deleting Tours" });
-  }
+return res.status(401).json("You are not authorized to delete tour");
+ 
 };
 
 module.exports.editTour = async (req, res) => {
