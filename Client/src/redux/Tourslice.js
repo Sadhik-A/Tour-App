@@ -184,7 +184,6 @@ export const deleteTour = (id,uid) => async (dispatch, getState) => {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include",
         body: JSON.stringify(uid),
       }
     );
