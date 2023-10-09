@@ -32,11 +32,11 @@ module.exports.getTourlist = async (req, res) => {
   }
 };
 module.exports.deleteTour = async (req, res) => {
+    const id = req.params.id;
   // console.log(req.params.id)
-  if (!req.is_admin) {
+  if (!req.is_admin&&req.userId !== id) {
     return res.status(401).json("You are not authorized to delete tour");
   }
-  const id  = req.params.id;
   // console.log(id)
   try {
     let tour = await Tour.where({ id }).destroy();

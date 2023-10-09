@@ -43,15 +43,6 @@ const handleLogout = () => {
           Add Tour
         </Link>
       </div>
-      <div className="top-center">
-        <Link
-          to="/myTour"
-          className="add-tour-button"
-          whileHover={{ scale: 1.1 }}
-        >
-          My Tours
-        </Link>
-      </div>
       <SearchBar onSearch={handleSearch} />{" "}
       <div className="avatar-container">
         <i className="fa fa-user-circle fa-3x" onClick={toggleProfile}></i>
