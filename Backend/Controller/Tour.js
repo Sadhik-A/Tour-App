@@ -33,8 +33,8 @@ module.exports.getTourlist = async (req, res) => {
 };
 module.exports.deleteTour = async (req, res) => {
   const id = req.params.id;
-  const uid = req.body.uid;
-  // console.log(req.params.id)
+  const uid = req.params.uid;
+console.log(uid)
   if (req.userId !== uid) {
     return res.status(401).json("You are not authorized to delete tour");
   }
