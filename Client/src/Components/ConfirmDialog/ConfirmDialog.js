@@ -3,6 +3,7 @@ import React from "react";
 import "./ConfirmDialog.scss";
 
 function ConfirmDialog({ title, subtitle, onConfirm, onCancel }) {
+    console.log(onConfirm);
   return (
     <div className="confirm-dialog-container">
       <div className="confirm-dialog">
