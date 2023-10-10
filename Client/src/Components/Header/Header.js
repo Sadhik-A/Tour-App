@@ -6,7 +6,7 @@ import SearchBar from "../../Components/SearchBar/SearchBar";
 import { clearUserData } from "../../redux/Userslice";
 import { useNavigate } from "react-router-dom";
 import '../../Pages/Homepage/Homepage';
-import '../SearchBar/Searchbar.css';
+import '../SearchBar/Searchbar.scss';
    
 function Header({ setSearchTerm}) {
 const decodedTokenJSON = localStorage.getItem("decodedToken");

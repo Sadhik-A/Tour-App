@@ -7,19 +7,22 @@
     height: 25px;
     margin-top: 10px;
 }
-.form-group textarea{ 
+
+.form-group textarea {
     height: 50px;
     width: 100%;
 }
-.form-group label{
+
+.form-group label {
     width: 100%;
 }
-.add-book-form{
+
+.add-book-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
 }
+
 .alert {
     padding: 10px;
     text-align: center;

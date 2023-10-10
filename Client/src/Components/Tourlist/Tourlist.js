@@ -8,7 +8,7 @@ import {
   likeTour,
   dislikeTour,
 } from "../../redux/Tourslice";
-import "./Tourlist.css";
+import "./Tourlist.scss";
 import ImageViewer from "../ImageViewer/ImageViewer";
 import { motion } from "framer-motion";
 

@@ -14,7 +14,7 @@ import {
   setAlertMessage,
   setRegisterationSuccess
 } from "../../redux/Userslice";
-import "./RegisterationForm.css";
+import "./RegisterationForm.scss";
 import { Link } from "react-router-dom";
 
 function RegistrationForm() {

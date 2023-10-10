@@ -35,11 +35,11 @@
     border: none;
     cursor: pointer;
     box-shadow: 0px 0px 5px rgba(4, 243, 71, 0.3);
-}
 
-.zoom-button i {
-    font-size: 24px;
-    color: #333;
+    i {
+        font-size: 24px;
+        color: #333;
+    }
 }
 
 .viewer-header {
@@ -55,12 +55,13 @@
     border: none;
     cursor: pointer;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+
+    i {
+        font-size: 20px;
+        color: #e60404;
+    }
 }
 
-.close-button i {
-    font-size: 20px;
-    color: #e60404;
-}
 .image-viewer img {
     max-width: 100%;
     height: auto;

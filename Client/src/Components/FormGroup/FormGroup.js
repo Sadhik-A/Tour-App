@@ -1,7 +1,7 @@
 // FormGroup.js
 import React, { useState } from "react";
-import '../../Pages/Login/Loginform.css';
-import '../../Pages/RegisterationPage/RegisterationForm.css'
+import '../../Pages/Login/Loginform.scss';
+import '../../Pages/RegisterationPage/RegisterationForm.scss'
 function FormGroup({ label, name, value, onChange, placeholder, error,type,required }) {
   const [showpassword, setShowpassword] = useState(false);
   const togglePasswordVisibility = () => {

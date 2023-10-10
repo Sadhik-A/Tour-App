@@ -1,7 +1,7 @@
 import React from "react";
-import './AddTour.css';
-import '../../Pages/Homepage/Homepage.css';
-import '../../Pages/RegisterationPage/RegisterationForm.css';
+import './AddTour.scss';
+import '../../Pages/Homepage/Homepage.scss';
+import '../../Pages/RegisterationPage/RegisterationForm.scss';
 import { useSelector, useDispatch } from "react-redux";
 import FormGroup from "../../Components/FormGroup/FormGroup";
 import {

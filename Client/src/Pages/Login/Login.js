@@ -12,7 +12,7 @@ import {
 } from "../../redux/Userslice";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import "./Loginform.css";
+import "./Loginform.scss";
 import FormGroup from "../../Components/FormGroup/FormGroup";
 function LoginForm() {
   const email = useSelector((state) => state.user.email);

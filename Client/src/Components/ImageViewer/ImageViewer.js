@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ImageViewer.css"; 
+import "./ImageViewer.scss"; 
 
 function ImageViewer({ imageUrl, onClose }) {
   const [zoomLevel, setZoomLevel] = useState(1);

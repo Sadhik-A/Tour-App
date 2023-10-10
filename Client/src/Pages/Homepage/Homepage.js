@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import "./Homepage.css";
+import "./Homepage.scss";
 import Tourlist from "../../Components/Tourlist/Tourlist";
 import { useDispatch, useSelector } from "react-redux";
 import { getTour, setAlertMessage } from "../../redux/Tourslice";

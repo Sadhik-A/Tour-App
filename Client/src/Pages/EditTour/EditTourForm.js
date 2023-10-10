@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import "../../Pages/AddTour/AddTour.css";
+import "../../Pages/AddTour/AddTour.scss";
 import { useNavigate } from "react-router-dom";
-// import "../../Components/HomePage/HomePage.css";
+// import "../../Components/HomePage/HomePage.scss";
 import {
   setTourName,
   setTourImage,
