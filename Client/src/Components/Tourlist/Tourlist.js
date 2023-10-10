@@ -22,8 +22,13 @@ function Tourlist({ searchTerm }) {
   // console.log(user)
   const uid = user.userId;
   const [selectedImage, setSelectedImage] = useState(null);
-  const [deleteDialogVisible, setDeleteDialogVisible] = useState(false); 
-  const [tourToDelete, setTourToDelete] = useState(null); 
+  const [tourToDelete, setTourToDelete] = useState(null);
+  const [deletetour, setDeleteTour] = useState(false);
+  const [show, setShow] = useState(false);
+  const handleShow = (tourId) => {
+    setShow(true);
+    handleDelete(tourId);
+  };
   // console.log(tours)
   // console.log(uid);
   // console.log(tours.Userid)
@@ -31,22 +36,17 @@ function Tourlist({ searchTerm }) {
     dispatch(getTour());
   }, [dispatch, searchTerm, likes]);
 
+  // console.log(deletetour)
+  useEffect(() => {
+    if (deletetour) {
+      dispatch(deleteTour(tourToDelete));
+      setDeleteTour(false);
+      setTourToDelete(null); 
+    }
+    }, [deletetour,dispatch,tourToDelete]);
   const handleDelete = (tourId) => {
     setTourToDelete(tourId);
-    setDeleteDialogVisible(true);
   };
-   const closeDeleteDialog = () => {
-     setTourToDelete(null); 
-     setDeleteDialogVisible(false); 
-   };
-
-  const confirmDelete = () => {
-    console.log("confirm delete is pressed ");
-     if (tourToDelete) {
-       dispatch(deleteTour(tourToDelete)); 
-       closeDeleteDialog(); 
-     }
-   };
   const handleImageClick = (imageUrl) => {
     setSelectedImage(imageUrl);
   };
@@ -115,24 +115,23 @@ function Tourlist({ searchTerm }) {
               {tour.Userid === uid || user.is_admin === 1 ? (
                 <i
                   className="fa fa-trash delete-icon"
-                  onClick={() => handleDelete(tour.id)}
+                  onClick={() => handleShow(tour.id)}
                 >
                   {" "}
                   Delete
                 </i>
               ) : null}
-              {deleteDialogVisible && (
-                <ConfirmDialog
-                  title="Confirm Delete"
-                  subtitle="Are you sure you want to delete this tour?"
-                  onConfirm={confirmDelete}
-                  onCancel={closeDeleteDialog}
-                />
-              )}
             </div>
           </motion.div>
         </div>
       ))}
+        <ConfirmDialog
+          title="Confirm Delete"
+          subtitle="Are you sure you want to delete this tour?"
+          setDeleteTour={setDeleteTour}
+          show={show} 
+          setShow={setShow}
+        />
     </motion.div>
   );
 }

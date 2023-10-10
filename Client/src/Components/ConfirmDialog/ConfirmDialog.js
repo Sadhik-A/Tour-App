@@ -1,17 +1,29 @@
-import React from "react";
-import "./ConfirmDialog.scss";
 
-function ConfirmDialog({ title, subtitle, onConfirm, onCancel }) {
-  console.log(onConfirm);
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+function ConfirmDialog({ title, subtitle, show, setShow, setDeleteTour }) {
+  const handleClose = () => {
+    setShow(false);
+  };
+ const handlechange = () => {
+     setShow(false);
+       setDeleteTour(true);
+ };
   return (
-    <div className="confirm-dialog-container">
-      <div className="confirm-dialog">
-        <h3>{title}</h3>
-        <p>{subtitle}</p>
-        <button onClick={() => onConfirm}>Yes</button>
-        <button onClick={onCancel}>No</button>
-      </div>
-    </div>
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>{title}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>{subtitle}</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+        <Button variant="primary" onClick={handlechange}>
+          Save Changes
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 }
 
