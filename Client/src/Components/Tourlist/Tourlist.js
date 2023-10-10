@@ -40,7 +40,8 @@ function Tourlist({ searchTerm }) {
      setDeleteDialogVisible(false); 
    };
 
-   const confirmDelete = () => {
+  const confirmDelete = () => {
+    console.log("confirm delete is pressed ");
      if (tourToDelete) {
        dispatch(deleteTour(tourToDelete)); 
        closeDeleteDialog(); 
