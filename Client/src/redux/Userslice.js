@@ -25,7 +25,6 @@ const userSlice = createSlice({
       state.password = action.payload;
       //console.log(state.password)
     },
-
     setEmailError: (state, action) => {
       state.emailError = action.payload;
     },

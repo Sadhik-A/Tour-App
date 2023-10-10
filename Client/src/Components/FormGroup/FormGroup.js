@@ -11,7 +11,7 @@ function FormGroup({ label, name, value, onChange, placeholder, error,type,requi
     <div className="form-group">
       <label>{label}</label>
       <div className="password-input-container">
-        <input
+        <input className="form-input" 
           type={showpassword ? "text" : type === "password" ? "password" : type}
           name={name}
           value={value}
