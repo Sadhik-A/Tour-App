@@ -40,8 +40,8 @@ const tourSlice = createSlice({
 export const likeTour = (tourId) => async (dispatch) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/likeTour/${tourId}`,
-      // `https://tour-app-zcms.onrender.com/api/likeTour/${tourId}`,
+      // `http://localhost:3000/api/likeTour/${tourId}`,
+      `https://tour-app-zcms.onrender.com/api/likeTour/${tourId}`,
       {
         method: "POST",
         headers: {
@@ -184,7 +184,6 @@ export const deleteTour = (id,) => async (dispatch, getState) => {
         headers: {
           "Content-Type": "application/json",
         }
-
       }
     );
     if (response.ok) {

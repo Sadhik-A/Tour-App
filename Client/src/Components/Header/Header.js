@@ -42,7 +42,7 @@ const handleLogout = () => {
         >
           Add Tour
         </Link>
-      </div>
+        </div>
       <SearchBar onSearch={handleSearch} />{" "}
       <div className="avatar-container">
         <i className="fa fa-user-circle fa-3x" onClick={toggleProfile}></i>
@@ -65,7 +65,7 @@ const handleLogout = () => {
             )}
           </motion.div>
         )}
-      </div>
+        </div>
     </div>
   );
 }
