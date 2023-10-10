@@ -59,7 +59,7 @@ export const likeTour = (tourId) => async (dispatch) => {
      dispatch(setAlertMessage("Like tour failed"));
     }
   } catch (error) {
-    // Handle errors
+   
     console.error("Error:", error);
   }
 };
@@ -84,7 +84,7 @@ export const dislikeTour = (tourId) => async (dispatch) => {
       dispatch(setAlertMessage("Like tour failed"));
     }
   } catch (error) {
-    // Handle errors
+  
     console.error("Error:", error);
   }
 };
@@ -176,7 +176,7 @@ export const deleteTour = (id,) => async (dispatch, getState) => {
   try {
 //  console.log(uid)  
     const response = await fetch(
-      //  `http://localhost:3000/api/deleteTour/${id}?uid=${uid}`,
+      //  `http://localhost:3000/api/deleteTour/${id}`,
       `https://tour-app-zcms.onrender.com/api/deleteTour/${id}`,
       {
         method: "DELETE",

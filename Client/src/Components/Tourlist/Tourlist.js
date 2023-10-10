@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
 import {
   getTour,
   deleteTour,
@@ -21,29 +22,42 @@ function Tourlist({ searchTerm }) {
   // console.log(user)
   const uid = user.userId;
   const [selectedImage, setSelectedImage] = useState(null);
+  const [deleteDialogVisible, setDeleteDialogVisible] = useState(false); 
+  const [tourToDelete, setTourToDelete] = useState(null); 
   // console.log(tours)
-  // Fetch tours when the component mounts
-  console.log(uid);
+  // console.log(uid);
   // console.log(tours.Userid)
   useEffect(() => {
     dispatch(getTour());
   }, [dispatch, searchTerm, likes]);
 
   const handleDelete = (tourId) => {
-    dispatch(deleteTour(tourId));
+    setTourToDelete(tourId);
+    setDeleteDialogVisible(true);
   };
+   const closeDeleteDialog = () => {
+     setTourToDelete(null); 
+     setDeleteDialogVisible(false); 
+   };
+
+   const confirmDelete = () => {
+     if (tourToDelete) {
+       dispatch(deleteTour(tourToDelete)); 
+       closeDeleteDialog(); 
+     }
+   };
   const handleImageClick = (imageUrl) => {
     setSelectedImage(imageUrl);
   };
   const handleLike = (tourId) => {
     console.log("like is clicked");
-    // Dispatch the likeTour action when the like icon is clicked
+
     dispatch(likeTour(tourId));
   };
 
   const handledisLike = (tourId) => {
     console.log("dislike is clicked");
-    // Dispatch the likeTour action when the like icon is clicked
+
     dispatch(dislikeTour(tourId));
   };
 
@@ -105,7 +119,15 @@ function Tourlist({ searchTerm }) {
                   {" "}
                   Delete
                 </i>
-              ): null}
+              ) : null}
+              {deleteDialogVisible && (
+                <ConfirmDialog
+                  title="Confirm Delete"
+                  subtitle="Are you sure you want to delete this tour?"
+                  onConfirm={confirmDelete}
+                  onCancel={closeDeleteDialog}
+                />
+              )}
             </div>
           </motion.div>
         </div>
@@ -113,5 +135,4 @@ function Tourlist({ searchTerm }) {
     </motion.div>
   );
 }
-
 export default Tourlist;
