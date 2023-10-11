@@ -31,7 +31,7 @@ function HomePage() {
           <div className="tour-alert">
             <motion.p
               className={`alert ${
-                AlertMessage === "Tour deleted successfuly"
+                AlertMessage === "Tour deleted successfully"
                   ? "success"
                   : "error"
               }`}

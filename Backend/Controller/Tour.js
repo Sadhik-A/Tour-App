@@ -37,7 +37,7 @@ module.exports.deleteTour = async (req, res) => {
   try {
     if (req.is_admin || req.userId == tour.get("Userid")) {
       let tour = await Tour.where({ id }).destroy();
-      return res.status(200).json({ message: "tour deleted successfully" });
+      return res.status(200).json({ message: "Tour deleted successfully" });
     } else {
       return res.status(401).json({ message: "You are not authorized to delete tour" });
     }
