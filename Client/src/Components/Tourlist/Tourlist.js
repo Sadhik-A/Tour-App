@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 function Tourlist({ searchTerm }) {
   const dispatch = useDispatch();
   const tours = useSelector((state) => state.Tour.tours);
+  const mytour = useSelector((state) => state.Tour.mytour);
   // console.log(tours);
   const likes = useSelector((state) => state.Tour.likes);
   const decodedTokenJSON = localStorage.getItem("decodedToken");
@@ -25,6 +26,7 @@ function Tourlist({ searchTerm }) {
   const [tourToDelete, setTourToDelete] = useState(null);
   const [deletetour, setDeleteTour] = useState(false);
   const [show, setShow] = useState(false);
+  // const [mytour, setMytour] = useState(false);
   const handleShow = (tourId) => {
     setShow(true);
     handleDelete(tourId);
@@ -32,9 +34,15 @@ function Tourlist({ searchTerm }) {
   // console.log(tours)
   // console.log(uid);
   // console.log(tours.Userid)
+  //  console.log(mytour)
+
+   const filteredTours = mytour
+     ? tours.filter((tour) => tour.Userid === uid)
+     : tours;
+  
   useEffect(() => {
     dispatch(getTour());
-  }, [dispatch, searchTerm, likes]);
+  }, [dispatch, searchTerm, likes,mytour]);
 
   // console.log(deletetour)
   useEffect(() => {
@@ -63,11 +71,11 @@ function Tourlist({ searchTerm }) {
   };
 
   // Filter tours based on the search term
-  const filteredTours = searchTerm
-    ? tours.filter((tour) =>
+  const  filteredAndSearchedTours = searchTerm
+    ? filteredTours.filter((tour) =>
         tour.Tourname.toLowerCase().includes(searchTerm.toLowerCase())
       )
-    : tours;
+    :filteredTours;
   return (
     <motion.div
       className="tour-list"
@@ -81,7 +89,7 @@ function Tourlist({ searchTerm }) {
           onClose={() => setSelectedImage(null)}
         />
       )}
-      {filteredTours.map((tour) => (
+      {filteredAndSearchedTours.map((tour) => (
         <div key={tour.id} className="tour-item-container">
           <motion.div className="tour-item" whileHover={{ scale: 1.1 }}>
             <h2>{tour.Tourname}</h2>

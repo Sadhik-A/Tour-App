@@ -19,4 +19,4 @@ import "./Searchbar.scss";
     );
   };
 
-export default SearchBar
+export default SearchBar;

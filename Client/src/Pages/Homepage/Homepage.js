@@ -10,6 +10,7 @@ function HomePage() {
   const [searchTerm, setSearchTerm] = useState(""); 
   const dispatch = useDispatch();
   const AlertMessage = useSelector((state) => state.Tour.alertmessage);
+ 
   useEffect(() => {
     dispatch(getTour());
   }, [dispatch]);

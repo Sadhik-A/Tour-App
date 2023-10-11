@@ -30,7 +30,6 @@ function App() {
             <PrivateRoute path="/editTour/:tourid" element={<EditTourForm />} />
           }
         />
-        
       </Routes>
     </BrowserRouter>
   );
