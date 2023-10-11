@@ -183,7 +183,7 @@ function RegistrationForm() {
           {isAlertVisible && (
             <p
               className={`alert ${
-                localAlertMessage === "registration successful"
+                localAlertMessage === "User registered successfully"
                   ? "success"
                   : "error"
               }`}

@@ -40,7 +40,7 @@ function LoginForm() {
     setLocalAlertMessage(alertMessage);
   }, [alertMessage]);
   useEffect(() => {
-    if (alertMessage === "Login successful") {
+    if (alertMessage === "Logged in successfully") {
       setLocalAlertMessage("");
       navigate("/home");
     }
@@ -139,7 +139,7 @@ function LoginForm() {
           {localAlertMessage && (
             <p
               className={`alert ${
-                localAlertMessage === "Login successful" ? "success" : "error"
+                localAlertMessage === "Logged in successfully" ? "success" : "error"
               }`}
             >
               {localAlertMessage}

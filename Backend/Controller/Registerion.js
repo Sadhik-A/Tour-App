@@ -10,12 +10,14 @@ module.exports.register = async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = new User({ email, password: hashedPassword });
       await user.save();
-      return res.status(201).json("User registered successfully");
+      return res.status(201).json({ message: "User registered successfully" });
     } else {
-      return res.status(400).json("User with this email already exists");
+      return res
+        .status(400)
+        .json({ message: "User with this email already exists" });
     }
   } catch (error) {
     console.error(error);
-    return res.status(500).json("Internal server error.");
+    return res.status(500).json({ message: "Internal server error." });
   }
 };

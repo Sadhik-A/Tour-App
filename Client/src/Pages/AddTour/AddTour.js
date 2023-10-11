@@ -147,7 +147,7 @@ useEffect(() => {
             {isAlertVisible && localAlertMessage && (
               <motion.p
                 className={`alert ${
-                  localAlertMessage === "Tour Added successfuly"
+                  localAlertMessage === "Tour added successfully"
                     ? "success"
                     : "error"
                 }`}

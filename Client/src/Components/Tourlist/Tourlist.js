@@ -26,7 +26,6 @@ function Tourlist({ searchTerm }) {
   const [tourToDelete, setTourToDelete] = useState(null);
   const [deletetour, setDeleteTour] = useState(false);
   const [show, setShow] = useState(false);
-  // const [mytour, setMytour] = useState(false);
   const handleShow = (tourId) => {
     setShow(true);
     handleDelete(tourId);

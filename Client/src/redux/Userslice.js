@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import jwt_decode from "jwt-decode";
+import axios from "axios";
+
 const initialState = {
   email: "",
   password: "",
@@ -62,85 +64,63 @@ const userSlice = createSlice({
 });
 
 //registration of user
-//registration of user
+
 export const submitRegistration = (registrationData) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
     dispatch(setAlertMessage(""));
-    const response = await fetch(
-      //  "http://localhost:3000/api/register",
-      "https://tour-app-zcms.onrender.com/api/register",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(registrationData),
-      }
-    );
 
-    if (response.ok) {
-      const responseData = await response.json();
-      if (responseData === "User registered successfully") {
-        dispatch(setAlertMessage("registration successful"));
-        dispatch(setRegisterationSuccess(true));
-      } else if (responseData === "User with this email already exists") {
-        dispatch(setAlertMessage("User with this email already exists"));
-      }
-    } else {
-      const errorData = await response.json();
-      dispatch(setAlertMessage(errorData));
-    }
+    const response = await axios.post(
+      // "http://localhost:3000/api/register",
+      "https://tour-app-zcms.onrender.com/api/register",
+      registrationData
+    );
+    if (response.status === 201) {
+      dispatch(setAlertMessage(response.data.message));
+    } 
   } catch (error) {
     console.error("Error:", error);
-    dispatch(setAlertMessage("An error occurred, please try again"));
+    error.response?dispatch(setAlertMessage(error?.response?.data?.message)):dispatch(setAlertMessage("An error occurred, please try again"));
   } finally {
     dispatch(setLoading(false));
   }
 };
 
-
 // login a user
-export const submitLogin = (LoginData) => async (dispatch) => {
+
+export const submitLogin = (loginData) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
     dispatch(setAlertMessage(""));
 
-    const response = await fetch(
-      // "http://localhost:3000/api/login",
+    const response = await axios.post(
+      //  "http://localhost:3000/api/login",
       "https://tour-app-zcms.onrender.com/api/login",
+      loginData,
       {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": "true",
-        },
-        credentials: "include",
-        body: JSON.stringify(LoginData),
+        withCredentials: true,
       }
     );
 
-    if (response.ok) {
-      const Userdata = await response.json();
-      const authToken = Userdata.token;
+    if (response.status === 200) {
+      console.log(response.data)
+      const userData = response.data;
+      const authToken = userData.token;
       const decodedToken = jwt_decode(authToken);
-      // console.log(`authToken: ${authToken}`);
       localStorage.setItem("decodedToken", JSON.stringify(decodedToken));
       dispatch(setAuthToken(authToken));
-      dispatch(setUserData(Userdata));
-
-      dispatch(setAlertMessage("Login successful"));
-    } else {
-      const errorData = await response.json();
-      dispatch(setAlertMessage(errorData));
-    }
+      dispatch(setUserData(userData));
+      console.log(response.data.message)
+      dispatch(setAlertMessage(response.data.message));
+    } 
   } catch (error) {
-    // console.error("Error:", error);
-    dispatch(setAlertMessage("An error occurred"));
+    console.error("Error:", error);
+    error.response?dispatch(setAlertMessage(error?.response?.data?.message)):dispatch(setAlertMessage("An error occurred, please try again"));
   } finally {
     dispatch(setLoading(false));
   }
 };
+
 export const {
   setEmail,
   setPassword,
