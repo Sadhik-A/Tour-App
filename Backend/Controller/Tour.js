@@ -8,16 +8,13 @@ module.exports.add = async (req, res) => {
     const { Tourname, TourDescription, TourImage,Userid } = req.body;
     // console.log(req.body);
     // console.log(TourImage); 
-  
     const tour = new Tour({ Tourname, TourDescription, TourImage,Userid});
     // console.log(tour)
     await tour.save();
     res.status(201).json({ message: "Tour added successfully" });
   } catch (error) {
-      res.status(500).json(error.message);
+    res.status(500).json(error.message);
   }
-
-
 };
 module.exports.getTourlist = async (req, res) => {
   try {
@@ -46,7 +43,6 @@ module.exports.deleteTour = async (req, res) => {
      res.status(500).json(error.message);
    }
 };
-
 module.exports.editTour = async (req, res) => {
   const id = req.body.TourId;
   const tour = await Tour.where({ id }).fetch();

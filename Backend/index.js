@@ -13,7 +13,6 @@ app.use(cookieParser());
 
 app.use(
   cors({
-  
     origin: "https://tour-sadhik.netlify.app",//"http://localhost:3001"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,

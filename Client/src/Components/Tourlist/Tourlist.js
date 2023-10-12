@@ -34,8 +34,8 @@ function Tourlist({ searchTerm }) {
   // console.log(uid);
   // console.log(tours.Userid)
   //  console.log(mytour)
-
-   const filteredTours = mytour
+  let filteredTours = tours;
+    filteredTours = mytour
      ? tours.filter((tour) => tour.Userid === uid)
      : tours;
   
@@ -70,11 +70,11 @@ function Tourlist({ searchTerm }) {
   };
 
   // Filter tours based on the search term
-  const  filteredAndSearchedTours = searchTerm
+  const  filteredAndSearchedTours = mytour? filteredTours :searchTerm
     ? filteredTours.filter((tour) =>
         tour.Tourname.toLowerCase().includes(searchTerm.toLowerCase())
       )
-    :filteredTours;
+    : filteredTours;
   return (
     <motion.div
       className="tour-list"

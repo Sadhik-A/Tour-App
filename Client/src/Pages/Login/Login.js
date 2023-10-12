@@ -101,32 +101,25 @@ function LoginForm() {
   return (
     <div className="container">
       <div className="form-container">
-        <h2 className="form-title">Login Form</h2>
-        <form onSubmit={handleSubmit} className="form">
+        <h2 className="form-title">Log in to your account </h2>
+        <h2 className="form-subtitle">Welcome back ! </h2>
+        <form onSubmit={handleSubmit}>
           <FormGroup
-            label={
-              <span>
-                <i className="fas fa-envelope"></i>Email:
-              </span>
-            }
+            label={"Email"}
             type={"email"}
             name="email"
             value={email}
             onChange={handleInputChange}
-            placeholder="@"
+            placeholder="enter email.."
             error={emailError}
           />
-          <FormGroup 
-            label={
-              <span>
-                <i className="fas fa-lock"></i>Password:
-              </span>
-            }
+          <FormGroup
+            label={"Password"}
             type={"password"}
             name="password"
             value={password}
             onChange={(e) => dispatch(setPassword(e.target.value))}
-            placeholder="Password"
+            placeholder="enter password..."
             error={passwordError}
           />
           <button
@@ -134,12 +127,14 @@ function LoginForm() {
             className="submit-button"
             disabled={localLoading}
           >
-            {localLoading ? "Logging in..." : "Login"}
+            {localLoading ? "Logging in..." : "Log In"}
           </button>
           {localAlertMessage && (
             <p
               className={`alert ${
-                localAlertMessage === "Logged in successfully" ? "success" : "error"
+                localAlertMessage === "Logged in successfully"
+                  ? "success"
+                  : "error"
               }`}
             >
               {localAlertMessage}
@@ -148,8 +143,8 @@ function LoginForm() {
 
           <p>
             Don't have an account?{" "}
-            <Link to="/register">
-              <span className="register">Register here</span>
+            <Link to="/register" className="link">
+              <span className="register" style={{textDecoration: "none"}}>SignUp</span>
             </Link>
           </p>
         </form>

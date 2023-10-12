@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import "../../Pages/AddTour/AddTour.scss";
 import { useNavigate } from "react-router-dom";
-// import "../../Components/HomePage/HomePage.scss";
+import "../../Components/FormGroup/FormGroup.scss";
+import FormGroup from "../../Components/FormGroup/FormGroup";
+import '../../Pages/Login/Loginform.scss'
+
 import {
   setTourName,
   setTourImage,
@@ -112,36 +114,30 @@ function EditTourForm() {
           className="add-book-form"
           encType="multipart/form-data"
         >
-          <div className="form-group">
-            <label> Name of the Place:</label>
-            <input
+          <FormGroup
+            label="Name of the Place:"
               type="text"
               name="placeName"
               value={Tourname}
               onChange={(e) => dispatch(setTourName(e.target.value))}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label> Image:</label>
-            <input
-              type="file"
-              name="Tourimage"
-              onChange={handleImageUpload}
-              accept="image/*"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label> Description:</label>
-            <textarea
+              required={true}
+          />
+          <FormGroup
+            label="Image:"
+            type="file"
+            name="Tourimage"
+            onChange={handleImageUpload}
+            accept="image/*"
+            required={true}
+          />
+          <FormGroup
+            label="Description:"
               name="description"
               value={TourDescription}
               onChange={(e) => dispatch(setTourDescription(e.target.value))}
-              required
-            ></textarea>
-          </div>
-          <button type="submit" className="add-book-button">
+              required={true}
+            />
+          <button type="submit" className="submit-button">
             Save Changes
           </button>
           {AlertMessage && isAlertVisible && (

@@ -50,8 +50,12 @@ const handleLogout = () => {
             className="add-tour-button"
             whileHover={{ scale: 1.1 }}
             onClick={() => {
-             mytour? dispatch(setmytour(false)):
-            dispatch(setmytour(true));
+            if (mytour) {
+              dispatch(setmytour(false));
+              setSearchTerm("");
+            } else {
+              dispatch(setmytour(true));
+            }
             }}
           >
             {mytour ? "All Tours" : "My Tours"}

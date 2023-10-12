@@ -1,9 +1,11 @@
 import React from "react";
-import './AddTour.scss';
-import '../../Pages/Homepage/Homepage.scss';
-import '../../Pages/RegisterationPage/RegisterationForm.scss';
+
+// import '../../Pages/Homepage/Homepage.scss';
+// import '../../Pages/RegisterationPage/RegisterationForm.scss';
 import { useSelector, useDispatch } from "react-redux";
 import FormGroup from "../../Components/FormGroup/FormGroup";
+import "../../Components/FormGroup/FormGroup.scss";
+// import Header from "../../Components/Header/Header";
 import {
   setTourName,
   setTourImage,
@@ -23,7 +25,7 @@ function AddBook() {
   const TourDescription = useSelector((state) => state.Tour.TourDescription);
   const TourImage = useSelector((state) => state.Tour.Tourimage);
   const AlertMessage = useSelector((state) => state.Tour.alertmessage);
- 
+  // const [searchTerm, setSearchTerm] = useState(""); 
   const registrationSuccess = useSelector(
     (state) => state.Tour.registerationSuccess
   );
@@ -111,8 +113,9 @@ useEffect(() => {
 
   return (
     <>
+      {/* <Header  setSearchTerm={setSearchTerm}/> */}
       <div className="container">
-        <h1>Add Tour</h1>
+        <h1 >Add Tour</h1>
         <CloudinaryContext cloudname="dzs0grxic">
           <form
             onSubmit={handleSubmit}
@@ -141,7 +144,7 @@ useEffect(() => {
               onChange={(e) => dispatch(setTourDescription(e.target.value))}
               required={true}
             />
-            <button type="submit" className="add-book-button">
+            <button type="submit" className="submit-button">
               Add Tour
             </button>
             {isAlertVisible && localAlertMessage && (
@@ -161,6 +164,7 @@ useEffect(() => {
           </form>
         </CloudinaryContext>
       </div>
+
     </>
   );
 }

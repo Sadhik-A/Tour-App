@@ -14,7 +14,7 @@ import {
   setAlertMessage,
   setRegisterationSuccess
 } from "../../redux/Userslice";
-import "./RegisterationForm.scss";
+import "../Login/Loginform.scss";
 import { Link } from "react-router-dom";
 
 function RegistrationForm() {
@@ -132,46 +132,41 @@ function RegistrationForm() {
   return (
     <div className="container">
       <div className="form-container">
-        <h2 className="form-title">Registration Form</h2>
+        <h2 className="form-title">Sign up </h2>
+        <h2 className="form-subtitle">
+          Enter your credentials to access your account
+        </h2>
         <form onSubmit={handleSubmit} className="form">
           <FormGroup
-            label={
-              <span>
-                <i className="fas fa-envelope"></i>Email:
-              </span>
-            }
+            label={"Email"}
             type={"email"}
             name="email"
             value={email}
             onChange={handleInputChange}
-            placeholder="@"
+            placeholder="enter email.."
             error={emailError}
           />
           <FormGroup
             label={
-              <span>
-                <i className="fas fa-lock"></i> Password:
-              </span>
+              "Password"
             }
             type={"password"}
             name="password"
             value={password}
             onChange={handleInputChange}
             error={passwordError}
-            placeholder="Password"
+            placeholder="enter password..."
           />
           <FormGroup
             label={
-              <span>
-                <i className="fas fa-lock"></i> Confirm Password:
-              </span>
+              "Confirm Password"
             }
             name="confirmPassword"
             value={confirmPassword}
             onChange={handleInputChange}
             error={passwordError}
             type={"password"}
-            placeholder="Password"
+            placeholder="enter password..."
           />
           <button
             type="submit"
@@ -193,7 +188,7 @@ function RegistrationForm() {
           )}
           <p>
             Already have an account?{" "}
-            <Link to="/">
+            <Link to="/" className="link">
               <span className="register">Login here</span>
             </Link>
           </p>
