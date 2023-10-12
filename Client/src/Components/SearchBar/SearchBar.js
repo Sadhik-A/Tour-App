@@ -1,6 +1,5 @@
 import React,{ useState } from 'react'
 import "./Searchbar.scss";
-import { useSelector } from 'react-redux';
 function SearchBar({ onSearch }) {
     const [searchTerm, setSearchTerm] = useState("");
     const handleSearch = () => {
