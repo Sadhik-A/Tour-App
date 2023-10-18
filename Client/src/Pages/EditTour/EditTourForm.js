@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -7,7 +7,8 @@ import "../../Components/FormGroup/FormGroup.scss";
 import FormGroup from "../../Components/FormGroup/FormGroup";
 import '../../Pages/Login/Loginform.scss'
 import Header from "../../Components/Header/Header";
-
+import UploadDull from "../../assets/image-upload-dull.svg";
+import UploadBright from "../../assets/image-upload-bright.svg";
 import {
   setTourName,
   setTourImage,
@@ -17,8 +18,10 @@ import {
   setRegisterationSuccess,
 } from "../../redux/Tourslice";
 import { CloudinaryContext } from "cloudinary-react";
+import '../../Pages/AddTour/AddTour.scss'
 
 function EditTourForm() {
+   const [localAlertMessage, setLocalAlertMessage] = useState("");
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -33,7 +36,13 @@ function EditTourForm() {
     (state) => state.Tour.registerationSuccess
   );
   const selectedTour = tours.find((tour) => tour.id === Number(TourId));
-
+   const decodedTokenJSON = localStorage.getItem("decodedToken");
+   const user = JSON.parse(decodedTokenJSON);
+   const Userid = user.userId;
+   const Username = user.username;
+  const fileInputRef = useRef(null);
+    const [imageFileName, setImageFileName] = useState("");
+    const [selectedImageFile, setSelectedImageFile] = useState(null);
   // console.log(tours);
   useEffect(() => {
     if (selectedTour) {
@@ -72,82 +81,148 @@ function EditTourForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(editTour({ TourId, Tourname, TourDescription, TourImage }));
+    dispatch(editTour({ TourId, Tourname, TourDescription, TourImage, Userid, Username }));
     dispatch(setTourName(""));
     dispatch(setTourImage(""));
     dispatch(setTourDescription(""));
     // setIsAlertVisible(true);
   };
 
-  const handleImageUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+   const handleFileInput = async (file) => {
+     if (file) {
+       if (
+         file.type !== "image/jpeg" &&
+         file.type !== "image/png" &&
+         file.type !== "image/gif"
+       ) {
+         dispatch(
+           setAlertMessage("Please select a valid image file (JPEG, PNG)")
+         );
+         setIsAlertVisible(true);
+         return;
+       }
+       setImageFileName(file.name);
+       setSelectedImageFile(file);
+       try {
+         const formData = new FormData();
+         formData.append("file", file);
+         formData.append("upload_preset", "tourapp");
 
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", "tourapp");
-      const response = await fetch(
-        "https://api.cloudinary.com/v1_1/dzs0grxic/image/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+         // Send the image to Cloudinary
+         const response = await fetch(
+           "https://api.cloudinary.com/v1_1/dzs0grxic/image/upload",
+           {
+             method: "POST",
+             body: formData,
+           }
+         );
 
-      if (response.ok) {
-        const data = await response.json();
-        dispatch(setTourImage(data.secure_url));
-      } else {
-        // console.error("Failed to upload image to Cloudinary.");
-      }
-    } catch (error) {
-      // console.error("Error uploading image:", error);
-    }
+         if (response.ok) {
+           const data = await response.json();
+           dispatch(setTourImage(data.secure_url));
+         } else {
+           console.error("Failed to upload image to Cloudinary.");
+         }
+       } catch (error) {
+         console.error("Error uploading image:", error);
+       }
+     }
+   };
+ 
+  const handleFileInputChange = (e) => {
+    handleFileInput(e.target.files[0]);
+  };
+
+  const handleImageDrop = (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    handleFileInput(file);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
   };
 
   return (
-        <div className="add-tour">
-      <Header />
-    <div className="container1">
-      <h1>Edit Tour</h1>
+    <>
       <CloudinaryContext cloudname="dzs0grxic">
         <form
           onSubmit={handleSubmit}
           className="add-book-form"
           encType="multipart/form-data"
         >
-          <FormGroup
-            label="Name of the Place:"
-              type="text"
-              name="placeName"
-              value={Tourname}
-              onChange={(e) => dispatch(setTourName(e.target.value))}
-              required={true}
-          />
-          <FormGroup
-            label="Image:"
-            type="file"
-            name="Tourimage"
-            onChange={handleImageUpload}
-            accept="image/*"
-            required={true}
-          />
-          <FormGroup
-            label="Description:"
-              name="description"
-              value={TourDescription}
-              onChange={(e) => dispatch(setTourDescription(e.target.value))}
-              required={true}
-            />
-          <button type="submit" className="submit-button">
-            Save Changes
-          </button>
-          {AlertMessage && isAlertVisible && (
-            <div classname="tour-alert">
+          <div className="main-section">
+            <div className="heading">Edit Your Tour Photos</div>
+            <div
+              className="Image-upload"
+              onDrop={handleImageDrop}
+              onDragOver={handleDragOver}
+            >
+              <div className="image-add">
+                <div className="upload-icon">
+                  <img
+                    className="upload-image-icon"
+                    src={UploadDull}
+                    alt="Upload"
+                  />
+                  <img
+                    className="upload-image-icon1"
+                    src={UploadBright}
+                    alt="Upload"
+                  />
+                </div>
+                <div className="image-text">
+                  {imageFileName ? (
+                    <p>Uploaded: {imageFileName}</p>
+                  ) : (
+                    <div className="drop">
+                      <p>Drag and drop an image, or </p>
+                      <label className="file-input-label">
+                        browse
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleFileInputChange}
+                          ref={fileInputRef}
+                          style={{ display: "none" }}
+                        />
+                      </label>
+                    </div>
+                  )}
+                </div>
+                {TourImage && <img src={TourImage} alt="Uploaded" />}
+                <div className="sub-text">
+                  Minimum 1600px width recommended. Max 10MB each
+                </div>
+              </div>
+            </div>
+            <div className="place-name">
+              <div className="label">Place name</div>
+              <input
+                className="form-input"
+                type="text"
+                name="placeName"
+                value={Tourname}
+                onChange={(e) => dispatch(setTourName(e.target.value))}
+                required={true}
+                placeholder="Enter the name of the place"
+              />
+            </div>
+            <div className="place-name">
+              <div className="label">Add a description</div>
+              <textarea
+                className="form-input1"
+                type="text"
+                name="placeName"
+                value={TourDescription}
+                onChange={(e) => dispatch(setTourDescription(e.target.value))}
+                required={true}
+              />
+            </div>
+            {isAlertVisible && localAlertMessage && (
               <motion.p
                 className={`alert ${
-                  AlertMessage === "Tour Updated successfuly"
+                  localAlertMessage === "Tour added successfully"
                     ? "success"
                     : "error"
                 }`}
@@ -155,14 +230,21 @@ function EditTourForm() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                {AlertMessage}
+                {localAlertMessage}
               </motion.p>
+            )}
+            <div className="upload-buttons">
+              <button type="submit" className="upload-icon">
+                <p>Upload</p>
+              </button>
+              <div className="Cancel-button" onClick={() => navigate("/home")}>
+                <p className="Cancel-text">Cancel</p>
+              </div>
             </div>
-          )}
+          </div>
         </form>
       </CloudinaryContext>
-      </div>
-      </div>
+    </>
   );
 }
 
