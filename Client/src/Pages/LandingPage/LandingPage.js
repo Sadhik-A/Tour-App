@@ -60,7 +60,7 @@ function LandingPage() {
           </div>
           <SearchBar />
           <div className="profile-section">
-            <p>Hey  { user.username!=""? user.username : 'User'}  </p>
+            <p>Hey  { user.username!==""? user.username : 'User'}  </p>
             <img src={profile} alt="circle" className="circle" onClick={()=>navigate('/profile')}/>
           </div>
         </div>

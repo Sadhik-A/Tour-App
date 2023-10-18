@@ -1,5 +1,5 @@
 
-import Button from "react-bootstrap/Button";
+
 import Modal from "react-bootstrap/Modal";
 import './ConfirmDialog.scss'
 function ConfirmDialog({ title, subtitle, show, setShow, setDeleteTour }) {
