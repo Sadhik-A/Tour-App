@@ -33,7 +33,7 @@ function AddBook() {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const [imageFileName, setImageFileName] = useState("");
-  const [selectedImageFile, setSelectedImageFile] = useState(null);
+  const [ setSelectedImageFile] = useState(null);
 
   useEffect(() => {
     setLocalAlertMessage(AlertMessage);
