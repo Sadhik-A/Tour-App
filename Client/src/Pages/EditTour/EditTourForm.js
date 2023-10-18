@@ -4,9 +4,9 @@ import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import "../../Components/FormGroup/FormGroup.scss";
-import FormGroup from "../../Components/FormGroup/FormGroup";
+// import FormGroup from "../../Components/FormGroup/FormGroup";
 import '../../Pages/Login/Loginform.scss'
-import Header from "../../Components/Header/Header";
+// import Header from "../../Components/Header/Header";
 import UploadDull from "../../assets/image-upload-dull.svg";
 import UploadBright from "../../assets/image-upload-bright.svg";
 import {
@@ -21,7 +21,7 @@ import { CloudinaryContext } from "cloudinary-react";
 import '../../Pages/AddTour/AddTour.scss'
 
 function EditTourForm() {
-   const [localAlertMessage, setLocalAlertMessage] = useState("");
+   const [localAlertMessage,] = useState("");
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ function EditTourForm() {
    const Username = user.username;
   const fileInputRef = useRef(null);
     const [imageFileName, setImageFileName] = useState("");
-    const [selectedImageFile, setSelectedImageFile] = useState(null);
+    const [ setSelectedImageFile] = useState(null);
   // console.log(tours);
   useEffect(() => {
     if (selectedTour) {
