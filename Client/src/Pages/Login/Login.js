@@ -42,7 +42,7 @@ function LoginForm() {
   useEffect(() => {
     if (alertMessage === "Logged in successfully") {
       setLocalAlertMessage("");
-      navigate("/home");
+      navigate("/landing");
     }
   }, [alertMessage, navigate]);
   useEffect(() => {
@@ -104,6 +104,7 @@ function LoginForm() {
         <h2 className="form-title">Log in to your account </h2>
         <h2 className="form-subtitle">Welcome back ! </h2>
         <form onSubmit={handleSubmit}>
+          
           <FormGroup
             label={"Email"}
             type={"email"}

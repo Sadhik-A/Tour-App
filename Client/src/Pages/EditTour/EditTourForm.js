@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "../../Components/FormGroup/FormGroup.scss";
 import FormGroup from "../../Components/FormGroup/FormGroup";
 import '../../Pages/Login/Loginform.scss'
+import Header from "../../Components/Header/Header";
 
 import {
   setTourName,
@@ -106,7 +107,9 @@ function EditTourForm() {
   };
 
   return (
-    <div className="container">
+        <div className="add-tour">
+      <Header />
+    <div className="container1">
       <h1>Edit Tour</h1>
       <CloudinaryContext cloudname="dzs0grxic">
         <form
@@ -158,7 +161,8 @@ function EditTourForm() {
           )}
         </form>
       </CloudinaryContext>
-    </div>
+      </div>
+      </div>
   );
 }
 

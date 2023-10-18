@@ -17,7 +17,7 @@ module.exports.jwtlogin = async (req, res) => {
     }
     // jwt token
     // console.log(process.env.JWT_SECRET)
-    const token = jwt.sign({ userId: user.id,email: user.get('email'),is_admin: user.get('is_admin') },  process.env.JWT_SECRET,);
+    const token = jwt.sign({ userId: user.id,email: user.get('email'),is_admin: user.get('is_admin'),username: user.get('username') },  process.env.JWT_SECRET,);
      res
        .cookie("accessToken", token, {
         

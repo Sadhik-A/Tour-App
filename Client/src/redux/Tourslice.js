@@ -9,6 +9,7 @@ const initialState = {
   registerationSuccess: false,
   likes: {},
   mytour: false,
+  searchterm: "",
 };
 const tourSlice = createSlice({
   name: "tour",
@@ -40,7 +41,12 @@ const tourSlice = createSlice({
       const { tourId, likes } = action.payload;
       state.likes = { ...state.likes, [tourId]: likes };
     },
-
+    setsearchterm: (state, action) => {
+      state.searchterm = action.payload;
+    },
+    removesearchterm: (state, action) => {
+      state.searchterm = "";
+    }
   },
 });
 export const likeTour = (tourId) => async (dispatch) => {
@@ -177,5 +183,5 @@ export const deleteTour = (id,) => async (dispatch, getState) => {
 };
 
 
-export const { setTourName, setTourDescription, setTourImage, setAlertMessage ,storeTourData,setRegisterationSuccess,updateLikes,setmytour} = tourSlice.actions;
+export const { removesearchterm, setsearchterm, setTourName, setTourDescription, setTourImage, setAlertMessage ,storeTourData,setRegisterationSuccess,updateLikes,setmytour} = tourSlice.actions;
 export default tourSlice.reducer

@@ -3,6 +3,8 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 
 const initialState = {
+  username: "",
+  profile: "",
   email: "",
   password: "",
   emailError: "",
@@ -19,6 +21,12 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    setUsername: (state, action) => {
+      state.username = action.payload;
+    },
+   setProfile: (state, action) => {
+     state.profile = action.payload;
+   },
     setEmail: (state, action) => {
       state.email = action.payload;
       //console.log(state.email)
@@ -135,5 +143,7 @@ export const {
   setUserData,
   clearUserData,
   setRegisterationSuccess,
+  setProfile,
+  setUsername,
 } = userSlice.actions;
 export default userSlice.reducer;

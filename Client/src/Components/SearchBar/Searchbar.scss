@@ -1,44 +1,86 @@
-/* searchbar.scss */
 
-.search-bar {
+.box {
+    max-width: 400px;
+    width: 100%;
+}
+
+ .searchbox {
+    max-width: 50px;
+    margin: auto;
+    position: relative;
+    height: 50px;
+    border-radius: 30px;
+    transition: max-width 0.5s;
+    border: 1px solid rgba(0, 0, 0, 0.50);
+}
+
+.searchbox input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border: 0;
+    border-radius: 30px;
+    padding-left: 20px;
+    transition: all 0s;
+}
+
+.searchbox input:focus {
+    outline: none;
+}
+
+.searchbox .btn {
+    width: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    height: 100%;
+    color: #111;
     display: flex;
+    justify-content: center;
     align-items: center;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.50);
+    cursor: pointer;
+    transition: all 0s;
+}
 
-    input {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        width: 300px;
-        margin-right: 10px;
-        font-size: 16px;
-    }
-
-    button {
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-
-        &:hover {
-            background-color: #0056b3;
-        }
-    }
-
-    @media screen and (max-width: 900px) {
-        width: auto;
-        margin: 10px 0;
-
-        input {
-            font-size: 12px;
-            width: 150px;
-        }
-
-        button {
-            font-size: 12px;
-        }
+#label {
+    display: none;
+}
+.searchbox:hover {
+    max-width: 700px;
+    transition: max-width 1s;
+    .btn{
+        border:none
     }
 }
 
+.searchbox{
+    max-width: 50px;
+    border-top: 1px;
+    border-right: 0px;
+    border-left: 1px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.50);
+    &:hover{
+       border-right:1px ;
+        border-style: solid;
+         border-color: rgba(0, 0, 0, 0.50);
+    }
+}
+.searchbox.expanded.expanded{
+    max-width: 380px;
+    .btn{
+        border-top: 0px;
+        border-right: 1px;
+        border-left: 0px;
+        border-bottom: 0px;
+        border-style: solid;
+        border-color: rgba(0, 0, 0, 0.50);
+    }
+}
+.searchbox.expanded1.expanded{
+    max-width: 700px;
+}

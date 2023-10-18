@@ -1,0 +1,221 @@
+// LandingPage.scss
+
+$primaryColor: #4931A8;
+$shadowColor: rgba(0, 0, 0, 0.10);
+$whiteColor: #FFF;
+.landing-page {
+    // background-image: url("../../assets/LandingImage.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-image 1s ease;
+    p {
+        margin-bottom: 0;
+    }
+    .main-content {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        gap: 50px;
+    }
+.image-1 {
+    background-image: url("../../assets/Background1.png");
+}
+
+.image-2 {
+    background-image: url("../../assets/Background2.jpg");
+}
+
+.image-3 {
+    background-image: url("../../assets/Background3.png");
+}
+
+.image-4 {
+    background-image: url("../../assets/Background4.png");
+}
+    .nav-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+
+        .nav-items {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            justify-content: center;
+
+            .landing-title{
+            color: #{$primaryColor};
+                font-family: Plus Jakarta Sans;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 36px;
+                /* 150% */
+
+            }
+            .nav-title {
+                color: #{$whiteColor};
+                font-family: 'Plus Jakarta Sans';
+                font-size: 16px;
+                font-weight: 500;
+                cursor: pointer;
+            }
+        }
+
+        .search {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            cursor: pointer;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+
+            .search-icon {
+                width: 70%;
+                height: 70%;
+                position: absolute;
+                top: 15%;
+                left: 15%;
+            }
+        }
+
+        .profile-section {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+             
+            p {
+                color: #{$whiteColor};
+                font-family: 'Plus Jakarta Sans';
+                font-size: 16px;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .Timelines{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 60px;
+    }
+    .Timeline{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 10;
+    }
+    .Timeline-image{
+        position: relative;
+    }
+.Timeline-title{
+color:#dfdfdfcd;
+    font-family: Plus Jakarta Sans;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.5;
+    }
+    .Timeline-title-active{
+        color: #FFF;
+        font-family: Plus Jakarta Sans;
+        font-size: 14px;
+        font-weight: 500;
+    }
+.Timeline-line {
+    width: 72.5%;
+    height: 1px;
+    stroke-width: 1px;
+    background-color: #dfdfdf;
+    opacity: 0.2;
+    margin-top: 20px;
+    position: absolute;
+    left:13.8%; 
+
+}
+.Timeline-number{
+    color: #dfdfdf;
+        font-family: Plus Jakarta Sans;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        position: absolute;
+        top:32%;
+        left:40%;
+}
+.Timeline-number-active{
+    color: #000;
+        font-family: Plus Jakarta Sans;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        position: absolute;
+        top: 32%;
+        left: 40%;
+}
+    .Description {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 48px;
+        margin-bottom: 60px;
+
+        .Description-titles {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+
+            .Description-title1 {
+                color: #{$whiteColor};
+                text-shadow: 0px 4px 4px #{$shadowColor};
+                font-family: 'Plus Jakarta Sans';
+                font-size: 62px;
+                font-weight: 800;
+            }
+
+            .Description-title2 {
+                color: #{$whiteColor};
+                text-shadow: 0px 4px 4px #{$shadowColor};
+                font-family: 'Plus Jakarta Sans';
+                font-size: 24px;
+                font-weight: 500;
+            }
+        }
+
+        .Description-buttons {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            .Description-button {
+                display: flex;
+                padding: 12px 10px;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                border-radius: 8px;
+                background: #{$primaryColor};
+                cursor: pointer;
+
+                p {
+                    color: #{$whiteColor};
+                }
+            }
+        }
+    }
+}

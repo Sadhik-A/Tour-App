@@ -11,7 +11,7 @@ const PrivateRoute = ({ element, path }) => {
   }
   //if user is authenticated,
   if (isAuthenticated && path === "/") {
-    return <Navigate to="/home" />;
+    return <Navigate to="/landing" />;
   }
   return element;
 };

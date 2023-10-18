@@ -15,7 +15,8 @@ function FormGroup({ label, name, value, onChange, placeholder, error,type,requi
       <label>{label}</label>
       <div className="password-input-container">
         {label ==="Description:" ? (
-          <textarea className="form-input"></textarea>
+          <textarea className="form-input"
+            name={name} value={value} onChange={onChange} placeholder={placeholder}required={required}></textarea>
         ) : (
           <input
             className="form-input"

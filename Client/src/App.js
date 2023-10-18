@@ -6,7 +6,8 @@ import Homepage from "./Pages/Homepage/Homepage";
 import Addbook from "./Pages/AddTour/AddTour";
 import EditTourForm from "./Pages/EditTour/EditTourForm";
 import PrivateRoute from "../src/Components/PrivateRoute";
-
+import LandingPage from "./Pages/LandingPage/LandingPage";
+import ProfilePage from "./Pages/Profile/ProfilePage";
 function App() {
   return (
     <BrowserRouter>
@@ -29,6 +30,14 @@ function App() {
           element={
             <PrivateRoute path="/editTour/:tourid" element={<EditTourForm />} />
           }
+        />
+        <Route
+          path="/landing"
+          element={<PrivateRoute path="/landing" element={<LandingPage />} />}
+        />
+        <Route
+          path="/profile"
+          element={<PrivateRoute path="/profile" element={<ProfilePage/>} />}
         />
       </Routes>
     </BrowserRouter>

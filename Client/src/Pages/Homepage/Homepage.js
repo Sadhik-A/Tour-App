@@ -3,16 +3,19 @@ import { motion } from "framer-motion";
 import "./Homepage.scss";
 import Tourlist from "../../Components/Tourlist/Tourlist";
 import { useDispatch, useSelector } from "react-redux";
-import { getTour, setAlertMessage } from "../../redux/Tourslice";
+import { getTour, setAlertMessage, } from "../../redux/Tourslice";
 import Header from "../../Components/Header/Header";
 function HomePage() {
   const [isAlertVisible, setIsAlertVisible] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(""); 
+  // const [searchTerm, setSearchTerm] = useState(""); 
   const dispatch = useDispatch();
   const AlertMessage = useSelector((state) => state.Tour.alertmessage);
- 
+  const SearchTerm = useSelector((state) => state.Tour.searchterm);
+  
   useEffect(() => {
     dispatch(getTour());
+    // dispatch(removesearchterm());
+    
   }, [dispatch]);
   useEffect(() => {
     if (AlertMessage) {
@@ -25,7 +28,7 @@ function HomePage() {
   }, [AlertMessage,dispatch]);
   return (
     <>
-      <Header setSearchTerm={setSearchTerm} />
+      <Header/>
       <div>
         {AlertMessage && isAlertVisible && (
           <div className="tour-alert">
@@ -43,7 +46,7 @@ function HomePage() {
             </motion.p>
           </div>
         )}
-        <Tourlist searchTerm={searchTerm} />
+        <Tourlist searchTerm={SearchTerm} />
       </div>
     </>
   );

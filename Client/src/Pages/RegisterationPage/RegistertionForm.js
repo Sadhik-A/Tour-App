@@ -12,7 +12,8 @@ import {
   setConfirmPassword,
   setLoading,
   setAlertMessage,
-  setRegisterationSuccess
+  setRegisterationSuccess,
+  setUsername,
 } from "../../redux/Userslice";
 import "../Login/Loginform.scss";
 import { Link } from "react-router-dom";
@@ -26,6 +27,7 @@ function RegistrationForm() {
   const loading = useSelector((state) => state.user.loading);
   const alertMessage = useSelector((state) => state.user.alertmessage);
   const registrationSuccess = useSelector((state) => state.user.registerationSuccess);
+  const username = useSelector((state) => state.user.username);
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
   const [localAlertMessage, setLocalAlertMessage] = useState("");
@@ -41,6 +43,7 @@ function RegistrationForm() {
       dispatch(setConfirmPassword(""));
       dispatch(setLoading(false));
       dispatch(setAlertMessage(""));
+      dispatch(setUsername(""));
     };
   }, [dispatch]);
  useEffect(() => {
@@ -82,8 +85,13 @@ function RegistrationForm() {
         dispatch(setEmail(value));
       } else if (name === "password") {
         dispatch(setPassword(value));
-      } else if (name === "confirmPassword") {
+      } else if (name === "confirmPassword")
+      {
         dispatch(setConfirmPassword(value));
+      }
+      else if (name === "username")
+      {
+        dispatch(setUsername(value));
       }
     };
   const handleSubmit = (event) => {
@@ -122,7 +130,7 @@ function RegistrationForm() {
       !formErrors.password &&
       !formErrors.confirmPassword
     ) {
-      dispatch(submitRegistration({ email, password }));
+      dispatch(submitRegistration({ email, password,username }));
        dispatch(setEmail(""));
        dispatch(setPassword(""));
        dispatch(setConfirmPassword(""));
@@ -138,6 +146,15 @@ function RegistrationForm() {
         </h2>
         <form onSubmit={handleSubmit} className="form">
           <FormGroup
+            label={"Username"}
+            type={"text"}
+            name="username"
+            value={username}
+            onChange={handleInputChange}
+            placeholder="enter username.."
+            required={true}
+          />
+          <FormGroup
             label={"Email"}
             type={"email"}
             name="email"
@@ -147,9 +164,7 @@ function RegistrationForm() {
             error={emailError}
           />
           <FormGroup
-            label={
-              "Password"
-            }
+            label={"Password"}
             type={"password"}
             name="password"
             value={password}
@@ -158,9 +173,7 @@ function RegistrationForm() {
             placeholder="enter password..."
           />
           <FormGroup
-            label={
-              "Confirm Password"
-            }
+            label={"Confirm Password"}
             name="confirmPassword"
             value={confirmPassword}
             onChange={handleInputChange}

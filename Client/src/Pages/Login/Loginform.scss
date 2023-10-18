@@ -12,6 +12,20 @@
         min-height: 100vh;
         width: 440px;
 }
+.container1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    width: 440px;
+    margin:0 auto;
+}
+.add-tour{
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
 .form-container { 
     display: flex;
     flex-direction: column;

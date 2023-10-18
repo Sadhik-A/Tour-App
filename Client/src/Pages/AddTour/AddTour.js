@@ -5,7 +5,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import FormGroup from "../../Components/FormGroup/FormGroup";
 import "../../Components/FormGroup/FormGroup.scss";
-// import Header from "../../Components/Header/Header";
+import Header from "../../Components/Header/Header";
 import {
   setTourName,
   setTourImage,
@@ -113,58 +113,59 @@ useEffect(() => {
 
   return (
     <>
-      {/* <Header  setSearchTerm={setSearchTerm}/> */}
-      <div className="container">
-        <h1 >Add Tour</h1>
-        <CloudinaryContext cloudname="dzs0grxic">
-          <form
-            onSubmit={handleSubmit}
-            className="add-book-form"
-            encType="multipart/form-data"
-          >
-            <FormGroup
-              label="Enter Name of the Place:"
-              name="placeName"
-              value={Tourname}
-              onChange={(e) => dispatch(setTourName(e.target.value))}
-              required={true}
-            />
-            <FormGroup
-              label="Upload Image:"
-              name="Tourimage"
-              type="file"
-              onChange={handleImageUpload}
-              accept="image/*"
-              required={true}
-            />
-            <FormGroup
-              label="Add Description:"
-              name="description"
-              value={TourDescription}
-              onChange={(e) => dispatch(setTourDescription(e.target.value))}
-              required={true}
-            />
-            <button type="submit" className="submit-button">
-              Add Tour
-            </button>
-            {isAlertVisible && localAlertMessage && (
-              <motion.p
-                className={`alert ${
-                  localAlertMessage === "Tour added successfully"
-                    ? "success"
-                    : "error"
-                }`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                {localAlertMessage}
-              </motion.p>
-            )}
-          </form>
-        </CloudinaryContext>
-      </div>
-
+      <div className="add-tour">
+      <Header />
+        <div className="container1">
+          <h1>Add Tour</h1>
+          <CloudinaryContext cloudname="dzs0grxic">
+            <form
+              onSubmit={handleSubmit}
+              className="add-book-form"
+              encType="multipart/form-data"
+            >
+              <FormGroup
+                label="Enter Name of the Place:"
+                name="placeName"
+                value={Tourname}
+                onChange={(e) => dispatch(setTourName(e.target.value))}
+                required={true}
+              />
+              <FormGroup
+                label="Upload Image:"
+                name="Tourimage"
+                type="file"
+                onChange={handleImageUpload}
+                accept="image/*"
+                required={true}
+              />
+              <FormGroup
+                label="Description:"
+                name="description"
+                value={TourDescription}
+                onChange={(e) => dispatch(setTourDescription(e.target.value))}
+                required={true}
+              />
+              <button type="submit" className="submit-button">
+                Add Tour
+              </button>
+              {isAlertVisible && localAlertMessage && (
+                <motion.p
+                  className={`alert ${
+                    localAlertMessage === "Tour added successfully"
+                      ? "success"
+                      : "error"
+                  }`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {localAlertMessage}
+                </motion.p>
+              )}
+            </form>
+          </CloudinaryContext>
+        </div>
+        </div>
     </>
   );
 }

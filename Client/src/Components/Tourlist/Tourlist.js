@@ -1,18 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
+import { useLocation } from "react-router-dom";
 import {
   getTour,
   deleteTour,
-  likeTour,
-  dislikeTour,
+  // likeTour,
+  // dislikeTour,
 } from "../../redux/Tourslice";
 import "./Tourlist.scss";
 import ImageViewer from "../ImageViewer/ImageViewer";
 import { motion } from "framer-motion";
-
-function Tourlist({ searchTerm }) {
+import Location from "../../assets/Location.svg";
+import circle from "../../assets/Ellipse3.svg";
+import Download from "../../assets/Download.svg";
+import profile from "../../assets/profile.svg";
+import Like from "../../assets/like.svg";
+import Delete from "../../assets/Delete.svg";
+import Edit from "../../assets/Edit.svg";
+import Gallery1 from "../../assets/Galleryblue.svg";
+import Bluecircle from "../../assets/Bluecircle.svg";
+function Tourlist() {
+  const searchTerm = useSelector((state) => state.Tour.searchterm)
+  const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const tours = useSelector((state) => state.Tour.tours);
   const mytour = useSelector((state) => state.Tour.mytour);
@@ -35,46 +47,54 @@ function Tourlist({ searchTerm }) {
   // console.log(tours.Userid)
   //  console.log(mytour)
   let filteredTours = tours;
-    filteredTours = mytour
-     ? tours.filter((tour) => tour.Userid === uid)
-     : tours;
-  
+  filteredTours =
+    location.pathname === "/profile"
+      ? tours.filter((tour) => tour.Userid === uid)
+      : tours;
+
   useEffect(() => {
     dispatch(getTour());
-  }, [dispatch, searchTerm, likes,mytour]);
-
+  }, [dispatch, searchTerm, likes, mytour]);
+  // useEffect(() => {
+  //   {
+  //     dispatch(removesearchterm());
+  //   }
+  // })
   // console.log(deletetour)
   useEffect(() => {
     if (deletetour) {
       dispatch(deleteTour(tourToDelete));
+
       setDeleteTour(false);
-      setTourToDelete(null); 
+      setTourToDelete(null);
     }
-    }, [deletetour,dispatch,tourToDelete]);
+  }, [deletetour, dispatch, tourToDelete]);
   const handleDelete = (tourId) => {
     setTourToDelete(tourId);
   };
   const handleImageClick = (imageUrl) => {
     setSelectedImage(imageUrl);
   };
-  const handleLike = (tourId) => {
-    console.log("like is clicked");
+  // const handleLike = (tourId) => {
+  //   console.log("like is clicked");
 
-    dispatch(likeTour(tourId));
-  };
+  //   dispatch(likeTour(tourId));
+  // };
 
-  const handledisLike = (tourId) => {
-    console.log("dislike is clicked");
+  // const handledisLike = (tourId) => {
+  //   console.log("dislike is clicked");
 
-    dispatch(dislikeTour(tourId));
-  };
+  //   dispatch(dislikeTour(tourId));
+  // };
 
   // Filter tours based on the search term
-  const  filteredAndSearchedTours = mytour? filteredTours :searchTerm
-    ? filteredTours.filter((tour) =>
+  const filteredAndSearchedTours = mytour
+    ? filteredTours
+    : searchTerm
+      ? filteredTours.filter((tour) =>
         tour.Tourname.toLowerCase().includes(searchTerm.toLowerCase())
       )
-    : filteredTours;
+      : filteredTours;
   return (
     <motion.div
       className="tour-list"
@@ -88,16 +108,79 @@ function Tourlist({ searchTerm }) {
           onClose={() => setSelectedImage(null)}
         />
       )}
+      {location.pathname === "/profile"?
+        < div className="tour-image1">
+      <div className="addnew-tour" onClick={() => navigate("/addTour")}>
+        <img src={Bluecircle} alt="circle" className="add-icon" />
+        <img src={Gallery1} alt="circle" className="add-gallery" />
+        <p className="add-text"> Submit your next photo</p>
+          </div>
+      </div>:null}
       {filteredAndSearchedTours.map((tour) => (
-        <div key={tour.id} className="tour-item-container">
-          <motion.div className="tour-item" whileHover={{ scale: 1.1 }}>
-            <h2>{tour.Tourname}</h2>
-            <img
-              src={tour.Tourimage}
-              alt={tour.Tourname}
-              onClick={() => handleImageClick(tour.Tourimage)}
-            />
-            <p>{tour.TourDescription}</p>
+        <div key={tour.id} className="tour-items">
+          <div className="tour-item" whileHover={{ scale: 1.1 }}>
+            <div className="tour-title">
+              <img src={Location} alt="circle" className="navigation-icon" />
+              <h2>{tour.Tourname}</h2>
+            </div>
+            <div className="tour-image">
+              <img
+                src={tour.Tourimage}
+                alt={tour.Tourname}
+                onClick={() => handleImageClick(tour.Tourimage)}
+              />
+              <motion.div
+                className="tour-details"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="download-div">
+                  <div className="download-icon">
+                    <img src={circle} alt="circle" className="circle" />
+                    <img
+                      src={location.pathname === "/profile" ? Delete : Download}
+                      alt="circle"
+                      className="download"
+                      onClick={
+                        location.pathname === "/profile"
+                          ? () => handleShow(tour.id)
+                          : null
+                      }
+                    />
+                  </div>
+                </div>
+                <div className="description">
+                  <div className="user">
+                    <div className="user-details">
+                      <img src={profile} alt="circle" className="circle1" />
+                      <div className="user-name">{user.username}</div>
+                    </div>
+                    <div className="tour-description">
+                      <p>{tour.TourDescription}</p>
+                    </div>
+                  </div>
+                  <div className="download-icon">
+                    <img src={circle} alt="circle" className="circle" />
+                    <img
+                      src={location.pathname === "/profile" ? Edit : Like}
+                      alt="circle"
+                      className="download"
+                      onClick={
+                        location.pathname === "/profile"
+                          ? () => navigate(`/editTour/${tour.id}`)
+                          : null
+                      }
+                    />
+                    {/* <p> {tour.likes}</p> */}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* <p>{tour.TourDescription}</p>
             <div className="tour-icons">
               <div className="edit-like">
                 {tour.Userid === uid || user.is_admin === 1 ? (
@@ -128,17 +211,18 @@ function Tourlist({ searchTerm }) {
                   Delete
                 </i>
               ) : null}
-            </div>
-          </motion.div>
+            </div> */}
+          </div>
         </div>
       ))}
-        <ConfirmDialog
-          title="Confirm Delete"
-          subtitle="Are you sure you want to delete this tour?"
-          setDeleteTour={setDeleteTour}
-          show={show} 
-          setShow={setShow}
-        />
+
+      <ConfirmDialog
+        title="Confirm Delete"
+        subtitle="Are you sure you want to delete this tour?"
+        setDeleteTour={setDeleteTour}
+        show={show}
+        setShow={setShow}
+      />
     </motion.div>
   );
 }
