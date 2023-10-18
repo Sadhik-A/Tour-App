@@ -26,7 +26,7 @@ module.exports.jwtlogin = async (req, res) => {
          httpOnly: true,
          sameSite: "none",
          secure: true,
-         expiresIn: "10d",
+         expiresIn: "2d",
        })
        .status(200)
        .json({ message: "Logged in successfully", user, token });

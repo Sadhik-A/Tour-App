@@ -5,10 +5,10 @@ module.exports.add = async (req, res) => {
 
   try {
    
-    const { Tourname, TourDescription, TourImage,Userid } = req.body;
+    const { Tourname, TourDescription, TourImage,Userid,Username } = req.body;
     // console.log(req.body);
     // console.log(TourImage); 
-    const tour = new Tour({ Tourname, TourDescription, TourImage,Userid});
+    const tour = new Tour({ Tourname, TourDescription, TourImage,Userid,Username});
     // console.log(tour)
     await tour.save();
     res.status(201).json({ message: "Tour added successfully" });

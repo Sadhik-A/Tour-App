@@ -27,6 +27,7 @@ function Tourlist() {
   const location = useLocation();
   const dispatch = useDispatch();
   const tours = useSelector((state) => state.Tour.tours);
+  console.log(tours);
   const mytour = useSelector((state) => state.Tour.mytour);
   // console.log(tours);
   const likes = useSelector((state) => state.Tour.likes);
@@ -49,9 +50,8 @@ function Tourlist() {
   let filteredTours = tours;
   filteredTours =
     location.pathname === "/profile"
-      ? tours.filter((tour) => tour.Userid === uid)
+      ? tours.filter((tour) => tour.Userid === uid||user.is_admin===1)
       : tours;
-
   useEffect(() => {
     dispatch(getTour());
   }, [dispatch, searchTerm, likes, mytour]);
@@ -64,7 +64,6 @@ function Tourlist() {
   useEffect(() => {
     if (deletetour) {
       dispatch(deleteTour(tourToDelete));
-
       setDeleteTour(false);
       setTourToDelete(null);
     }
@@ -108,14 +107,7 @@ function Tourlist() {
           onClose={() => setSelectedImage(null)}
         />
       )}
-      {location.pathname === "/profile"?
-        < div className="tour-image1">
-      <div className="addnew-tour" onClick={() => navigate("/addTour")}>
-        <img src={Bluecircle} alt="circle" className="add-icon" />
-        <img src={Gallery1} alt="circle" className="add-gallery" />
-        <p className="add-text"> Submit your next photo</p>
-          </div>
-      </div>:null}
+
       {filteredAndSearchedTours.map((tour) => (
         <div key={tour.id} className="tour-items">
           <div className="tour-item" whileHover={{ scale: 1.1 }}>
@@ -156,11 +148,11 @@ function Tourlist() {
                   <div className="user">
                     <div className="user-details">
                       <img src={profile} alt="circle" className="circle1" />
-                      <div className="user-name">{user.username}</div>
+                      <div className="user-name">{tour.Username}</div>
                     </div>
-                    <div className="tour-description">
+                    {/* <div className="tour-description">
                       <p>{tour.TourDescription}</p>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="download-icon">
                     <img src={circle} alt="circle" className="circle" />
@@ -179,7 +171,6 @@ function Tourlist() {
                 </div>
               </motion.div>
             </div>
-
             {/* <p>{tour.TourDescription}</p>
             <div className="tour-icons">
               <div className="edit-like">
@@ -215,7 +206,15 @@ function Tourlist() {
           </div>
         </div>
       ))}
-
+      {location.pathname === "/profile" ? (
+        <div className="tour-image1">
+          <div className="addnew-tour" onClick={() => navigate("/addTour")}>
+            <img src={Bluecircle} alt="circle" className="add-icon" />
+            <img src={Gallery1} alt="circle" className="add-gallery" />
+            <p className="add-text"> Submit your next photo</p>
+          </div>
+        </div>
+      ) : null}
       <ConfirmDialog
         title="Confirm Delete"
         subtitle="Are you sure you want to delete this tour?"
