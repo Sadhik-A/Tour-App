@@ -17,7 +17,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTour());
-  },[]);
+  },[dispatch]);
   return (
     <BrowserRouter>
       <Routes>
