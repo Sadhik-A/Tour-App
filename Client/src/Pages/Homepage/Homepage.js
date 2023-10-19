@@ -7,15 +7,12 @@ import { getTour, setAlertMessage, } from "../../redux/Tourslice";
 import Header from "../../Components/Header/Header";
 function HomePage() {
   const [isAlertVisible, setIsAlertVisible] = useState(false);
-  // const [searchTerm, setSearchTerm] = useState(""); 
   const dispatch = useDispatch();
   const AlertMessage = useSelector((state) => state.Tour.alertmessage);
   const SearchTerm = useSelector((state) => state.Tour.searchterm);
   
   useEffect(() => {
     dispatch(getTour());
-    // dispatch(removesearchterm());
-    
   }, [dispatch]);
   useEffect(() => {
     if (AlertMessage) {

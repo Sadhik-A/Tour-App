@@ -4,9 +4,7 @@ import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import "../../Components/FormGroup/FormGroup.scss";
-// import FormGroup from "../../Components/FormGroup/FormGroup";
 import '../../Pages/Login/Loginform.scss'
-// import Header from "../../Components/Header/Header";
 import UploadDull from "../../assets/image-upload-dull.svg";
 import UploadBright from "../../assets/image-upload-bright.svg";
 import {
@@ -32,6 +30,7 @@ function EditTourForm() {
   const TourImage = useSelector((state) => state.Tour.Tourimage);
   const AlertMessage = useSelector((state) => state.Tour.alertmessage);
   const tours = useSelector((state) => state.Tour.tours);
+  console.log(tours);
   const registrationSuccess = useSelector(
     (state) => state.Tour.registerationSuccess
   );
@@ -57,7 +56,6 @@ function EditTourForm() {
       dispatch(setTourImage(""));
       dispatch(setTourDescription(""));
       dispatch(setAlertMessage(""));
-      // setIsAlertVisible(false);
       setAlertMessage("");
     };
   }, [dispatch]);
@@ -85,7 +83,6 @@ function EditTourForm() {
     dispatch(setTourName(""));
     dispatch(setTourImage(""));
     dispatch(setTourDescription(""));
-    // setIsAlertVisible(true);
   };
 
    const handleFileInput = async (file) => {

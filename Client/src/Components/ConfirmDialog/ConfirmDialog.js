@@ -12,7 +12,7 @@ function ConfirmDialog({ title, subtitle, show, setShow, setDeleteTour }) {
    
  };
   return (
-    <Modal  show={show} onHide={handleClose}>
+    <Modal  show={show} onHide={handleClose} className="main-modal">
       <div className="deletemodal">
         <div className="delete-options">
           <div className="dialog-title">{title}</div>
@@ -27,18 +27,6 @@ function ConfirmDialog({ title, subtitle, show, setShow, setDeleteTour }) {
           </div>
         </div>
       </div>
-      {/* <Modal.Header closeButton>
-        <Modal.Title>{title}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>{subtitle}</Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={handlechange}>
-          Save Changes
-        </Button>
-      </Modal.Footer> */}
     </Modal>
   );
 }

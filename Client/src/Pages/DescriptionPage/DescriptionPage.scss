@@ -1,0 +1,94 @@
+.main-contents{
+    display: flex;
+    flex-direction: column;
+   justify-content: space-between;
+    margin:20px 65px;
+
+    .image-header{
+        margin-top: 90px;
+        display: flex;
+        // align-items: center;
+        justify-content: space-between;
+        align-items: flex-start;
+        .profile{
+          display: flex;
+          flex-direction: row;
+          p{
+            margin-bottom: 0;
+          }
+          align-items: center;
+          gap: 10px;  
+          .profile-image{
+              width: 40px;
+              height: 40px;
+              img{
+                height: 100%;
+                width: 100%;
+              }
+          }
+          .profile-name{
+            color: #000;
+                font-family: Plus Jakarta Sans;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+          }
+        }
+        .image{
+            margin-top: 20px;
+        }
+       .icons{
+        display: flex;
+        flex-direction: column;
+        // justify-content: space-between;
+        gap:40px;
+        align-items: center;
+        .download-icon {
+                position: relative;
+                width: 34px;
+                height: 34px;
+        
+                // justify-content: center;
+                // align-items: center;
+                .circle {
+                    width: 34px;
+                    height: 34px;
+                }
+        
+                .download {
+                    position: absolute;
+                    width: 24px;
+                    height: 24px;
+                    top: 5px;
+                    left: 5px;
+                }
+            }
+       } 
+    }
+    .description{
+        display: flex;
+        margin: 0 auto;
+        margin-top: 60px;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 24px;
+            width: 70%;
+            .title{
+                color: #000;
+                    font-family: Plus Jakarta Sans;
+                    font-size: 24px;
+                    font-weight: 600;
+                 
+            }
+            .description-text{
+                color: #000;
+                    font-family: Plus Jakarta Sans;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 36px;
+                 
+            }
+    }
+}

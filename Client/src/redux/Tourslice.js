@@ -161,8 +161,8 @@ export const deleteTour = (id,) => async (dispatch, getState) => {
   try {
 //  console.log(uid)  
     const response = await axios.delete(
-      //  `http://localhost:3000/api/deleteTour/${id}`,
-      `https://tour-app-zcms.onrender.com/api/deleteTour/${id}`,
+       `http://localhost:3000/api/deleteTour/${id}`,
+      // `https://tour-app-zcms.onrender.com/api/deleteTour/${id}`,
       {
         withCredentials: true,
       }

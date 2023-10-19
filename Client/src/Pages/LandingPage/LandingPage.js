@@ -13,7 +13,7 @@ import "./LandingPage.scss";
 import { useNavigate } from "react-router-dom";
 import { motion, } from "framer-motion";
 import SearchBar from "../../Components/SearchBar/SearchBar";
- const decodedTokenJSON = localStorage.getItem("decodedToken");
+const decodedTokenJSON = localStorage.getItem("decodedToken");
 const user = JSON.parse(decodedTokenJSON);
 function LandingPage() {
   // console.log(user);
@@ -48,9 +48,6 @@ function LandingPage() {
         <div className="nav-bar">
           <div className="nav-items">
             <h2 className="landing-title">Holidays</h2>
-            {/* <p className="nav-title" onClick={() => navigate("/home")}>
-            Home
-          </p> */}
             <p className="nav-title" onClick={() => navigate("/addTour")}>
               Submit
             </p>
@@ -60,8 +57,13 @@ function LandingPage() {
           </div>
           <SearchBar />
           <div className="profile-section">
-            <p>Hey  { user.username!==""? user.username : 'User'}  </p>
-            <img src={profile} alt="circle" className="circle" onClick={()=>navigate('/profile')}/>
+            <p>Hey {user.username !== "" ? user.username : "User"} </p>
+            <img
+              src={profile}
+              alt="circle"
+              className="circle"
+              onClick={() => navigate("/profile")}
+            />
           </div>
         </div>
 
@@ -80,7 +82,15 @@ function LandingPage() {
                 alt="arrow"
                 className="arrow"
               />
-              <p className={imageIndex === 0 ? "Timeline-number-active" : "Timeline-number"}>1</p>
+              <p
+                className={
+                  imageIndex === 0
+                    ? "Timeline-number-active"
+                    : "Timeline-number"
+                }
+              >
+                1
+              </p>
             </div>
           </div>
           <div className="Timeline-line"></div>
@@ -98,7 +108,15 @@ function LandingPage() {
                 alt="arrow"
                 className="arrow"
               />
-              <p className={imageIndex === 1 ? "Timeline-number-active" : "Timeline-number"}>2</p>
+              <p
+                className={
+                  imageIndex === 1
+                    ? "Timeline-number-active"
+                    : "Timeline-number"
+                }
+              >
+                2
+              </p>
             </div>
           </div>
           <div className="Timeline-line"></div>
@@ -116,7 +134,15 @@ function LandingPage() {
                 alt="arrow"
                 className="arrow"
               />
-              <p className={imageIndex === 2 ? "Timeline-number-active" : "Timeline-number"}>3</p>
+              <p
+                className={
+                  imageIndex === 2
+                    ? "Timeline-number-active"
+                    : "Timeline-number"
+                }
+              >
+                3
+              </p>
             </div>
           </div>
           <div className="Timeline-line"></div>
@@ -129,12 +155,20 @@ function LandingPage() {
               Shimla
             </p>
             <div className="Timeline-image">
-            <img
-              src={imageIndex === 3 ? BrightCircle : DullCircle}
-              alt="arrow"
-              className="arrow"
+              <img
+                src={imageIndex === 3 ? BrightCircle : DullCircle}
+                alt="arrow"
+                className="arrow"
               />
-              <p className={imageIndex === 3 ? "Timeline-number-active" : "Timeline-number"}>4</p>
+              <p
+                className={
+                  imageIndex === 3
+                    ? "Timeline-number-active"
+                    : "Timeline-number"
+                }
+              >
+                4
+              </p>
             </div>
           </div>
         </div>
@@ -154,22 +188,20 @@ function LandingPage() {
             onHoverStart={(e) => {}}
             onHoverEnd={(e) => {}}
             className="Description-button"
+            onClick={() => navigate("/addTour")}
           >
             <img src={Gallery} alt="circle" className="circle" />
-            <p className="nav-title" onClick={() => navigate("/addTour")}>
-              Submit your photos
-            </p>
+            <p className="nav-title">Submit your photos</p>
           </motion.div>
           <motion.div
             whileHover={{ scale: 1.1 }}
             onHoverStart={(e) => {}}
             onHoverEnd={(e) => {}}
             className="Description-button"
+            onClick={() => navigate("/home")}
           >
             <img src={Arrow} alt="circle" className="circle" />
-            <p className="nav-title" onClick={() => navigate("/home")}>
-              Explore photos{" "}
-            </p>
+            <p className="nav-title">Explore photos </p>
           </motion.div>
         </div>
       </div>

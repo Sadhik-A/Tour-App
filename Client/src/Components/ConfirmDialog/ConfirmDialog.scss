@@ -1,6 +1,8 @@
+.main-modal{
+  margin-top: 300px;
 .deletemodal{
     padding: 30px;
-        width: 786px;
+        width: 500px;
         height: 208px;
         flex-shrink: 0;
         border-radius: 10px;
@@ -53,4 +55,5 @@
                 border-radius: 8px;
          }
         }
+}
 }

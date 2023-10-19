@@ -1,7 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import "../../Pages/LandingPage/LandingPage.scss";
 import "../../Components/Header/Header.css";
-// import SearchBar from "../../Components/SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 import NavArrow from "../../assets/NavArrow.svg";
 import Notification from "../../assets/Notification.svg";
@@ -47,7 +46,6 @@ function ProfilePage() {
           <div className="main-header">
             <div className="header-search">
               <h1 className="header-title">Tour the World via Captures</h1>
-              {/* <SearchBar /> */}
               <div className="sub-header1">
                 <div className="nav-demo-button">
                   <div className="nav-button-title1">
@@ -104,21 +102,6 @@ function ProfilePage() {
                         <p className="nav-button-title1">Logout</p>
                       </div>
                     </div>
-
-                    {/* {user ? (
-                  <>
-                    <p>{user.email}</p>
-                    <Link
-                      to="/"
-                      className="logout-button"
-                      onClick={handleLogout}
-                    >
-                      Logout
-                    </Link>
-                  </>
-                ) : (
-                  <p>Loading...</p>
-                )} */}
                   </motion.div>
                 )}
               </div>

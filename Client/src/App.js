@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginForm from "./Pages/Login/Login";
 import RegistrationForm from "./Pages/RegisterationPage/RegistertionForm";
@@ -8,7 +8,16 @@ import EditTourForm from "./Pages/EditTour/EditTourForm";
 import PrivateRoute from "../src/Components/PrivateRoute";
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import ProfilePage from "./Pages/Profile/ProfilePage";
+import DescriptionPage from "./Pages/DescriptionPage/DescriptionPage";
+import { useDispatch } from "react-redux";
+import {
+  getTour, 
+} from "./redux/Tourslice";
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getTour());
+  },[]);
   return (
     <BrowserRouter>
       <Routes>
@@ -37,7 +46,11 @@ function App() {
         />
         <Route
           path="/profile"
-          element={<PrivateRoute path="/profile" element={<ProfilePage/>} />}
+          element={<PrivateRoute path="/profile" element={<ProfilePage />} />}
+        />
+        <Route
+          path="/description/:tourid"
+          element={<PrivateRoute path="/description/:tourid" element={<DescriptionPage />} />}
         />
       </Routes>
     </BrowserRouter>
