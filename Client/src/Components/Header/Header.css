@@ -104,8 +104,11 @@ align-items: flex-end;
 gap: 6px;
 }
 .dropdown{
-    width: 211px;
+        width: 211px;
         height: 155px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         flex-shrink: 0;
         position:absolute;
         background-color: white;
@@ -120,6 +123,7 @@ gap: 6px;
 }
 .dropdown p{
     margin-bottom: 0;
+  font-size: 14px !important;
 }
 .Dropdown-details{
        display: flex;

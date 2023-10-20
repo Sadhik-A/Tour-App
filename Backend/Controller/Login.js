@@ -17,7 +17,8 @@ module.exports.jwtlogin = async (req, res) => {
     }
     // jwt token
     // console.log(process.env.JWT_SECRET)
-    const token = jwt.sign({ userId: user.id,email: user.get('email'),is_admin: user.get('is_admin'),username: user.get('username') },  process.env.JWT_SECRET,);
+       const token = jwt.sign({ userId: user.id, email: user.get('email'), is_admin: user.get('is_admin'), username: user.get('username') }, process.env.JWT_SECRET,);
+      //  console.log(token)
      res
        .cookie("accessToken", token, {
         
@@ -29,7 +30,7 @@ module.exports.jwtlogin = async (req, res) => {
          expiresIn: "2d",
        })
        .status(200)
-       .json({ message: "Logged in successfully", user, token });
+       .json({ message:  "Logged in successfully", user, token });
   }
   catch (error) {
     res.status(500).json(error.message);

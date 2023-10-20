@@ -35,7 +35,6 @@ function LoginForm() {
       dispatch(setAlertMessage(""));
     };
   }, [dispatch]);
-
   useEffect(() => {
     setLocalAlertMessage(alertMessage);
   }, [alertMessage]);
@@ -44,6 +43,10 @@ function LoginForm() {
       setLocalAlertMessage("");
       navigate("/landing");
     }
+   else if (alertMessage === "Admin logged in successfully") {
+     setLocalAlertMessage("");
+     navigate("/admin");
+   }
   }, [alertMessage, navigate]);
   useEffect(() => {
     setLocalLoading(loading);

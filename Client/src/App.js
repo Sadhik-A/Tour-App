@@ -9,6 +9,7 @@ import PrivateRoute from "../src/Components/PrivateRoute";
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import ProfilePage from "./Pages/Profile/ProfilePage";
 import DescriptionPage from "./Pages/DescriptionPage/DescriptionPage";
+import AdminDashboard from "./Pages/AdminDashboard/AdminDashboard";
 import { useDispatch } from "react-redux";
 import {
   getTour, 
@@ -50,7 +51,21 @@ function App() {
         />
         <Route
           path="/description/:tourid"
-          element={<PrivateRoute path="/description/:tourid" element={<DescriptionPage />} />}
+          element={
+            <PrivateRoute
+              path="/description/:tourid"
+              element={<DescriptionPage />}
+            />
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute
+              path="/admin"
+              element={<AdminDashboard />}
+            />
+          }
         />
       </Routes>
     </BrowserRouter>

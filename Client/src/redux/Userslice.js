@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-
 const initialState = {
   username: "",
   profile: "",
@@ -119,11 +118,18 @@ export const submitLogin = (loginData) => async (dispatch) => {
       dispatch(setAuthToken(authToken));
       dispatch(setUserData(userData));
       console.log(response.data.message)
-      dispatch(setAlertMessage(response.data.message));
+      if (decodedToken.is_admin !== 1) {
+        dispatch(setAlertMessage(response.data.message));
+      } else {
+        dispatch(setAlertMessage("Admin logged in successfully"));
+      }
     } 
   } catch (error) {
     console.error("Error:", error);
-    error.response?dispatch(setAlertMessage(error?.response?.data?.message)):dispatch(setAlertMessage("An error occurred, please try again"));
+    
+      error.response ? dispatch(setAlertMessage(error?.response?.data?.message)) : dispatch(setAlertMessage("An error occurred, please try again"));
+    
+   
   } finally {
     dispatch(setLoading(false));
   }

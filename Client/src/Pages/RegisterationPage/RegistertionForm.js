@@ -136,7 +136,6 @@ function RegistrationForm() {
        dispatch(setConfirmPassword(""));
     }
   };
-
   return (
     <div className="container">
       <div className="form-container">
