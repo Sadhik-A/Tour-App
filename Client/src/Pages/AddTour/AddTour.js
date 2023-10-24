@@ -100,7 +100,7 @@ function AddBook() {
       try {
         const formData = new FormData();
         formData.append("file", imagefile);
-        // formData.append("upload_preset", "tourapp");
+        formData.append("upload_preset", "tour-app");
 
         // Send the image to Cloudinary
         const response = await fetch(
