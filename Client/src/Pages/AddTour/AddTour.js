@@ -177,7 +177,8 @@ function AddBook() {
                           accept="image/*"
                           onChange={handleFileInputChange}
                           ref={fileInputRef}
-                          style={{ display: "none" }}
+                            style={{ display: "none" }}
+                            required={true}
                         />
                       </label>
                     </div>
