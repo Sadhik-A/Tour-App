@@ -33,7 +33,7 @@ function AddBook() {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const [imageFileName, setImageFileName] = useState("");
-  const [ imagefile, setSelectedImageFile] = useState(null);
+
   // console.log(AlertMessage);
   // console.log(localAlertMessage);
   useEffect(() => {
@@ -96,11 +96,10 @@ function AddBook() {
         return;
       }
       setImageFileName(file.name);
-      setSelectedImageFile(file);
       try {
         const formData = new FormData();
-        formData.append("file", imagefile);
-        formData.append("upload_preset", "tour-app");
+        formData.append("file",file);
+        formData.append("upload_preset", "tourapp");
 
         // Send the image to Cloudinary
         const response = await fetch(
@@ -108,9 +107,6 @@ function AddBook() {
           {
             method: "POST",
             body: formData,
-            parameters: {
-              upload_preset: "tour-app",
-            },
           }
         );
 
