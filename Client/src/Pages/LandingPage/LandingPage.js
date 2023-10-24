@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import BrightCircle from "../../assets/Ellipse1.svg";
 import DullCircle from "../../assets/Ellipse2.svg";
-import Background1 from "../../assets/Background1.png";
-import Background2 from "../../assets/Background2.jpg";
-import Background3 from "../../assets/Background3.png";
-import Background4 from "../../assets/Background4.png";
+import Background1 from "../../assets/Background1.jpeg";
+import Background2 from "../../assets/Background2.jpeg";
+import Background3 from "../../assets/Background3.jpeg";
+import Background4 from "../../assets/Background4.jpeg";
 import profile from "../../assets/profile.svg";
 import Gallery from "../../assets/gallery.svg";
 import Arrow from "../../assets/arrow.svg";
@@ -46,7 +46,7 @@ function LandingPage() {
   return (
     <div
       className={`landing-page ${currentImage}`}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      style={{ backgroundImage: `url(${backgroundImage})`,loading:"lazy" }}
     >
       <div className="main-content">
         <div className="nav-bar">
