@@ -72,7 +72,7 @@ function Tourlist() {
     >
       {filteredAndSearchedTours.length === 0 && location.pathname !== "/profile" ? (<img className="nodata" src={Nodata} alt="nodata" />)
         : (
-            filteredAndSearchedTours.map((tour) => (
+            filteredAndSearchedTours?.map((tour) => (
               <div key={tour.id} className="tour-items">
                 <div className="tour-item" whileHover={{ scale: 1.1 }}>
                   <div className="tour-title">
