@@ -20,7 +20,7 @@ function DescriptionPage() {
   const decodedTokenJSON = localStorage.getItem("decodedToken");
     const user = JSON.parse(decodedTokenJSON);
     console.log(user)
-  const Username = user.username;
+  // const Username = user.username;
 
   const [selectedTour, setSelectedTour] = useState(null);
 
@@ -45,7 +45,7 @@ function DescriptionPage() {
                 />
               </div>
               <div className="profile-name">
-                <p> {Username}</p>
+                <p> {selectedTour?.Username}</p>
               </div>
             </div>
             <div className="image">

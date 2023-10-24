@@ -84,6 +84,7 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
     );
     if (response.status === 201) {
       dispatch(setAlertMessage(response.data.message));
+      dispatch(setRegisterationSuccess(true));
     } 
   } catch (error) {
     console.error("Error:", error);

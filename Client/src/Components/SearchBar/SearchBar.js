@@ -31,7 +31,7 @@ function SearchBar() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <label for="label" class="btn">
+          <label htmlFor="label" className="btn">
             <i className="fas fa-search" onClick={handleSearch}></i>
           </label>
         </div>

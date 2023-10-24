@@ -18,9 +18,14 @@ import Logout from "../../assets/Logout.svg";
 import { motion } from "framer-motion";
 import { clearUserData } from "../../redux/Userslice";
 import { removesearchterm } from '../../redux/Tourslice';
- const decodedTokenJSON = localStorage.getItem("decodedToken");
- const user = JSON.parse(decodedTokenJSON);
+
 function ProfilePage() {
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+      const decodedTokenJSON = localStorage.getItem("decodedToken");
+      const user = JSON.parse(decodedTokenJSON);
+      setUser(user);
+    }, []);
   useEffect(() => {
     dispatch(removesearchterm());
   })
@@ -120,7 +125,7 @@ function ProfilePage() {
                 />
               </div>
               <div className="profile-name">
-                {user.username !== "" ? user.username : "User"}
+                {user?.username !== "" ? user?.username : "User"}
               </div>
             </div>
           </div>

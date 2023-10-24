@@ -13,10 +13,9 @@ import "./LandingPage.scss";
 import { useNavigate } from "react-router-dom";
 import { motion, } from "framer-motion";
 import SearchBar from "../../Components/SearchBar/SearchBar";
-const decodedTokenJSON = localStorage.getItem("decodedToken");
-const user = JSON.parse(decodedTokenJSON);
 function LandingPage() {
   // console.log(user);
+   const [user, setUser] = useState(null);
    const SearchTerm = useSelector((state) => state.Tour.searchterm);
   const [imageIndex, setImageIndex] = useState(0);
   const [currentImage, setCurrentImage] = useState("image-1");
@@ -29,6 +28,11 @@ function LandingPage() {
     }
   })
   useEffect(() => {
+    const decodedTokenJSON = localStorage.getItem("decodedToken");
+    const user = JSON.parse(decodedTokenJSON);
+    setUser(user);
+  },[])
+  useEffect(() => {
     const interval = setInterval(() => {
       setImageIndex((prevIndex) => (prevIndex + 1) % images.length);
        setCurrentImage(`image-${(imageIndex + 1) % images.length}`);
@@ -37,7 +41,7 @@ function LandingPage() {
   }, [images.length, imageIndex]);
   const backgroundImage = images[imageIndex];
   const navigate = useNavigate();
-
+ 
 
   return (
     <div
@@ -57,7 +61,7 @@ function LandingPage() {
           </div>
           <SearchBar />
           <div className="profile-section">
-            <p>Hey {user.username !== "" ? user.username : "User"} </p>
+            <p>Hey {user?.username !== "" ? user?.username : "User"} </p>
             <img
               src={profile}
               alt="circle"

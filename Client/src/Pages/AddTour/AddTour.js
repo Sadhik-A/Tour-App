@@ -33,8 +33,9 @@ function AddBook() {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const [imageFileName, setImageFileName] = useState("");
-  const [ setSelectedImageFile] = useState(null);
-
+  const [ imagefile, setSelectedImageFile] = useState(null);
+  // console.log(AlertMessage);
+  // console.log(localAlertMessage);
   useEffect(() => {
     setLocalAlertMessage(AlertMessage);
   }, [AlertMessage]);
@@ -65,7 +66,7 @@ function AddBook() {
       setTimeout(() => {
         setIsAlertVisible(false);
         setLocalAlertMessage("");
-      }, 1000);
+      }, 5000);
     }
   }, [AlertMessage]);
 
@@ -98,7 +99,7 @@ function AddBook() {
       setSelectedImageFile(file);
       try {
         const formData = new FormData();
-        formData.append("file", file);
+        formData.append("file", imagefile);
         formData.append("upload_preset", "tourapp");
 
         // Send the image to Cloudinary
@@ -114,7 +115,7 @@ function AddBook() {
           const data = await response.json();
           dispatch(setTourImage(data.secure_url));
         } else {
-          console.error("Failed to upload image to Cloudinary.");
+          dispatch(setAlertMessage("Failed to upload image to Cloudinary."));
         }
       } catch (error) {
         console.error("Error uploading image:", error);
@@ -189,6 +190,20 @@ function AddBook() {
                 </div>
               </div>
             </div>
+            {isAlertVisible && localAlertMessage && (
+              <motion.p
+                className={`alert ${
+                  localAlertMessage === "Tour added successfully"
+                    ? "success"
+                    : "error"
+                }`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                {localAlertMessage}
+              </motion.p>
+            )}
             <div className="place-name">
               <div className="label">Place name</div>
               <input
@@ -212,22 +227,9 @@ function AddBook() {
                 required={true}
               />
             </div>
-            {isAlertVisible && localAlertMessage && (
-              <motion.p
-                className={`alert ${
-                  localAlertMessage === "Tour added successfully"
-                    ? "success"
-                    : "error"
-                }`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                {localAlertMessage}
-              </motion.p>
-            )}
+
             <div className="upload-buttons">
-              <button type="submit" className="upload-icon">
+              <button type="submit" className={TourImage ? "active-button" : "dull-button"}>
                 <p>Upload</p>
               </button>
               <div className="Cancel-button" onClick={() => navigate("/home")}>

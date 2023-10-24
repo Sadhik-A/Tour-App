@@ -38,6 +38,7 @@ function RegistrationForm() {
     return () => {
       dispatch(setEmailError(""));
       dispatch(setPasswordError(""));
+      dispatch(setUsername(""));
       dispatch(setEmail(""));
       dispatch(setPassword(""));
       dispatch(setConfirmPassword(""));

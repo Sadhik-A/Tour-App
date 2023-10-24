@@ -70,7 +70,7 @@ function Tourlist() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {filteredAndSearchedTours.length === 0 ? (<img className="nodata" src={Nodata} alt="nodata" />)
+      {filteredAndSearchedTours.length === 0 && location.pathname !== "/profile" ? (<img className="nodata" src={Nodata} alt="nodata" />)
         : (
             filteredAndSearchedTours.map((tour) => (
               <div key={tour.id} className="tour-items">
