@@ -108,7 +108,7 @@ function AddBook() {
           {
             method: "POST",
             body: formData,
-            parameers: {
+            parameters: {
               upload_preset: "tour-app",
             },
           }
