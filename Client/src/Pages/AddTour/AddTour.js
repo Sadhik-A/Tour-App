@@ -229,7 +229,7 @@ function AddBook() {
             </div>
 
             <div className="upload-buttons">
-              <button type="submit" className={TourImage ? "active-button" : "dull-button"}>
+              <button type={TourImage?"submit" : ""} className={TourImage ? "active-button" : "dull-button"}>
                 <p>Upload</p>
               </button>
               <div className="Cancel-button" onClick={() => navigate("/home")}>
