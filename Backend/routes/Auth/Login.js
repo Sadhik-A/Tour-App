@@ -19,7 +19,7 @@ router.post(
     Logincontrol.jwtlogin(req, res);
   }
 );
-const clientURL="http://localhost:3001"
+const clientURL="https://tour-app-zcms.onrender.com"
 router.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 router.get(
   "/auth/google/callback", passport.authenticate("google", {

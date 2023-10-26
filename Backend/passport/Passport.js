@@ -10,7 +10,7 @@ passport.use(
       clientSecret: "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",
       callbackURL: "/auth/google/callback",
     },
-    async function (accessToken, refreshToken, profile, email, cb) {
+    async function ( profile, email, cb) {
       try {
         const user = await User.where({
           email: email.emails[0].value,

@@ -78,8 +78,8 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
     dispatch(setAlertMessage(""));
 
     const response = await axios.post(
-      "http://localhost:3000/api/register",
-      // "https://tour-app-zcms.onrender.com/api/register",
+      // "http://localhost:3000/api/register",
+      "https://tour-app-zcms.onrender.com/api/register",
       registrationData
     );
     if (response.status === 201) {
@@ -101,8 +101,8 @@ export const submitLogin = (loginData) => async (dispatch) => {
     dispatch(setLoading(true));
     dispatch(setAlertMessage(""));
     const response = await axios.post(
-       "http://localhost:3000/api/login",
-      // "https://tour-app-zcms.onrender.com/api/login",
+      //  "http://localhost:3000/api/login",
+      "https://tour-app-zcms.onrender.com/api/login",
       loginData,
       {
         withCredentials: true,
