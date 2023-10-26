@@ -103,7 +103,7 @@ function LoginForm() {
     }
   };
   const HandlegoogleLogin = async () => {
-  window.open("https://tour-sadhik.netlify.app/auth/google", "_self");
+  window.open("https://tour-app-zcms.onrender.com/auth/google", "_self");
   // try {
   //   const response = await axios.get(
   //     "http://localhost:3000/auth/google/callback"
