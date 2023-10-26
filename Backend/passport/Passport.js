@@ -13,12 +13,12 @@ passport.use(
     async function (profile, email, cb) {
       try {
         const user = await User.where({
-          email: email.emails[0].value,
+          email: email?.emails[0].value,
         }).fetch({ require: false });
         if (!user) {
           const user = new User({
-            email: email.emails[0].value,
-            username: email._json.name,
+            email: email?.emails[0].value,
+            username: email?._json.name,
           });
           await user.save();
         }
