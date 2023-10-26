@@ -1,6 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+// import jwt_decode from "jwt-decode";
+// import axios from "axios";
 import {
   setEmail,
   setPassword,
@@ -100,14 +102,26 @@ function LoginForm() {
       dispatch(setPassword(""));
     }
   };
-
+  const HandlegoogleLogin = async () => {
+  window.open("http://localhost:3000/auth/google", "_self");
+  // try {
+  //   const response = await axios.get(
+  //     "http://localhost:3000/auth/google/callback"
+  //   );
+  //   if(response.status === 200){
+  //    console.log(response)
+  //     navigate("/");
+  //   }
+  // } catch (error) {
+  //   console.log(error);
+  // }
+  }
   return (
     <div className="container">
       <div className="form-container">
         <h2 className="form-title">Log in to your account </h2>
         <h2 className="form-subtitle">Welcome back ! </h2>
         <form onSubmit={handleSubmit}>
-          
           <FormGroup
             label={"Email"}
             type={"email"}
@@ -148,10 +162,15 @@ function LoginForm() {
           <p>
             Don't have an account?{" "}
             <Link to="/register" className="link">
-              <span className="register" style={{textDecoration: "none"}}>SignUp</span>
+              <span className="register" style={{ textDecoration: "none" }}>
+                SignUp
+              </span>
             </Link>
           </p>
         </form>
+        <button type="submit" className="submit-button" onClick={HandlegoogleLogin}>
+        Continue with Google
+        </button>
       </div>
     </div>
   );

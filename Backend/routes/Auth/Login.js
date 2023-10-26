@@ -2,6 +2,7 @@ const express = require('express');
 const { body, validationResult } = require('express-validator');
 const router = express.Router();
 const Logincontrol=require('../../Controller/Login')
+const passport = require('passport')
 
 router.post(
   '/api/login',
@@ -18,5 +19,28 @@ router.post(
     Logincontrol.jwtlogin(req, res);
   }
 );
+const clientURL="http://localhost:3001"
+router.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+router.get(
+  "/auth/google/callback", passport.authenticate("google", {
+    failureRedirect: "/",  
+  }),
+  async (req, res) => {
 
+    const authInfo = req.authInfo
+    res.cookie("googleaccesstoken", authInfo, {
+      domain: "tour-app-zcms.onrender.com",
+      path: "/",
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+      expiresIn: "2d", // Protect against cross-site request forgery (CSRF) attacks
+    });
+  
+    //  return res.status(200).json(responseData);
+    // console.log(req.authInfo);
+    res.redirect(`${clientURL}/register`);
+    // return res.status(200).json({ message: "Login successful" });
+  }
+)
 module.exports = router;

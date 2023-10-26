@@ -11,7 +11,7 @@ function Adminable() {
   console.log(tours)
   let filteredTours = tours;
   const [show, setShow] = useState(false);
-   const [tourToDelete, setTourToDelete] = useState(null);
+  const [tourToDelete, setTourToDelete] = useState(null);
   const [deletetour, setDeleteTour] = useState(false);
    const dispatch = useDispatch();
     useEffect(() => {
