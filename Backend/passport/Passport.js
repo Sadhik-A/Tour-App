@@ -12,9 +12,9 @@ passport.use(
     },
     async function (profile, email, cb) {
       // try {
-         const user = await User.where({
-          email: email?.emails[0].value,
-         }).fetch({ require: false });
+        //const user = await User.where({
+         // email: email?.emails[0].value,
+       //  }).fetch({ require: false });
       //  if (!user) {
       //     const user = new User({
       //       email: email?.emails[0].value,
@@ -32,7 +32,7 @@ passport.use(
       //     process.env.JWT_SECRET
       //   );
       //   console.log(token);
-         return cb(null, user);
+      //   return cb(null, user);
       //   // console.log(email.emails[0].value);
       //   // console.log(email._json.name);
       // } catch (error) {
