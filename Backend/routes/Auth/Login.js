@@ -20,6 +20,7 @@ router.post(
   }
 );
 const clientURL = "https://tour-sadhik.netlify.app";
+// const clientURL = "http://localhost:3001";
 router.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 router.get(
   "/auth/google/callback", passport.authenticate("google", {
