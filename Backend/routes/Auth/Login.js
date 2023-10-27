@@ -19,7 +19,7 @@ router.post(
     Logincontrol.jwtlogin(req, res);
   }
 );
-const clientURL="https://tour-app-zcms.onrender.com"
+// const clientURL="https://tour-app-zcms.onrender.com"
 router.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 router.get(
   "/auth/google/callback", passport.authenticate("google", {
@@ -39,7 +39,7 @@ router.get(
   
     //  return res.status(200).json(responseData);
     // console.log(req.authInfo);
-    res.redirect(`${clientURL}/register`);
+    // res.redirect(`${clientURL}/register`);
     // return res.status(200).json({ message: "Login successful" });
   }
 )
