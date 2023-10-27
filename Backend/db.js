@@ -3,7 +3,7 @@ const knex = require("knex")({
   connection: {
     host: "br0ccx7r1vjrv0hsbmam-mysql.services.clever-cloud.com",
     user: "uolrb4gyv1mkcsvv",
-    password: "uolrb4gyv1mkcsvv",
+    password: "jWmarbDx9S94BDlnegUb",
     database: "br0ccx7r1vjrv0hsbmam",
     port: 3306,
   },
