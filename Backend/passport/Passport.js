@@ -11,38 +11,36 @@ passport.use(
       callbackURL: "https://tour-webapp.onrender.com/auth/google/callback",
       // callbackURL: "http://localhost:3000/auth/google/callback",
     },
-    function (accessToken, refreshToken, profile, done) {
-      done(null, profile);
+     
+     async function (profile, email, done) {
+      try {
+      const user = await User.where({
+      email: email?.emails[0].value,
+       }).fetch({ require: false });
+       if (!user) {
+          const user = new User({
+            email: email?.emails[0].value,
+            username: email?._json.name,
+          });
+          await user.save();
+        }
+        const token = jwt.sign(
+          {
+            userId: user.id,
+            email: user.get("email"),
+            is_admin: user.get("is_admin"),
+            username: user.get("username"),
+          },
+          process.env.JWT_SECRET
+        );
+        console.log(token);
+        done (null, profile,token);
+        // console.log(email.emails[0].value);
+        // console.log(email._json.name);
+      } catch (error) {
+        console.log(error);
+      }
     }
-    //  function (profile, email, done) {
-    //   // try {
-    //   // const user = await User.where({
-    //   // email: email?.emails[0].value,
-    //   //  }).fetch({ require: false });
-    //   //  if (!user) {
-    //   //     const user = new User({
-    //   //       email: email?.emails[0].value,
-    //   //       username: email?._json.name,
-    //   //     });
-    //   //     await user.save();
-    //   //   }
-    //   //   const token = jwt.sign(
-    //   //     {
-    //   //       userId: user.id,
-    //   //       email: user.get("email"),
-    //   //       is_admin: user.get("is_admin"),
-    //   //       username: user.get("username"),
-    //   //     },
-    //   //     process.env.JWT_SECRET
-    //   //   );
-    //   //   console.log(token);
-    //      done (null, profile);
-    //   //   // console.log(email.emails[0].value);
-    //   //   // console.log(email._json.name);
-    //   // } catch (error) {
-    //   //   console.log(error);
-    //   // }
-    // }
   )
 );
 passport.serializeUser((user, cb) =>{
