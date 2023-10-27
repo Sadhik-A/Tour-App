@@ -24,7 +24,7 @@ router.get("/auth/google", passport.authenticate("google", { scope: ["profile", 
 router.get(
   "/auth/google/callback", passport.authenticate("google", {
     failureRedirect: "/", 
-    successRedirect: `${clientURL}/landing`,
+    successRedirect: `${clientURL}/register`,
   }),
   // async (req, res) => {
   //   const authInfo = req.authInfo
