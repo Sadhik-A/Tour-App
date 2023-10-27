@@ -8,13 +8,13 @@ passport.use(
       clientID:
         "567986154419-3sv7rfacn3r3b7t67mnko98k6dh3spp0.apps.googleusercontent.com",
       clientSecret: "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",
-      callbackURL: "https://tour-app-zcms.onrender.com/auth/google/callback",
+      callbackURL: "https://tour-webapp.onrender.com/auth/google/callback",
     },
     async function (profile, email, cb) {
       // try {
-        //const user = await User.where({
-         // email: email?.emails[0].value,
-       //  }).fetch({ require: false });
+      //const user = await User.where({
+      // email: email?.emails[0].value,
+      //  }).fetch({ require: false });
       //  if (!user) {
       //     const user = new User({
       //       email: email?.emails[0].value,
