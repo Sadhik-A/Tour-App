@@ -103,7 +103,7 @@ function LoginForm() {
     }
   };
   const HandlegoogleLogin = () => {
-    window.open("https://tour-app-zcms.onrender.com/auth/google", "_self");
+    window.open("https://tour-webapp.onrender.com/auth/google", "_self");
     // window.location.href = "https://tour-app-zcms.onrender.com/auth/google"
   // try {
   //   const response = await axios.get(

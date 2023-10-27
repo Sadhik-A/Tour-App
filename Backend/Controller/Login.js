@@ -21,8 +21,7 @@ module.exports.jwtlogin = async (req, res) => {
       //  console.log(token)
      res
        .cookie("accessToken", token, {
-        
-         domain: "tour-app-zcms.onrender.com",
+         domain: "tour-webapp.onrender.com",
          path: "/",
          httpOnly: true,
          sameSite: "none",
@@ -30,7 +29,7 @@ module.exports.jwtlogin = async (req, res) => {
          expiresIn: "2d",
        })
        .status(200)
-       .json({ message:  "Logged in successfully", user, token });
+       .json({ message: "Logged in successfully", user, token });
   }
   catch (error) {
     res.status(500).json(error.message);
