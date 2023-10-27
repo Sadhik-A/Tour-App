@@ -19,28 +19,28 @@ router.post(
     Logincontrol.jwtlogin(req, res);
   }
 );
-// const clientURL="https://tour-app-zcms.onrender.com"
+const clientURL = "https://tour-sadhik.netlify.app";
 router.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 router.get(
   "/auth/google/callback", passport.authenticate("google", {
-    failureRedirect: "/",  
+    failureRedirect: "/", 
+    successRedirect: `${clientURL}/landing`,
   }),
-  async (req, res) => {
-
-    const authInfo = req.authInfo
-    res.cookie("googleaccesstoken", authInfo, {
-      domain: "tour-app-zcms.onrender.com",
-      path: "/",
-      httpOnly: true,
-      sameSite: "none",
-      secure: true,
-      expiresIn: "2d", 
-    });
+  // async (req, res) => {
+  //   const authInfo = req.authInfo
+  //   res.cookie("googleaccesstoken", authInfo, {
+  //     domain: "tour-app-zcms.onrender.com",
+  //     path: "/",
+  //     httpOnly: true,
+  //     sameSite: "none",
+  //     secure: true,
+  //     expiresIn: "2d", 
+  //   });
   
     //  return res.status(200).json(responseData);
     // console.log(req.authInfo);
-    // res.redirect(`${clientURL}/register`);
+    //  res.redirect(`${clientURL}/register`);
     // return res.status(200).json({ message: "Login successful" });
-  }
+  //}
 )
 module.exports = router;
