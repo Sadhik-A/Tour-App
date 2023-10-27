@@ -34,7 +34,7 @@ router.get(
       httpOnly: true,
       sameSite: "none",
       secure: true,
-      expiresIn: "2d", // Protect against cross-site request forgery (CSRF) attacks
+      expiresIn: "2d", 
     });
   
     //  return res.status(200).json(responseData);
