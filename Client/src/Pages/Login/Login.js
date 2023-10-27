@@ -102,7 +102,7 @@ function LoginForm() {
       dispatch(setPassword(""));
     }
   };
-  const HandlegoogleLogin = async () => {
+  const HandlegoogleLogin = () => {
   window.open("https://tour-app-zcms.onrender.com/auth/google", "_self");
   // try {
   //   const response = await axios.get(
