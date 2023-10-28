@@ -12,6 +12,7 @@ function Redirect() {
     navigate("/landing");
   }, []); // Empty dependency array to run the effect once
 
+  
   return (
     <div>Redirect</div>
   );
