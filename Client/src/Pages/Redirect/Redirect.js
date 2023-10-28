@@ -17,7 +17,7 @@ function Redirect() {
     else {
       navigate("/");
     }
-  }, [dispatch,navigate]); // Empty dependency array to run the effect once
+  }, [dispatch,navigate,user]); // Empty dependency array to run the effect once
 
 
   return (
