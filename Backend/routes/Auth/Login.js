@@ -27,17 +27,17 @@ router.get(
     failureRedirect: "/", 
     successRedirect: `${clientURL}/register`,
   }),
-  async (req, res) => {
-    const authInfo = req.authInfo
-    res.cookie("googleaccesstoken", authInfo, {
-      domain: "tour-webapp.onrender.com",
-      path: "/",
-      httpOnly: true,
-      sameSite: "none",
-      secure: true,
-      expiresIn: "2d",
-    });
-  }
+  // async (req, res) => {
+  //   const authInfo = req.authInfo
+  //   res.cookie("googleaccesstoken", authInfo, {
+  //     domain: "tour-webapp.onrender.com",
+  //     path: "/",
+  //     httpOnly: true,
+  //     sameSite: "none",
+  //     secure: true,
+  //     expiresIn: "2d",
+  //   });
+  // }
     //  return res.status(200).json(responseData);
     // console.log(req.authInfo);
     //  res.redirect(`${clientURL}/register`);
