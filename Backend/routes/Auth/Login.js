@@ -27,6 +27,16 @@ router.get(
     failureRedirect: "/", 
     successRedirect: `${clientURL}/redirect`,
   }),
+  router.get("/login/success", (req, res) => {
+  if (req.user) {
+    res.status(200).json({
+      success: true,
+      message: "successfull",
+      user: req.user,
+      //   cookies: req.cookies
+    });
+  }
+})
   // async (req, res) => {
   //   const authInfo = req.authInfo
   //   res.cookie("googleaccesstoken", authInfo, {

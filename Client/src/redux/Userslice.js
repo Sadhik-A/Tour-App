@@ -93,6 +93,41 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
     dispatch(setLoading(false));
   }
 };
+export const GoogleLogin = () => async (dispatch) => {
+  try {
+    const response = await axios.get(
+      //  "http://localhost:3000/api/login",
+      "https://tour-webapp.onrender.com/login/success",
+      {
+        withCredentials: true,
+      }
+    );
+
+    if (response.status === 200) {
+      console.log(response);
+      // const userData = response.data;
+      // const authToken = userData.token;
+      // const decodedToken = jwt_decode(authToken);
+      // localStorage.setItem("decodedToken", JSON.stringify(decodedToken));
+      // dispatch(setAuthToken(authToken));
+      // dispatch(setUserData(userData));
+      // console.log(response.data.message);
+      // if (decodedToken.is_admin !== 1) {
+      //   dispatch(setAlertMessage(response.data.message));
+      // } else {
+      //   dispatch(setAlertMessage("Admin logged in successfully"));
+      // }
+    }
+  } catch (error) {
+    console.error("Error:", error);
+
+    error.response
+      ? dispatch(setAlertMessage(error?.response?.data?.message))
+      : dispatch(setAlertMessage("An error occurred, please try again"));
+  } finally {
+    dispatch(setLoading(false));
+  }
+};
 
 // login a user
 
