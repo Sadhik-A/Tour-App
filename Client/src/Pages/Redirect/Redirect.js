@@ -10,9 +10,8 @@ function Redirect() {
   useEffect(() => {
     dispatch(GoogleLogin());
     navigate("/landing");
-  }, []); // Empty dependency array to run the effect once
+  }, [dispatch,navigate]); // Empty dependency array to run the effect once
 
-  
   return (
     <div>Redirect</div>
   );
