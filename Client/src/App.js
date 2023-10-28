@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import {
   getTour, 
 } from "./redux/Tourslice";
+import Redirect from "./Pages/Redirect/Redirect";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -23,6 +24,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/register" element={<RegistrationForm />} />
+        <Route path="/redirect" element={<Redirect />} />
         <Route
           path="/"
           element={<PrivateRoute path="/" element={<LoginForm />} />}
@@ -60,12 +62,7 @@ function App() {
         />
         <Route
           path="/admin"
-          element={
-            <PrivateRoute
-              path="/admin"
-              element={<AdminDashboard />}
-            />
-          }
+          element={<PrivateRoute path="/admin" element={<AdminDashboard />} />}
         />
       </Routes>
     </BrowserRouter>
