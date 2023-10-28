@@ -7,10 +7,10 @@ function Redirect() {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  console.log(user);
   useEffect(() => {
     const fetchData = async () => {
-      dispatch(GoogleLogin());
+      await dispatch(GoogleLogin());
       if (user) {
         navigate("/landing");
       } else {
