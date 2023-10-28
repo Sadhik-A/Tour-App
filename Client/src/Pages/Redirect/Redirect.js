@@ -1,16 +1,20 @@
-import React from 'react'
-import { GoogleLogin } from '../../redux/Userslice'
-import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react';
+import { GoogleLogin } from '../../redux/Userslice';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 
-const dispatch = useDispatch;
+
 function Redirect() {
-    useEffect(() => {
-      dispatch(GoogleLogin());  
- }, [dispatch]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(GoogleLogin());
+    navigate("/landing");
+  }, [dispatch,navigate]); // Empty dependency array to run the effect once
+
   return (
     <div>Redirect</div>
-  )
+  );
 }
 
-export default Redirect
+export default Redirect;

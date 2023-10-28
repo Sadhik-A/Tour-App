@@ -105,18 +105,6 @@ function LoginForm() {
   const HandlegoogleLogin = () => {
     window.open("https://tour-webapp.onrender.com/auth/google", "_self");
     //  window.open("http://localhost:3000/auth/google", "_self");
-    // window.location.href = "https://tour-app-zcms.onrender.com/auth/google"
-  // try {
-  //   const response = await axios.get(
-  //     "http://localhost:3000/auth/google/callback"
-  //   );
-  //   if(response.status === 200){
-  //    console.log(response)
-  //     navigate("/");
-  //   }
-  // } catch (error) {
-  //   console.log(error);
-  // }
   }
   return (
     <div className="container">

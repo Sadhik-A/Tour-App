@@ -4,14 +4,8 @@ import { Navigate } from "react-router-dom";
 const PrivateRoute = ({ element, path }) => {
   const decodedTokenJSON = localStorage.getItem("decodedToken");
   // console.log(decodedTokenJSON)
-const isGoogleAuthenticated = document.cookie
-  .split(";")
-  .some((item) => item.trim().startsWith("session="));
-  console.log(isGoogleAuthenticated)
-  const isAuthenticated = !!decodedTokenJSON||!!isGoogleAuthenticated;
- 
+  const isAuthenticated = !!decodedTokenJSON
   const user=JSON.parse(decodedTokenJSON);
-
   // if user is not authenticated, redirect to login
   if (!isAuthenticated && path !== "/") {
     return <Navigate to="/" />;
