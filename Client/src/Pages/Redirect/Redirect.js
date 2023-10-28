@@ -10,7 +10,7 @@ function Redirect() {
 
   useEffect(() => {
     const fetchData = async () => {
-      await dispatch(GoogleLogin());
+      dispatch(GoogleLogin());
       if (user) {
         navigate("/landing");
       } else {
@@ -20,7 +20,6 @@ function Redirect() {
     fetchData();
   }, [dispatch, navigate, user]);
 
-  // Conditional rendering: Display loading message or any other UI while fetching data
   if (user === null) {
     return <div>Loading...</div>;
   }
