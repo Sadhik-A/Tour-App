@@ -11,8 +11,11 @@ passport.use(
       callbackURL: "https://tour-webapp.onrender.com/auth/google/callback",
       // callbackURL: "http://localhost:3000/auth/google/callback",
     },
-     
-      function (profile, email, done) {
+    function (accessToken, refreshToken, profile, done) {
+      done(null, profile);
+    }
+
+    //   function (profile, email, done) {
     //   try {
     //   const user = await User.where({
     //   email: email?.emails[0].value,
@@ -34,13 +37,13 @@ passport.use(
     //       process.env.JWT_SECRET
     //     );
     //     console.log(token);
-         done (null, profile);
+    //     done (null, profile);
     //     // console.log(email.emails[0].value);
     //     // console.log(email._json.name);
     //   } catch (error) {
     //     console.log(error);
     //   }
-     }
+    //  }
   )
 );
 passport.serializeUser((user, cb) =>{
