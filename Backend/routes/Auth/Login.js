@@ -65,12 +65,17 @@ router.get("/login/success", async (req, res) => {
         process.env.JWT_SECRET
       );
 
-      res.status(200).json({
-        success: true,
-        message: "Logged in successfully",
-        user: req.user,
-        token: token,
-      });
+     res
+       .cookie("accessToken", token, {
+         domain: "tour-webapp.onrender.com",
+         path: "/",
+         httpOnly: true,
+         sameSite: "none",
+         secure: true,
+         expiresIn: "2d",
+       })
+       .status(200)
+       .json({ message: "Logged in successfully", user, token });
     } catch (error) {
       console.log(error);
       res.status(500).json({ success: false, message: "An error occurred." });
