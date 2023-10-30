@@ -19,9 +19,10 @@ import React from 'react'
 
 function Redirect() {
     // const navigate = useNavigate();
-      const dispatch = useDispatch();
+    const dispatch = useDispatch();
     useEffect(() => {
       dispatch(GoogleLogin());
+      console.log("useeffect is running")
       // navigate("/landing");
     }, [dispatch]);
   return <div>Redirect</div>;
