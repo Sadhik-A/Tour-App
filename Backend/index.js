@@ -26,9 +26,9 @@ app.use(
     cookie: { secure: true, sameSite: "none", maxAge: 24 * 60 * 60 * 1000 },
     secret: "secret",
     name: "session2",
-    keys: ["key1", "key2"],
-    resave: true,
-    saveUninitialized: true,
+    // keys: ["key1", "key2"],
+    // resave: true,
+    // saveUninitialized: true,
   })
 );
 app.use(passport.initialize());
