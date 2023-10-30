@@ -64,7 +64,7 @@ router.get("/login/success", async (req, res) => {
         },
         process.env.JWT_SECRET
       );
-
+     console.log(token)
      res
        .cookie("accessToken", token, {
          domain: "tour-webapp.onrender.com",
