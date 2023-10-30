@@ -96,7 +96,7 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
 export const GoogleLogin = () => async (dispatch) => {
    console.log("api is running");
   try {
-    const response = await axios.post(
+    const response = await axios.get(
       //  "http://localhost:3000/login/success",
       "https://tour-webapp.onrender.com/login/success",
       {
