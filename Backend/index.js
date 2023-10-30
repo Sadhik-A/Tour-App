@@ -30,6 +30,7 @@ app.use(
     resave: true,
     saveUninitialized: true,
     sameSite: "none",
+    secure :true,
   })
 );
 app.use(passport.initialize());
