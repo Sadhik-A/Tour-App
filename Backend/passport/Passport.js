@@ -12,14 +12,17 @@ passport.use(
       // callbackURL: "http://localhost:3000/auth/google/callback",
     },
     function (accessToken, refreshToken, profile, done) {
+      console.log(profile);
       done(null, profile);
     }
   )
 );
-passport.serializeUser((user, cb) =>{
+passport.serializeUser((user, cb) => {
+  console.log(user)
     cb(null, user);
 })
-passport.deserializeUser((user, cb) =>{
+passport.deserializeUser((user, cb) => {
+    console.log(user);
     cb(null, user);
 })
 module.exports = passport;
