@@ -21,28 +21,34 @@ app.use(
   })
 );
 app.use(cookieParser());
+// app.use(
+//   session({
+//     secret: "secret",
+//     name: "session2",
+//     keys: ["key1", "key2"],
+//     maxAge: 24 * 60 * 60 * 1000,
+//     resave: true,
+//     saveUninitialized: true,
+//     sameSite: "none",
+//     secure :true,
+//   })
+// );
+// 
 app.use(
   session({
     secret: "secret",
     name: "session2",
     keys: ["key1", "key2"],
-    maxAge: 24 * 60 * 60 * 1000,
     resave: true,
     saveUninitialized: true,
-    sameSite: "none",
-    secure :true,
+    cookie: {
+      sameSite: "none",
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    },
   })
 );
-// app.use(
-//   session({
-//     cookie: { secure: true, sameSite: "none", maxAge: 24 * 60 * 60 * 1000 },
-//     secret: "secret",
-//     name: "session2",
-//     keys: ["key1", "key2"],
-//     resave: true,
-//     saveUninitialized: true,
-//   })
-// );
+
 app.use(passport.initialize());
 app.use(passport.session());
 
