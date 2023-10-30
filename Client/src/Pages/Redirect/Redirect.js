@@ -1,7 +1,7 @@
 import  { useEffect, } from "react";
 import { GoogleLogin } from "../../redux/Userslice";
 import { useDispatch, } from "react-redux";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // function Redirect() {
 //   const navigate = useNavigate();
@@ -18,13 +18,13 @@ import { useDispatch, } from "react-redux";
 import React from 'react'
 
 function Redirect() {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(GoogleLogin());
       console.log("useeffect is running")
-      // navigate("/landing");
-    },[dispatch]);
+      navigate("/landing");
+    },[dispatch,navigate]);
   return <div>Redirect</div>;
 }
 

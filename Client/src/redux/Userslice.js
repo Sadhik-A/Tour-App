@@ -103,7 +103,6 @@ export const GoogleLogin = () => async (dispatch) => {
         withCredentials: true,
       }
     );
-   
     if (response.status === 200) {
       console.log(response);
       const userData = response.data;

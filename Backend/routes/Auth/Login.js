@@ -41,6 +41,7 @@ router.get(
 );
 
 router.get("/login/success", async (req, res) => {
+  console.log( "requested user",req.user)
   if (req.user) {
     try {
       const user = await User.where({
@@ -66,14 +67,6 @@ router.get("/login/success", async (req, res) => {
       );
      console.log(token)
      res
-       .cookie("accessToken", token, {
-         domain: "tour-webapp.onrender.com",
-         path: "/",
-         httpOnly: true,
-         sameSite: "none",
-         secure: true,
-         expiresIn: "2d",
-       })
        .status(200)
        .json({ message: "Logged in successfully", user, token });
     } catch (error) {
