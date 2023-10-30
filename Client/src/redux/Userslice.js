@@ -94,6 +94,7 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
   }
 };
 export const GoogleLogin = () => async (dispatch) => {
+   console.log("api is running");
   try {
     const response = await axios.get(
       //  "http://localhost:3000/login/success",
@@ -102,7 +103,7 @@ export const GoogleLogin = () => async (dispatch) => {
         withCredentials: true,
       }
     );
-    console.log("api is running");
+   
     if (response.status === 200) {
       console.log(response);
       const userData = response.data;
