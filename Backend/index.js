@@ -11,6 +11,14 @@ const session = require("express-session");
 dotenv.config();
 
 const app = express();
+app.use(express.json());
+app.use(
+  cors({
+    origin: "https://tour-sadhik.netlify.app", //"http://localhost:3001"],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
 app.use(cookieParser());
 app.use(
   session({
@@ -24,14 +32,8 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(
-  cors({
-    origin: "https://tour-sadhik.netlify.app",//"http://localhost:3001"],
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-  })
-);
-app.use(express.json());
+
+
 
 app.use(LoginRoutes);
 app.use(registerRoutes);
