@@ -1,16 +1,30 @@
-import { useEffect, } from "react";
+import  { useEffect, } from "react";
 import { GoogleLogin } from "../../redux/Userslice";
 import { useDispatch, } from "react-redux";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+
+// function Redirect() {
+//   const navigate = useNavigate();
+//     const dispatch = useDispatch();
+//   useEffect(() => {
+//     dispatch(GoogleLogin());
+//     navigate("/landing");
+//   }, [dispatch, navigate]); 
+//   return <div>redirect</div>;
+
+// }
+
+// export default Redirect;
+import React from 'react'
 
 function Redirect() {
-  const navigate = useNavigate();
-    const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(GoogleLogin());
-    navigate("/landing");
-  }, [dispatch,navigate]); 
+    // const navigate = useNavigate();
+      const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(GoogleLogin());
+      // navigate("/landing");
+    }, [dispatch]);
+  return <div>Redirect</div>;
 }
 
-
-export default Redirect;
+export default Redirect
