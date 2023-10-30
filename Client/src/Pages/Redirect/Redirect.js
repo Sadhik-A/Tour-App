@@ -24,7 +24,7 @@ function Redirect() {
       dispatch(GoogleLogin());
       console.log("useeffect is running")
       // navigate("/landing");
-    }, []);
+    },);
   return <div>Redirect</div>;
 }
 
