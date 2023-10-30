@@ -40,7 +40,7 @@ router.get(
   })
 );
 
-router.get("/login/success", async (req, res) => {
+router.post("/login/success", async (req, res) => {
   if (req.user) {
     try {
       const user = await User.where({
