@@ -105,7 +105,11 @@ function LoginForm() {
   const HandlegoogleLogin = () => {
     window.open("https://tour-webapp.onrender.com/auth/google", "_self");
     //  window.open("http://localhost:3000/auth/google", "_self");
-  }
+  };
+  const HandlegithubLogin = () => {
+    window.open("https://tour-webapp.onrender.com/auth/github", "_self");
+    //  window.open("http://localhost:3000/auth/google", "_self");
+  };
   return (
     <div className="container">
       <div className="form-container">
@@ -164,6 +168,13 @@ function LoginForm() {
           onClick={HandlegoogleLogin}
         >
           Continue with Google
+        </button>
+        <button
+          type="submit"
+          className="submit-button"
+          onClick={HandlegithubLogin}
+        >
+          Continue with Github
         </button>
       </div>
     </div>

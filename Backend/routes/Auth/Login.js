@@ -39,7 +39,17 @@ router.get(
     successRedirect: `${clientURL}/redirect`,
   })
 );
-
+router.get(
+  "/auth/github",
+  passport.authenticate("github", { scope: ["profile", "email"] })
+);
+router.get(
+  "/auth/github/callback",
+  passport.authenticate("github", {
+    failureRedirect: "/",
+    successRedirect: `${clientURL}/redirect`,
+  })
+);
 router.get("/login/success", async (req, res) => {
   console.log( "requested user",req.user)
   if (req.user) {

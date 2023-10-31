@@ -1,5 +1,5 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const FacebookStrategy = require("passport-facebook").Strategy;
+const GithubStrategy = require("passport-github2").Strategy;
 const passport = require("passport");
 passport.use(
   new GoogleStrategy(
@@ -12,6 +12,18 @@ passport.use(
     },
     function (accessToken, refreshToken, profile, done) {
       console.log(profile);
+      done(null, profile);
+    }
+  )
+);
+passport.use(
+  new GithubStrategy(
+    {
+      clientID: "9579f62075346824935f",
+      clientSecret: "b321f68f07dd993626f28b3e5c66e5cee8ab6e83",
+      callbackURL: "https://tour-webapp.onrender.com/auth/github/callback",
+    },
+    function (accessToken, refreshToken, profile, done) {
       done(null, profile);
     }
   )
