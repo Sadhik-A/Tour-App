@@ -51,17 +51,27 @@ router.get(
   })
 );
 router.get("/login/success", async (req, res) => {
-  console.log( "requested user",req.user)
   if (req.user) {
     try {
-      const user = await User.where({
-        email: req.user?.emails[0].value || req.user?.profileUrl,
-      }).fetch({ require: false });
+      let email;
+      if (req.user.emails && req.user.emails.length > 0) {
+        email = req.user.emails[0].value;
+      } else if (req.user.profileUrl) {
+        // In case of GitHub, you might use another attribute as the email, e.g., profileUrl
+        email = req.user.profileUrl;
+      } else {
+        // Handle the case where email isn't available.
+        return res
+          .status(400)
+          .json({ success: false, message: "Email not provided." });
+      }
+
+      const user = await User.where({ email }).fetch({ require: false });
 
       if (!user) {
         const user = new User({
-          email: req.user?.emails[0].value || req.user?.profileUrl,
-          username: req.user?.displayName,
+          email: email,
+          username: req.user.displayName || req.user.username,
         });
         await user.save();
       }
@@ -75,14 +85,16 @@ router.get("/login/success", async (req, res) => {
         },
         process.env.JWT_SECRET
       );
-     console.log(token)
-     res
-       .status(200)
-       .json({ message: "Logged in successfully", user, token });
+
+      res.status(200).json({ message: "Logged in successfully", user, token });
     } catch (error) {
       console.log(error);
       res.status(500).json({ success: false, message: "An error occurred." });
     }
+  } else {
+    res
+      .status(400)
+      .json({ success: false, message: "User information not provided." });
   }
 });
 
