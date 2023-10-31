@@ -106,10 +106,6 @@ function LoginForm() {
     window.open("https://tour-webapp.onrender.com/auth/google", "_self");
     //  window.open("http://localhost:3000/auth/google", "_self");
   }
-    const HandleFacebookLogin = () => {
-      window.open("https://tour-webapp.onrender.com/auth/facebook", "_self");
-      //  window.open("http://localhost:3000/auth/google", "_self");
-    };
   return (
     <div className="container">
       <div className="form-container">
@@ -168,13 +164,6 @@ function LoginForm() {
           onClick={HandlegoogleLogin}
         >
           Continue with Google
-        </button>
-        <button
-          type="submit"
-          className="submit-button"
-          onClick={HandleFacebookLogin}
-        >
-          Continue with facebook
         </button>
       </div>
     </div>
