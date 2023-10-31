@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import { SERVER_URLS } from "../utils/config";
 const initialState = {
   username: "",
   profile: "",
@@ -78,8 +79,7 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
     dispatch(setAlertMessage(""));
 
     const response = await axios.post(
-      // "http://localhost:3000/api/register",
-      "https://tour-webapp.onrender.com/api/register",
+     `${SERVER_URLS.production}/api/register`,
       registrationData
     );
     if (response.status === 201) {
@@ -97,8 +97,7 @@ export const GoogleLogin = () => async (dispatch) => {
    console.log("api is running");
   try {
     const response = await axios.get(
-      //  "http://localhost:3000/login/success",
-      "https://tour-webapp.onrender.com/login/success",
+      `${SERVER_URLS.production}/login/success`,
       {
         withCredentials: true,
       }
@@ -136,8 +135,8 @@ export const submitLogin = (loginData) => async (dispatch) => {
     dispatch(setLoading(true));
     dispatch(setAlertMessage(""));
     const response = await axios.post(
-      //  "http://localhost:3000/api/login",
-      "https://tour-webapp.onrender.com/api/login",
+      `${SERVER_URLS.production}/api/login`,
+
       loginData,
       {
         withCredentials: true,

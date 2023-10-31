@@ -4,9 +4,8 @@ const passport = require("passport");
 passport.use(
   new GoogleStrategy(
     {
-      clientID:
-        "567986154419-3sv7rfacn3r3b7t67mnko98k6dh3spp0.apps.googleusercontent.com",
-      clientSecret: "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",
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "https://tour-webapp.onrender.com/auth/google/callback",
       // callbackURL: "http://localhost:3000/auth/google/callback",
     },
@@ -16,12 +15,14 @@ passport.use(
     }
   )
 );
+
 passport.use(
   new GithubStrategy(
     {
-      clientID: "9579f62075346824935f",
-      clientSecret: "b321f68f07dd993626f28b3e5c66e5cee8ab6e83",
+      clientID: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
       callbackURL: "https://tour-webapp.onrender.com/auth/github/callback",
+      // callbackURL: "http://localhost:3000/auth/github/callback",
     },
     function (accessToken, refreshToken, profile, done) {
       done(null, profile);

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { SERVER_URLS } from "../utils/config";
 import axios from "axios";
 const initialState = {
   tours: [],
@@ -49,51 +50,49 @@ const tourSlice = createSlice({
     }
   },
 });
-export const likeTour = (tourId) => async (dispatch) => {
-  try {
-    const response = await axios.post(
-      // `http://localhost:3000/api/likeTour/${tourId}`,
-      `https://tour-webapp.onrender.com/api/likeTour/${tourId}`
-    );
-    if (response.status===200) {
-      const { likes } = await response.data;
-      console.log(likes);
-      dispatch(updateLikes({ tourId, likes }));
-      setAlertMessage(response.data.message);
-    } 
-  } catch (error) {
-    console.error("Error:", error);
-    error.response
-      ? dispatch(setAlertMessage(error?.response?.data?.message))
-      : dispatch(setAlertMessage("An error occurred, please try again"));
-  }
-};
-export const dislikeTour = (tourId) => async (dispatch) => {
-  try {
-    const response = await axios.post(
-      // `http://localhost:3000/api/dislikeTour/${tourId}`,
-      `https://tour-webapp.onrender.com/api/dislikeTour/${tourId}`
-    );
+// export const likeTour = (tourId) => async (dispatch) => {
+//   try {
+//     const response = await axios.post(
+//       `${SERVER_URLS.production}/api/likeTour/${tourId}`
+//     );
+//     if (response.status===200) {
+//       const { likes } = await response.data;
+//       console.log(likes);
+//       dispatch(updateLikes({ tourId, likes }));
+//       setAlertMessage(response.data.message);
+//     } 
+//   } catch (error) {
+//     console.error("Error:", error);
+//     error.response
+//       ? dispatch(setAlertMessage(error?.response?.data?.message))
+//       : dispatch(setAlertMessage("An error occurred, please try again"));
+//   }
+// };
+// export const dislikeTour = (tourId) => async (dispatch) => {
+//   try {
+//     const response = await axios.post(
+//       // `http://localhost:3000/api/dislikeTour/${tourId}`,
+//       `https://tour-webapp.onrender.com/api/dislikeTour/${tourId}`
+//     );
 
-    if (response.status===200) {
-      const { likes } = await response.data;
-      console.log(likes);
-      dispatch(updateLikes({ tourId, likes }));
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    error.response
-      ? dispatch(setAlertMessage(error?.response?.data?.message))
-      : dispatch(setAlertMessage("An error occurred, please try again"));
-  }
-};
+//     if (response.status===200) {
+//       const { likes } = await response.data;
+//       console.log(likes);
+//       dispatch(updateLikes({ tourId, likes }));
+//     }
+//   } catch (error) {
+//     console.error("Error:", error);
+//     error.response
+//       ? dispatch(setAlertMessage(error?.response?.data?.message))
+//       : dispatch(setAlertMessage("An error occurred, please try again"));
+//   }
+// };
 //adding a tour 
 export const submitTour = (TourData) => async (dispatch) => {
   try {
     // console.log(TourData);
     const response = await axios.post(
-      // "http://localhost:3000/api/addTour",
-      "https://tour-webapp.onrender.com/api/addTour",
+      `${SERVER_URLS.production}/api/addTour`,
       TourData,
       {
         withCredentials: true,
@@ -116,8 +115,7 @@ export const editTour = (TourData) => async (dispatch) => {
   try {
     // console.log(TourData);
     const response = await axios.put(
-      // "http://localhost:3000/api/editTour",
-      "https://tour-webapp.onrender.com/api/editTour",
+      `${SERVER_URLS.production}/api/editTour`,
       TourData,
       {
         withCredentials: true,
@@ -140,8 +138,7 @@ export const editTour = (TourData) => async (dispatch) => {
 export const getTour = () => async (dispatch) => {
   try {
     const response = await axios.get(
-      // "http://localhost:3000/api/getTours",
-      "https://tour-webapp.onrender.com/api/getTours"
+        `${SERVER_URLS.production}/api/getTours`,
     );
     if (response.status === 200) {
       const tourData = await response.data;
@@ -162,8 +159,7 @@ export const deleteTour = (id,) => async (dispatch, getState) => {
   try {
 //  console.log(uid)  
     const response = await axios.delete(
-      //  `http://localhost:3000/api/deleteTour/${id}`,
-      `https://tour-webapp.onrender.com/api/deleteTour/${id}`,
+      `${SERVER_URLS.production}/api/deleteTour/${id}`,
       {
         withCredentials: true,
       }

@@ -185,20 +185,6 @@ function LoginForm() {
             </Link>
           </p>
         </form>
-        {/* <button
-          type="submit"
-          className="submit-button"
-          onClick={HandlegoogleLogin}
-        >
-          Continue with Google
-        </button>
-        <button
-          type="submit"
-          className="submit-button"
-          onClick={HandlegithubLogin}
-        >
-          Continue with Github
-        </button> */}
       </div>
     </div>
   );
