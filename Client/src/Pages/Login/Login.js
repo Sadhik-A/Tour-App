@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Google from "../../assets/google.svg";
 import Github from "../../assets/github.png";
+import { SERVER_URLS } from "../../utils/config";
 // import jwt_decode from "jwt-decode";
 // import axios from "axios";
 import {
@@ -105,12 +106,10 @@ function LoginForm() {
     }
   };
   const HandlegoogleLogin = () => {
-    window.open("https://tour-webapp.onrender.com/auth/google", "_self");
-    //  window.open("http://localhost:3000/auth/google", "_self");
+    window.open(`${SERVER_URLS.production}/auth/google`, "_self");
   };
   const HandlegithubLogin = () => {
-    window.open("https://tour-webapp.onrender.com/auth/github", "_self");
-    //  window.open("http://localhost:3000/auth/google", "_self");
+    window.open(`${SERVER_URLS.production}/auth/github`, "_self");
   };
   return (
     <div className="container">
