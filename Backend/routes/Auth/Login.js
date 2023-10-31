@@ -78,7 +78,7 @@ router.get("/login/success", async (req, res) => {
 
       const token = jwt.sign(
         {
-          userId: user.id,
+          userId: user.get("id"),
           email: user.get("email"),
           is_admin: user.get("is_admin"),
           username: user.get("username"),
