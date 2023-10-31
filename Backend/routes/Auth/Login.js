@@ -39,7 +39,18 @@ router.get(
     successRedirect: `${clientURL}/redirect`,
   })
 );
+router.get(
+  "/auth/facebook",
+  passport.authenticate("facebook", { scope: ["profile", "email"] })
+);
 
+router.get(
+  "/auth/facebook/callback",
+  passport.authenticate("facebook", {
+    failureRedirect: "/",
+    successRedirect: `${clientURL}/redirect`,
+  })
+);
 router.get("/login/success", async (req, res) => {
   console.log( "requested user",req.user)
   if (req.user) {

@@ -1,7 +1,6 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const FacebookStrategy = require("passport-facebook").Strategy;
 const passport = require("passport");
-const User = require("../models/user");
-const jwt = require("jsonwebtoken");
 passport.use(
   new GoogleStrategy(
     {
@@ -13,6 +12,18 @@ passport.use(
     },
     function (accessToken, refreshToken, profile, done) {
       console.log(profile);
+      done(null, profile);
+    }
+  )
+);
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: "3607553192852632",
+      clientSecret: "a43273e60677506795e7c1f52c176e9f",
+      callbackURL: "https://tour-webapp.onrender.com/auth/facebook/callback",
+    },
+    function (accessToken, refreshToken, profile, done) {
       done(null, profile);
     }
   )
