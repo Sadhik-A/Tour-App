@@ -60,7 +60,7 @@ router.get("/login/success", async (req, res) => {
 
       if (!user) {
         const user = new User({
-          email: req.user?.emails[0].value,
+          email: req.user?.emails[0].value||null,
           username: req.user?.displayName,
         });
         await user.save();
