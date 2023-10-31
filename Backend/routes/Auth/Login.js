@@ -55,12 +55,12 @@ router.get("/login/success", async (req, res) => {
   if (req.user) {
     try {
       const user = await User.where({
-        email: req.user?.emails[0].value,
+        email: req.user?.emails[0].value || req.user?.profileUrl,
       }).fetch({ require: false });
 
       if (!user) {
         const user = new User({
-          email: req.user?.emails[0].value||null,
+          email: req.user?.emails[0].value || req.user?.profileUrl,
           username: req.user?.displayName,
         });
         await user.save();
