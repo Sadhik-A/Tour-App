@@ -29,9 +29,41 @@
 .form-container { 
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    // align-items: flex-start;
     gap: 32px;
     width: 100%;
+    .social-login{
+        display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            .social-icons {
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                  .google-icon{
+                    border-radius: 30px;
+                        border: 1px solid #323232;
+                    display: flex;
+                        padding: 10px;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 10px;
+                        img{
+                            width: 24px;
+                            height: 24px;
+                        }
+                  }
+                }
+                p{
+                    color: #323232;
+                        font-family: Plus Jakarta Sans;
+                        font-size: 12px;
+                        font-weight: 500;
+                }
+    }
+    
 }
 .form-title {
     color: #000;

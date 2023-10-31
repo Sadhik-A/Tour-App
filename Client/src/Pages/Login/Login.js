@@ -1,6 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Google from "../../assets/google.svg";
+import Github from "../../assets/github.png";
 // import jwt_decode from "jwt-decode";
 // import axios from "axios";
 import {
@@ -115,6 +117,27 @@ function LoginForm() {
       <div className="form-container">
         <h2 className="form-title">Log in to your account </h2>
         <h2 className="form-subtitle">Welcome back ! </h2>
+        <div className="social-login">
+          <div className="social-icons">
+            <div className="google-icon">
+              <img
+                src={Google}
+                alt="circle"
+                className="circle"
+                onClick={() => HandlegoogleLogin()}
+              />
+            </div>
+            <div className="google-icon">
+              <img
+                src={Github}
+                alt="circle"
+                className="circle"
+                onClick={() => HandlegithubLogin()}
+              />
+            </div>
+          </div>
+          <p>Sign in with Google or GitHub</p>
+        </div>
         <form onSubmit={handleSubmit}>
           <FormGroup
             label={"Email"}
@@ -162,7 +185,7 @@ function LoginForm() {
             </Link>
           </p>
         </form>
-        <button
+        {/* <button
           type="submit"
           className="submit-button"
           onClick={HandlegoogleLogin}
@@ -175,7 +198,7 @@ function LoginForm() {
           onClick={HandlegithubLogin}
         >
           Continue with Github
-        </button>
+        </button> */}
       </div>
     </div>
   );

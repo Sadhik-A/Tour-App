@@ -18,8 +18,6 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
-    // Login control logic
     Logincontrol.jwtlogin(req, res);
   }
 );
@@ -56,11 +54,9 @@ router.get("/login/success", async (req, res) => {
       let email;
       if (req.user.emails && req.user.emails.length > 0) {
         email = req.user.emails[0].value;
-      } else if (req.user.profileUrl) {
-        // In case of GitHub, you might use another attribute as the email, e.g., profileUrl
+      } else if (req.user.profileUrl) { 
         email = req.user.profileUrl;
       } else {
-        // Handle the case where email isn't available.
         return res
           .status(400)
           .json({ success: false, message: "Email not provided." });
