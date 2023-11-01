@@ -1,5 +1,5 @@
 const bookshelf = require("../db");
-const User = require("./User");
+const User = require("./user");
 const Token = bookshelf.model("Token", {
   tableName: "tokens",
   user: function () {

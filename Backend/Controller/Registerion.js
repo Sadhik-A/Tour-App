@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const User = require("../models/User");
+const User = require("../models/user");
 const Token = require("../models/Token");
 const SendEmail = require("../utils/SendEmail");
 const crypto = require("crypto");
@@ -31,21 +31,27 @@ module.exports.register = async (req, res) => {
 };
 module.exports.verify = async (req, res) => {
   try {
-    const user = await User.where({ id: req.params.id }).fetch({ require: false });
+    const user = await User.where({ id: req.params.id }).fetch({
+      require: false,
+    });
     // console.log(user);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const token = await Token.where({ user_id: req.params.id }).fetch({ require: false });
+    const token = await Token.where({ user_id: req.params.id }).fetch({
+      require: false,
+    });
     if (!token) {
       return res.status(401).json({ message: "Invalid token" });
     }
-    await User.where({ id: user.attributes.id }).save({ verified: true }, { patch: true });
-    console.log(token)
+    await User.where({ id: user.attributes.id }).save(
+      { verified: true },
+      { patch: true }
+    );
+    console.log(token);
     await Token.where({ user_id: token.attributes.user_id }).destroy();
     return res.redirect("https://tour-sadhik.netlify.app/email-verified");
-  }
-  catch (error) {
+  } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Internal server error." });
   }

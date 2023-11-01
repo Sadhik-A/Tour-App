@@ -1,9 +1,9 @@
-const express = require('express');
-const { body, validationResult } = require('express-validator');
+const express = require("express");
+const { body, validationResult } = require("express-validator");
 const router = express.Router();
-const Logincontrol=require('../../Controller/Login')
-const passport = require('passport')
-const User = require("../../models/User");
+const Logincontrol = require("../../Controller/Login");
+const passport = require("passport");
+const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
 router.post(
   "/api/login",
@@ -54,7 +54,7 @@ router.get("/login/success", async (req, res) => {
       let email;
       if (req.user.emails && req.user.emails.length > 0) {
         email = req.user.emails[0].value;
-      } else if (req.user.profileUrl) { 
+      } else if (req.user.profileUrl) {
         email = req.user.profileUrl;
       } else {
         return res
