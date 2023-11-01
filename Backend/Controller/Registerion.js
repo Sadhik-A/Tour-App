@@ -18,7 +18,7 @@ module.exports.register = async (req, res) => {
       const url = `${process.env.BASE_URL}/users/${user.id}/verify/${token.attributes.token}`;
       await SendEmail(user.attributes.email, "Verify Email", url);
       // console.log(user.email)
-      return res.status(201).json({ message: "An email has been sent" });
+      return res.status(201).json({ message: "complete registration using the link sent to your email" });
     } else {
       return res
         .status(400)

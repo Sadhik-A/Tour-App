@@ -68,7 +68,7 @@ function RegistrationForm() {
      setIsAlertVisible(true);
      setTimeout(() => {
        setIsAlertVisible(false);
-     }, 1000);
+     }, 5000);
    }
  }, [alertMessage]);
  
@@ -191,7 +191,8 @@ function RegistrationForm() {
           {isAlertVisible && (
             <p
               className={`alert ${
-                localAlertMessage === "User registered successfully"
+                localAlertMessage === "User registered successfully" ||
+                "complete registration using the link sent to your email"
                   ? "success"
                   : "error"
               }`}

@@ -32,7 +32,11 @@ module.exports.jwtlogin = async (req, res) => {
         const url = `${process.env.BASE_URL}/users/${user.id}/verify/${token.attributes.token}`;
         await SendEmail(user.attributes.email, "Verify Email", url);
       }
-      return res.status(401).json({ message: "An email has been sent" });
+      return res
+        .status(401)
+        .json({
+          message: "complete registration using the link sent to your email",
+        });
     }
     // jwt token
     // console.log(process.env.JWT_SECRET)

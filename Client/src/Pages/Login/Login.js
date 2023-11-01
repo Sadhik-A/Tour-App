@@ -166,7 +166,8 @@ function LoginForm() {
           {localAlertMessage && (
             <p
               className={`alert ${
-                localAlertMessage === "Logged in successfully"
+                localAlertMessage === "Logged in successfully" ||
+                "complete registration using the link sent to your email"
                   ? "success"
                   : "error"
               }`}

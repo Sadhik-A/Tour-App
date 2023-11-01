@@ -68,6 +68,7 @@ router.get("/login/success", async (req, res) => {
         const user = new User({
           email: email,
           username: req.user.displayName || req.user.username,
+          verified:1
         });
         await user.save();
       }
@@ -78,6 +79,7 @@ router.get("/login/success", async (req, res) => {
           email: user.get("email"),
           is_admin: user.get("is_admin"),
           username: user.get("username"),
+          verified: user.get("verified"),
         },
         process.env.JWT_SECRET
       );
