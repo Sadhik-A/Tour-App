@@ -17,6 +17,7 @@ router.post('/api/register',[
   }
 );
 router.get("/users/:id/verify/:token", (req, res) => { 
+  console.log("path is running");
   Registercontrol.verify(req, res);
 })
 module.exports = router;
