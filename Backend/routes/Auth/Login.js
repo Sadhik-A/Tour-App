@@ -3,7 +3,7 @@ const { body, validationResult } = require('express-validator');
 const router = express.Router();
 const Logincontrol=require('../../Controller/Login')
 const passport = require('passport')
-const User = require("../../models/user");
+const User = require("../../models/User");
 const jwt = require("jsonwebtoken");
 router.post(
   "/api/login",

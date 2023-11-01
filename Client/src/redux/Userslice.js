@@ -84,7 +84,7 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
     );
     if (response.status === 201) {
       dispatch(setAlertMessage(response.data.message));
-      dispatch(setRegisterationSuccess(true));
+      // dispatch(setRegisterationSuccess(true));
     } 
   } catch (error) {
     console.error("Error:", error);
@@ -113,6 +113,7 @@ export const GoogleLogin = () => async (dispatch) => {
       // console.log(response.data.message);
       if (decodedToken.is_admin !== 1) {
         dispatch(setAlertMessage(response.data.message));
+        console.log(response.data.message);
       } else {
         dispatch(setAlertMessage("Admin logged in successfully"));
       }

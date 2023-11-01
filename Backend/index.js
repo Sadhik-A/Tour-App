@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://tour-sadhik.netlify.app", "http://localhost:3001"],
+    origin: "https://tour-sadhik.netlify.app", //"http://localhost:3001"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })

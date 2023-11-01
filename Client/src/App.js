@@ -10,6 +10,7 @@ import LandingPage from "./Pages/LandingPage/LandingPage";
 import ProfilePage from "./Pages/Profile/ProfilePage";
 import DescriptionPage from "./Pages/DescriptionPage/DescriptionPage";
 import AdminDashboard from "./Pages/AdminDashboard/AdminDashboard";
+import EmailRedirect from "./Pages/EmailRedirectPage/EmailRedirect";
 import { useDispatch } from "react-redux";
 import {
   getTour, 
@@ -24,6 +25,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/register" element={<RegistrationForm />} />
+        <Route path="/email-verified" element={<EmailRedirect />} />
         <Route path="/redirect" element={<Redirect />} />
         <Route
           path="/"

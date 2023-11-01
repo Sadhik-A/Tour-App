@@ -1,7 +1,9 @@
 const bcrypt = require('bcrypt');
-const User = require('../models/user');
+const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-
+const Token = require("../models/Token");
+const SendEmail = require("../utils/SendEmail");
+const crypto = require("crypto");
 module.exports.jwtlogin = async (req, res) => {
      try {
     const { email, password } = req.body;
@@ -14,6 +16,18 @@ module.exports.jwtlogin = async (req, res) => {
 
     if (!isPasswordValid) {
       return res.status(401).json({message: 'incorrect password'});
+    }
+    if (user.get('verified')!==1) {
+      let token = await Token.where({ user_id: user.id }).fetch({ require: false });
+      if (!token) {
+        token=await new Token({
+          user_id: user.id,
+          token: crypto.randomBytes(32).toString("hex"),
+        }).save();
+        const url = `${process.env.BASE_URL}/users/${user.id}/verify/${token.attributes.token}`;
+        await SendEmail(user.attributes.email, "Verify Email", url);
+      }
+      return res.status(401).json({message: 'An email has been sent'});
     }
     // jwt token
     // console.log(process.env.JWT_SECRET)

@@ -16,4 +16,7 @@ router.post('/api/register',[
     Registercontrol.register(req, res);
   }
 );
+router.get("/users/:id/verify/:token", (req, res) => { 
+  Registercontrol.verify(req, res);
+})
 module.exports = router;
