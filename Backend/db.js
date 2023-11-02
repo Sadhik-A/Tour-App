@@ -1,11 +1,12 @@
+require("dotenv").config();
 const knex = require("knex")({
   client: "mysql",
   connection: {
-    host: "br0ccx7r1vjrv0hsbmam-mysql.services.clever-cloud.com",
-    user: "uolrb4gyv1mkcsvv",
-    password: "jWmarbDx9S94BDlnegUb",
-    database: "br0ccx7r1vjrv0hsbmam",
-    port: 3306,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    port: process.env.DB_PORT,
   },
 });
 const bookshelf = require("bookshelf")(knex);
