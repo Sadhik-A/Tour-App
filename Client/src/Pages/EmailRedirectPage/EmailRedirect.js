@@ -5,7 +5,7 @@ import "./EmailRedirect.scss"
 function EmailRedirect() {
   return (
     <>
-      <div className="container">
+      <div className="main-container">
         <div className="email-redirect">
           <div className="mail">
             <img src={email} alt="circle" className="circle" />
