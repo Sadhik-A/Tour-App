@@ -7,7 +7,7 @@ const PrivateRoute = ({ element, path }) => {
   const isAuthenticated = !!decodedTokenJSON
   const user=JSON.parse(decodedTokenJSON);
   // if user is not authenticated, redirect to login
-  if (user.verified !== 1 && path !== "/") {
+  if (!isAuthenticated && path !== "/") {
     return <Navigate to="/" />;
   }
   //if user is authenticated,
