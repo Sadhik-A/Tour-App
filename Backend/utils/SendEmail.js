@@ -1,6 +1,5 @@
 const { response } = require("express");
 const nodemailer = require("nodemailer");
-
 module.exports = async function (email, subject, message) {
     try {
         const transporter = nodemailer.createTransport({
