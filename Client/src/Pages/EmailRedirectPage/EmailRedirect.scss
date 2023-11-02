@@ -1,6 +1,14 @@
 .main-container{
-    margin: 0 auto;
+     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 10px;;
+    width: 658px;
+    height: 478px;
     box-shadow: 0px 3px 15px -3px rgba(0, 0, 0, 0.25);
 .email-redirect{
 display: flex;
@@ -15,17 +23,15 @@ display: flex;
             gap: 10px;
             border-radius: 60px;
             border: 3px solid #4931A8;
-            width: 54px;
-            height: 54px;
             .circle{
-                width: 100%;
-                height: 100%;
+                width: 54px;
+                 height: 54px;
             }
     }
     .text-button{
         display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             gap: 32px;
             .text{
                 display: flex;
@@ -47,6 +53,10 @@ display: flex;
                         font-weight: 500; 
                     }
             }
+            .link{
+                width: 100%;
+                text-decoration: none !important;
+            }
             .button{
                 display: flex;
                     width: 100%;
@@ -62,6 +72,7 @@ display: flex;
                     font-family: Plus Jakarta Sans;
                     font-size: 16px;
                     font-weight: 700;  
+                    margin-bottom: 0px !important;
                 }        
             }
     }

@@ -15,7 +15,7 @@ function EmailRedirect() {
               <h2> Email Verified !</h2>
               <p>You have successfully verified account. </p>
             </div>
-             <Link to="/">
+             <Link to="/" className='link'>
             <div className="button">
               <p>Continue </p>
             </div> </Link>
