@@ -30,7 +30,7 @@ function EditTourForm() {
   const TourImage = useSelector((state) => state.Tour.Tourimage);
   const AlertMessage = useSelector((state) => state.Tour.alertmessage);
   const tours = useSelector((state) => state.Tour.tours);
-  console.log(tours);
+  // console.log(tours);
   const registrationSuccess = useSelector(
     (state) => state.Tour.registerationSuccess
   );

@@ -19,7 +19,7 @@ function DescriptionPage() {
   // console.log(tours);
   const decodedTokenJSON = localStorage.getItem("decodedToken");
     const user = JSON.parse(decodedTokenJSON);
-    console.log(user)
+    // console.log(user)
   // const Username = user.username;
 
   const [selectedTour, setSelectedTour] = useState(null);

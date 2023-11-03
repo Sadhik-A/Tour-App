@@ -22,7 +22,7 @@ function Redirect() {
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(GoogleLogin());
-      console.log("useeffect is running")
+      // console.log("useeffect is running")
       navigate("/landing");
     },[dispatch,navigate]);
   return <div>Redirect</div>;

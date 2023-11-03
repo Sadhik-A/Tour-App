@@ -48,7 +48,7 @@ module.exports.verify = async (req, res) => {
       { verified: true },
       { patch: true }
     );
-    console.log(token);
+    // console.log(token);
     await Token.where({ user_id: token.attributes.user_id }).destroy();
     return res.redirect("https://tour-sadhik.netlify.app/email-verified");
   } catch (error) {

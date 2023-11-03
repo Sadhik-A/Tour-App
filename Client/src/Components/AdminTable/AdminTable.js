@@ -8,7 +8,7 @@ import { deleteTour } from "../../redux/Tourslice";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
 function Adminable() {
   const tours = useSelector((state) => state.Tour.tours);
-  console.log(tours)
+  // console.log(tours)
   let filteredTours = tours;
   const [show, setShow] = useState(false);
   const [tourToDelete, setTourToDelete] = useState(null);

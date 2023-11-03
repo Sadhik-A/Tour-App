@@ -1,7 +1,7 @@
 
 const Tour = require("../models/Tours");
 module.exports.add = async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
 
   try {
    

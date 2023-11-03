@@ -94,7 +94,7 @@ export const submitRegistration = (registrationData) => async (dispatch) => {
   }
 };
 export const GoogleLogin = () => async (dispatch) => {
-   console.log("api is running");
+  //  console.log("api is running");
   try {
     const response = await axios.get(
       `${SERVER_URLS.production}/login/success`,
@@ -103,7 +103,7 @@ export const GoogleLogin = () => async (dispatch) => {
       }
     );
     if (response.status === 200) {
-      console.log(response);
+      // console.log(response);
       const userData = response.data;
       const authToken = userData.token;
       const decodedToken = jwt_decode(authToken);
@@ -113,7 +113,7 @@ export const GoogleLogin = () => async (dispatch) => {
       // console.log(response.data.message);
       if (decodedToken.is_admin !== 1) {
         dispatch(setAlertMessage(response.data.message));
-        console.log(response.data.message);
+        // console.log(response.data.message);
       } else {
         dispatch(setAlertMessage("Admin logged in successfully"));
       }
@@ -145,14 +145,14 @@ export const submitLogin = (loginData) => async (dispatch) => {
     );
 
     if (response.status === 200) {
-      console.log(response.data)
+      // console.log(response.data)
       const userData = response.data;
       const authToken = userData.token;
       const decodedToken = jwt_decode(authToken);
       localStorage.setItem("decodedToken", JSON.stringify(decodedToken));
       dispatch(setAuthToken(authToken));
       dispatch(setUserData(userData));
-      console.log(response.data.message)
+      // console.log(response.data.message)
       if (decodedToken.is_admin !== 1) {
         dispatch(setAlertMessage(response.data.message));
       } else {
