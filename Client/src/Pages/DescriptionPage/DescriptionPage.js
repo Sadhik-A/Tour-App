@@ -16,11 +16,6 @@ function DescriptionPage() {
   const location = useLocation();
     const TourId = location.pathname.split("/").pop();
     const tours = useSelector((state) => state.Tour.tours);
-  // console.log(tours);
-  const decodedTokenJSON = localStorage.getItem("decodedToken");
-    // const user = JSON.parse(decodedTokenJSON);
-    // console.log(user)
-  // const Username = user.username;
 
   const [selectedTour, setSelectedTour] = useState(null);
 
