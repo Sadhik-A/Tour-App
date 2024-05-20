@@ -69,5 +69,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
+    added new featueres
 }
 export default App;
